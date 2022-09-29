@@ -1,0 +1,119 @@
+body
+{
+    background-color:rgb(151,153,186);  
+}
+
+form
+{
+    width: 600px;
+    background-color: white;
+    padding: 60px 100px;
+    border-radius: 35px;
+    margin-top: 45px;
+    margin-left: 320px;
+    animation: registration 2s infinite;
+}
+h1
+{
+    text-align: center;
+    margin-top: 10px;
+}
+.container
+{
+    padding: 1px;
+}
+
+input[type=text], input[type=password]
+{
+    background-color: #f2f4f6;
+    padding: 11px;
+    margin: 8px 0;
+    display: inline-block;
+    border: none;
+    width: 200px;
+    padding-left: 15px;
+    box-sizing: border-box;
+    border-radius: 15px;
+}
+
+
+
+div.postal
+{  
+  background-color: #f2f4f6;
+  padding: 11px;
+  margin: 8px 0;
+  display: inline-block;
+  border: none;
+  width: 90px;
+  padding-left: 15px;
+  box-sizing: border-box;
+  border-radius: 15px;
+
+}
+
+div.city
+{ 
+  
+  background-color: #f2f4f6;
+  padding: 11px;
+  margin: 8px 0;
+  display: inline-block;
+  border: none;
+  width: 155px;
+  padding-left: 15px;
+  box-sizing: border-box;
+  border-radius: 15px;
+}
+input[type=submit]:hover {
+   
+    background-color: gray;
+  }
+  input[type=reset]:hover {
+ 
+    background-color: gray;
+  }
+
+  .button
+    { position: relative;
+      width: 50%;
+      background-color: #363333;
+      color: rgb(250, 250, 250);
+      padding: 10px;
+      margin-right: 25%;
+      border-radius: 300px;
+      cursor: pointer;
+    }
+    .button2
+    { position: relative;
+      top: 20px;
+      width: 50%;
+      background-color: #363333;
+      color: rgb(250, 250, 250);
+      padding: 10px;
+      margin-right: 25%;
+      border-radius: 300px;
+      cursor: pointer;
+    }
+    .button3
+    { position: relative;
+      width: 10%;
+      background-color:red;
+      color: rgb(250, 250, 250);
+      padding: 10px;
+      
+      border-radius: 30px;
+      cursor: pointer;
+      text-decoration: none;
+      left: 200px;
+      top: 20px;
+    }
+    label
+    {
+        font-size: 20px;
+    }
+    .button3:hover
+    {
+        background-color: gray;
+    }
+    

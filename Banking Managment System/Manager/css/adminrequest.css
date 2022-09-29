@@ -1,0 +1,90 @@
+body {
+   
+    font-family:'Times New Roman', Times, serif;
+    line-height: 1.25;
+}
+
+
+
+@media screen and (max-width: 600px) {
+    table {
+        border: 0;
+    }
+
+    table caption {
+        font-size: 1.3em;
+    }
+
+    table thead {
+        border: none;
+        clip: rect(0 0 0 0);
+        height: 1px;
+        margin: -1px;
+        overflow: hidden;
+        padding: 0;
+        position: absolute;
+        width: 1px;
+    }
+
+    table tr {
+        border-bottom: 3px solid rgb(241, 241, 241);
+        display: block;
+        margin-bottom: .625em;
+    }
+
+    table td {
+        border-bottom: 1px solid rgb(250, 249, 249);
+        display: block;
+        font-size: .8em;
+        text-align: right;
+    }
+
+    table td::before {
+        content: attr(data-label);
+        float: left;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+
+    table td:last-child {
+        border-bottom: 0;
+    }
+}
+
+.accept {
+    width: 290px;
+    background-color: #04aa6d;
+    padding: 8px;
+    border: none;
+    font-size: 16px;
+    font-weight: 500;
+    color: white;
+    text-decoration: none;
+    transition: background-color 0.4s;
+    border-radius: 5px;
+}
+.reject {
+    width: 290px;
+    background-color: #ff0000;
+    padding: 8px;
+    border: none;
+    font-size: 16px;
+    font-weight: 500;
+    color: white;
+    text-decoration: none;
+    transition: background-color 0.4s;
+    border-radius: 5px;
+}
+
+#info {
+    width: 290px;
+    background-color: cornflowerblue;
+    padding: 8px;
+    border: none;
+    font-size: 16px;
+    font-weight: 500;
+    color: white;
+    text-decoration: none;
+    transition: background-color 0.4s;
+    border-radius: 5px;
+}
