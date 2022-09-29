@@ -1,0 +1,49 @@
+[
+    {
+        "firstname": "Mojnu",
+        "lastname": "Sheikh",
+        "gender": null,
+        "age": "23",
+        "fathersname": "S.M Mahbub",
+        "mothersname": "Beauty Rahman",
+        "username": "mojnu22",
+        "pass": "12Mojnu@",
+        "email": "ashraf.uddin@gmail.com",
+        "nid": "1234567",
+        "phone": "01715-681664",
+        "cvpath": "..\/uploads\/10-1108_APJIE-12-2017-036.pdf",
+        "imgpath": "..\/uploads\/Routine.jpg"
+    },
+    {
+        "firstname": "Rakin",
+        "lastname": "Khan",
+        "gender": "male",
+        "age": "21",
+        "fathersname": "Molla Ashraf",
+        "mothersname": "Amena Banu",
+        "username": "rakin11",
+        "pass": "12Rakin@",
+        "email": "rakin.khan11@gmail.com",
+        "presentaddress": "11\/2 Kolabagan, , DHAKA , 1211",
+        "nid": "0123456",
+        "phone": "01718-191259",
+        "cvpath": "..\/uploads\/20-42109-1.pdf",
+        "imgpath": "..\/uploads\/Screenshot (77).png"
+    },
+    {
+        "firstname": "Sajid",
+        "lastname": "Mahbub",
+        "gender": "male",
+        "age": "21",
+        "fathersname": "S.M Mahbubur Rahman",
+        "mothersname": "Beauty Rahman",
+        "username": "sajid12",
+        "pass": "12Sajid@",
+        "email": "sajid.mahbub40@gmail.com",
+        "presentaddress": "112\/2 , DHAKA , 1211",
+        "nid": "1234567",
+        "phone": "01518-439144",
+        "cvpath": "..\/uploads\/Sajid(20-42109-1).docx",
+        "imgpath": "..\/uploads\/123714164_1619359398249444_3617194880026175412_n.jpg"
+    }
+]
