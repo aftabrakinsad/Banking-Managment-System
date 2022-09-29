@@ -1,6 +1,6 @@
 <p align="center">
 <h2 align="center">WEB TECHNOLOGIES</h2>
-<p align="center">Academic Course Work</p>
+<p align="center">Banking Management System</p>
 <table align="center">
   <tr>
   	<th colspan="3"><h3><a href="https://www.aiub.edu">American International University-Bangladesh(AIUB)</a></h3></th>
