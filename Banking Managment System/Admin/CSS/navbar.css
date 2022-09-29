@@ -1,0 +1,98 @@
+.nav-wrapper {
+    height: 53px;
+    background: #333;
+}
+
+/* Add a black background color to the top navigation */
+.nav-wrapper .topnav {
+    background-color: black;
+    overflow: hidden;
+    height: 53px;
+}
+
+.topnav a[id="hamburger"] {
+    display: none;
+}
+
+.topnav a[id="user"] {
+    float: left;
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 27px;
+    font-family: Roboto-Light;
+}
+
+.topnav a[id="profile"]
+{
+    float: left;
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 17px 17px;
+    text-decoration: none; 
+    font-size: 17px;
+    font-family: OpenSans-Bold;
+    background-color: #0D47A1;
+    border-top-left-radius: 3px;
+    margin-right: 5px;
+}
+
+.topnav a[id="link"]
+{
+    float: right;
+    display: block;
+    color: white;
+    text-align: center;
+    border-radius: 10px;
+    padding: 17px 17px;
+    text-decoration: none;
+    font-size: 17px;
+    font-family: OpenSans-Bold;
+    background-color:#2196F3;
+    border-top-left-radius: 3px;
+    margin-right: 5px;
+    color: white;
+}
+
+.topnav a[id="logout"] {
+    float: right;
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 17px 17px;
+    text-decoration: none;
+    font-size: 17px;
+    font-family: OpenSans-Bold;
+    background-color: #b71c1c;
+    border-top-right-radius: 3px;
+    border-top-left-radius: 3px;
+}
+
+/* Change the color of links on hover */
+.topnav a[id="link"]:hover 
+{
+    color: white;
+    background-color:#0D47A1;
+}
+
+.topnav a[id="profile"]:hover {
+    color: white;
+    background-color: #2196F3;
+}
+
+.topnav a[id="logout"]:hover {
+    color: white;
+    background-color: #f44336;
+}
+
+/* Used to make the navbar sticky */
+.nav-wrapper .navbar-fixed {
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    position: fixed;
+}

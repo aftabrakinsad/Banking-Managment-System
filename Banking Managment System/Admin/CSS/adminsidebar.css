@@ -1,0 +1,54 @@
+.sidenav {
+    width: 256px;
+    background-color:cadetblue;
+    height: 90vh;
+    float: left;
+    overflow-y: auto;
+    box-shadow: 1px 1px 5px #888888;
+}
+
+.sidenav a {
+    font-family: OpenSans-Regular;
+    font-size: 19px;
+    color: #212121;
+    display: block;
+    padding: 22px 16px;
+    text-decoration: none;
+}
+
+.sidenav a:hover {
+    background-color: #ddd;
+}
+
+.sidenav a[id="label"] {
+    font-family: OpenSans-Bold;
+    font-size: 22px;
+    color: #212121;
+    display: block;
+    padding: 11px;
+    text-decoration: none;
+    border-top: 1px solid blueviolet;
+    border-bottom: 1px solid blueviolet;
+    text-align: center;
+}
+
+.sidenav a[id="label"]:hover {
+    background-color: transparent;
+}
+
+.sidenav a.active {
+    background-color: #ccc;
+}
+
+/* Sticky Sidebar */
+.sidenav-fixed {
+    height: auto;
+    top: 53px;
+    z-index: 100;
+    bottom: 0;
+    position: fixed;
+}
+
+.sidenav a[id="closebtn"] {
+    display: none;
+}

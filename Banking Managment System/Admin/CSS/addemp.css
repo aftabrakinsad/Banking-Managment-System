@@ -1,0 +1,127 @@
+* {
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    text-decoration: none;
+}
+
+.bodycolor {
+    background-color: black;
+}
+
+#denger {
+    background-color: red;
+    color: white;
+    text-align: center;
+    border-radius: 5px;
+    margin-left: 5px;
+    margin-right: 8px;
+    padding: 9px;
+}
+
+#success {
+    color: white;
+    background-color: forestgreen;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+#info {
+    color: blue;
+}
+
+form {
+    width: 800px;
+    background-color: black;
+    padding: 50px 100px;
+    border-radius: 30px;
+    margin-top: 40px;
+    margin-left: 32.5%;
+    animation: registration 2s infinite;
+}
+
+@keyframes registration {
+    50% {
+        box-shadow: 5px 5px 5px 10px green;
+    }
+}
+
+h1 {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.p {
+    color: white;
+}
+
+.h2 {
+    text-align: center;
+    font-size: 30px;
+    margin-bottom: 10px;
+    margin-right: 10px;
+    margin-left: 5px;
+    background-color: cornflowerblue;
+    color: white;
+    padding: 5px;
+    border-radius: 15px;
+}
+
+input[type=text],
+input[type=password] {
+    background-color: #f2f4f6;
+    padding: 12px;
+    margin: 8px 0;
+    display: inline-block;
+    border: none;
+    width: 290px;
+    padding-left: 10px;
+    box-sizing: border-box;
+    border-radius: 15px;
+}
+
+.inputrequestbutton {
+    width: 290px;
+    background-color: #04aa6d;
+    padding: 8px;
+    border: none;
+    font-size: 16px;
+    font-weight: 500;
+    color: white;
+    margin-left: 150px;
+    transition: background-color 0.4s;
+    border-radius: 10px;
+}
+
+.inputrequestreturn {
+    width: 100px;
+    background-color: steelblue;
+    padding: 8px;
+    border: none;
+    font-size: 16px;
+    font-weight: 500;
+    color: white;
+    margin-left: 30px;
+    transition: background-color 0.4s;
+    border-radius: 10px;
+}
+
+.inputrequestbutton:hover {
+    opacity: 0.8;
+    background-color: #04aa6d;
+}
+
+.inputrequestreturn:hover {
+    opacity: 0.8;
+    background-color: steelblue;
+}
+
+.container {
+    padding: 1px;
+}
+
+#hell
+{
+    color: white;
+}

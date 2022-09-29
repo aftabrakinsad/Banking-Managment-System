@@ -1,0 +1,61 @@
+body
+{
+    background-color: black;
+}
+.flex-container {
+display: -webkit-flex;
+display: flex;
+-webkit-flex-direction: column;
+flex-direction: column;
+margin-left: 256px;
+width: auto;
+height: auto;
+-webkit-flex-wrap: wrap;
+flex-wrap: wrap;
+}
+
+.flex-item {
+width: auto;
+height: auto;
+margin: 10px;
+margin-left: auto;
+margin-right: auto;
+}
+
+h1[id="customer"] {
+margin: 20px;
+line-height: normal;
+font-family: Roboto-Light;
+font-size: 40px;
+text-align: center;
+color: #1c6c9e;
+line-height: 55px;
+border-bottom: 2px solid #259414;
+padding: 30px 100px;
+}
+
+p[id="customer"] {
+margin: 20px;
+font-size: 30px;
+font-family: Roboto-Regular;
+color: white;
+line-height: 42px;
+padding: 10px 100px;
+text-align: center;
+}
+
+.customer
+{
+    margin: 20px;
+    font-size: 30px;
+    font-family: Roboto-Regular;
+    color: white;
+    line-height: 42px;
+    padding: 10px 100px;
+    text-align: center;
+}
+
+.xd
+{
+    background: url("../Image/BodyImg.png");
+}
