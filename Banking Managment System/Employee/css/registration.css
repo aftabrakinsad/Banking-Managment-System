@@ -1,0 +1,140 @@
+
+body{
+    margin:0;
+    padding: 0;
+    background-color:rgb(151,153,186);  
+    background-size: cover;
+  }
+
+  form
+{
+    width: 600px;
+    background-color:rgb(175, 208, 223);
+    padding: 50px 150px;
+    border-radius: 30px;
+    margin-top: 50px;
+    margin-left: 300px;
+    animation: registration 2s infinite;
+}
+
+h1 {
+    font-size: 2.5rem;
+    line-height: 2.5rem;
+    margin-top: calc((1.5rem - 2rem) + 2rem);
+    margin-bottom: 1.5rem;
+}
+
+
+
+.h2
+{
+    text-align: center;
+    font-size: 30px;
+    margin-bottom: 10px;
+    margin-right: 10px;
+    margin-left: 5px;
+    background-color: cornflowerblue;
+    color: rgb(7, 5, 20);
+    padding: 5px;
+    border-radius: 15px;
+}
+
+.h3 {
+    text-align: center;
+    font-size: 30px;
+    margin-bottom: 40px;
+    margin-right: 85px;
+    margin-left: 50px;
+    background-color: cornflowerblue;
+    color: rgb(7, 5, 20);
+    padding: 5px;
+    border-radius: 15px;
+}
+
+
+input[type=text], input[type=password]
+{
+    background-color: #f2f4f6;
+    padding: 12px;
+    display: inline-block;
+    border: none;
+    width: 290px;
+    padding-left: 10px;
+    box-sizing: border-box;
+    border-radius: 15px;
+    position: relative;
+}
+
+.login
+{
+    width: 250px;
+    background-color: #040e0b;
+    padding: 8px;
+    border: none;
+    font-size: 16px;
+    color: white;
+    margin-left: 50px;
+    transition: background-color 0.4s;
+    border-radius: 10px;
+    text-decoration: none;
+}
+.login:hover
+{
+    background-color: #3f4140;
+}
+
+ .gobacklogin
+ {
+    width: 250px;
+    background-color: #040e0b;
+    padding: 8px;
+    padding-left: 100px;
+    padding-right: 112px;
+    border: none;
+    font-size: 16px;
+    color: white;
+    margin-left: 20px;
+    transition: background-color 0.4s;
+    border-radius: 10px;
+    text-decoration: none;
+ }
+
+ .goback
+{
+    /* float:left; */
+    position: relative;
+    display: block;
+    color: rgb(241, 232, 232);
+    text-align: center;
+    padding: 15px 25px;
+    /* padding-right: 112px; */
+    /* padding: 17px 17px; */
+    text-decoration: none;
+    font-size: 17px;
+    font-family: OpenSans-Bold;
+    background-color: #141313;
+    border-radius: 10px;
+}
+
+.goback
+{
+    /* float:left; */
+position: relative;
+padding: 12px;
+display: inline-block;
+border: none;
+width: 200px;
+padding-left: 10px;
+box-sizing: border-box;
+border-radius: 15px
+}
+
+.goback:hover
+ {
+    background-color: #3f4140;
+ }
+
+ .gobacklogin:hover
+ {
+    background-color: #3f4140;
+ }

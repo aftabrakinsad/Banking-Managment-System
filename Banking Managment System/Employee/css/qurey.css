@@ -1,0 +1,179 @@
+body
+{
+    background-color: rgb(251, 244, 244);
+}
+.flex-container {
+display: -webkit-flex;
+display: flex;
+margin-left: 256px;
+width: auto;
+height: auto;
+-webkit-flex-wrap: wrap;
+flex-wrap: wrap;
+background-color: rgb(221, 218, 218);
+}
+
+.flex-container-form_header {
+display: -webkit-flex;
+display: flex;
+margin-left: 256px;
+width: auto;
+height: auto;
+background-color: rgb(11, 11, 11);
+border-bottom: 1px solid rgb(16, 16, 16);
+}
+
+h1[id="form_header"] {
+margin-left: 20px;
+font-family: Roboto-Thin;
+color: rgb(8, 8, 8);
+}
+
+.flex-container-radio {
+display: -webkit-flex;
+display: flex;
+width: auto;
+height: auto;
+-webkit-flex-wrap: wrap;
+flex-wrap: wrap;
+background-color: black;
+}
+
+@media screen and (max-width: 855px) {
+.flex-container, .flex-container-form_header {
+margin-left: auto;
+}
+}
+
+/* Bordered form */
+form {
+border: 3px solid black;
+width: inherit;
+margin-left: 0px;
+}
+
+label {
+display: block;
+float: left;
+color: rgb(13, 13, 13);
+font-family: OpenSans-Bold;
+font-size: 20px;
+}
+
+label[id="info_label"] {
+display: block;
+float: right;
+margin-left: 6px;
+font-family: Roboto-Regular;
+color: white;
+font-size: 24px;
+}
+
+/* Full-width inputs */
+input[type=text], input[type=password] {
+font-family: Roboto-Regular;
+color: rgb(10, 10, 10);
+font-size: 24px;
+width: auto;
+margin: 8px 0;
+padding: 1px 1px;
+border: 0;
+border-bottom: 1px solid rgb(16, 15, 15);
+box-sizing: border-box;
+background-color: transparent;
+}
+
+.container {
+margin-top: 30px;
+margin-left: 20px;
+margin-right: 20px;
+
+display: inline-block;
+}
+
+
+textarea {
+font-family: Roboto-Regular;
+color: rgb(12, 12, 12);
+font-size: 24px;
+height: 100px;
+width:35vw;
+max-width: 720px;
+min-width: 240px;
+margin: 8px 0;
+padding: 1px 1px;
+border: 0;
+border: 1px solid rgb(10, 10, 10);
+box-sizing: border-box;
+background-color: transparent;
+}
+
+
+
+/* Set a style for all buttons */
+button {
+font-family: OpenSans-Regular;
+font-size: 18px;
+background-color: #21747f;
+color: rgb(12, 11, 11);
+padding: 14px 20px;
+margin: 8px 0;
+border: none;
+cursor: pointer;
+width: 100%;
+border-radius: 3px;
+}
+
+.button {
+background-color: #2195e1;
+border: none;
+color: rgb(17, 14, 14);
+font-family: OpenSans-Regular;
+font-size: 18px;
+padding: 14px 20px;
+margin: 8px 0;
+text-align: center;
+text-decoration: none;
+display: inline-block;
+border-radius: 3px;
+cursor: pointer;
+}
+
+.password-button {
+background-color: transparent;
+color: #199565;
+font-family: OpenSans-Regular;
+font-size: 18px;
+padding: 14px 20px;
+margin: 8px 0;
+text-align: center;
+text-decoration: none;
+display: inline-block;
+border-radius: 3px;
+border: 2px solid #0d965d;
+cursor: pointer;
+}
+
+.password-button:hover {
+background-color: #10b093;
+color: white;
+border: 2px solid #12a87b;
+}
+
+/* Add a hover effect for buttons */
+button:hover, .button:hover {
+opacity: 0.8;
+}
+
+/* Extra style for the cancel button (red) */
+.reset {
+width: auto;
+background-color: #19a387;
+}
+
+.xd
+{
+    height: 200px; 
+    width: 60vw;
+}
+

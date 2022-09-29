@@ -1,0 +1,152 @@
+
+body{
+  margin:0;
+  padding: 0;
+  background-color:rgb(151,153,186);  
+  background-size: cover;
+  
+
+}
+
+
+
+.header {
+    padding: 20px;
+    text-align: center;
+    background: #9192df;
+  }
+
+  .header h1 {
+    font-size: 30px;
+  }
+
+  form
+  {
+    width: 500px;
+    background-color:rgb(96, 204, 237);
+    padding: 30px, 70px;
+    box-shadow: 10px 10px, 10px, blue;
+    margin-top: 110px;
+    margin-left: 500px;
+  }
+
+  .footer {
+
+    padding: 20px;
+    text-align: right;
+    background: rgb(211, 99, 99);
+    margin-top: 20px;
+  }
+  .footer h1 {
+    font-size: 12px;
+  }
+  .topnav {
+    overflow: hidden;
+ 
+  }
+
+  
+div.sticky {
+  position: sticky;
+  top: 0;
+  padding: 0;
+  border: 2px solid #171619;
+
+}
+
+
+
+
+  input[type=text]
+  {
+    width: 100%;
+    padding: 12px;
+    display: inline-block;
+    border: 1px solid rgb(216, 81, 81);
+    border-radius: 10px;
+    box-sizing: border-box;
+    margin-left: 100px;
+  }
+
+  input[type=password] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid rgb(216, 81, 81);
+    border-radius: 10px;
+    box-sizing: border-box;
+    margin-left: 100px;
+  }
+
+
+
+  .login
+  {
+    width: 50%;
+    background-color: #0d0d0d;
+    color: rgb(142, 230, 238);
+    padding: 14px;
+    margin: 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+  }
+
+  .regi
+  {
+    width: 100%;
+    background-color: #090909;
+    color: rgb(142, 230, 238);
+    padding: 14px;
+    margin-right: 50px;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+  }
+
+  .login:hover
+ {
+    background-color: #2c3b34;
+ }
+
+ .regi:hover
+ {
+    background-color: #2c3b34;
+ }
+  
+  /* input[type=submit]:hover {
+    background-color: #d13d3d;
+  } */
+
+  .topnav a{
+    float: left;
+    display: block;
+    color: #929191;
+    text-align: center;
+    padding: 10px 50px;
+ 
+  }
+
+  .topnav a:hover {
+    background-color: rgb(240, 118, 118);
+    color: rgb(173, 160, 160);
+  }
+ 
+  textarea {
+    width: 100%;
+    height: 150px;
+    padding: 15px 2px;
+    box-sizing: border-box;
+    border: 4px solid #ccc;
+    border-radius: 5px;
+    background-color: rgb(219, 219, 219);
+    resize: none;  
+}
+
+
+.mydiv 
+{
+    text-align: left;
+    margin-top: -140px;
+}

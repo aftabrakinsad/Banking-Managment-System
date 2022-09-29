@@ -1,0 +1,126 @@
+body {
+    background-color: rgb(235, 221, 221);
+    font-family:'Times New Roman', Times, serif;
+    line-height: 1.25;
+}
+
+table {
+    border: 1px solid black;
+    border-collapse: collapse;
+    margin: 0;
+    padding: 10px;
+    width: 82%;
+    color: rgb(25, 24, 24);
+}
+
+table caption {
+    font-size: 1.5em;
+    margin: .5em 0 .75em;
+    color: rgb(11, 10, 10);
+}
+
+table tr {
+    background-color: rgb(235, 221, 221);
+    border: 1px solid #ddd;
+    padding: 1px;
+    color: rgb(11, 11, 11);
+}
+
+table th,
+table td {
+    padding: .625em;
+    text-align: center;
+    color: rgb(4, 4, 4);
+}
+
+table th {
+    font-size: .85em;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: rgb(18, 18, 18);
+}
+
+@media screen and (max-width: 600px)
+{
+    table {
+        border: 0;
+    }
+
+    table caption {
+        font-size: 1.3em;
+    }
+
+    table thead {
+        border: none;
+        clip: rect(0 0 0 0);
+        height: 1px;
+        margin: -1px;
+        overflow: hidden;
+        padding: 0;
+        position: absolute;
+        width: 1px;
+    }
+
+    table tr {
+        border-bottom: 3px solid rgb(137, 223, 247);
+        display: block;
+        margin-bottom: .625em;
+    }
+
+    table td {
+        border-bottom: 1px solid rgb(137, 223, 247);
+        display: block;
+        font-size: .8em;
+        text-align: right;
+    }
+
+    table td::before {
+        content: attr(data-label);
+        float: left;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+
+    table td:last-child {
+        border-bottom: 0;
+    }
+
+}
+
+.accept {
+    width: 290px;
+    background-color: #70d5b0;
+    padding: 8px;
+    border: none;
+    font-size: 16px;
+    font-weight: 500;
+    color: rgb(18, 17, 17);
+    text-decoration: none;
+    transition: background-color 0.4s;
+    border-radius: 5px;
+}
+.reject {
+    width: 290px;
+    background-color: #70d5b0;
+    padding: 8px;
+    border: none;
+    font-size: 16px;
+    font-weight: 500;
+    color: rgb(17, 16, 16);
+    text-decoration: none;
+    transition: background-color 0.4s;
+    border-radius: 5px;
+}
+
+#info {
+    width: 290px;
+    background-color: cornflowerblue;
+    padding: 8px;
+    border: none;
+    font-size: 16px;
+    font-weight: 500;
+    color: white;
+    text-decoration: none;
+    transition: background-color 0.4s;
+    border-radius: 5px;
+}
