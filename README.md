@@ -1,5 +1,4 @@
 <p align="center">
-<h2 align="center">WEB TECHNOLOGIES</h2>
 <p align="center">Banking Management System</p>
 <table align="center">
   <tr>
@@ -28,3 +27,5 @@
 
 </table>
 </p>
+
+This is a web techonology based project offered by <a href="https//www.cs.aiub.edu">depertment of computer science</a>. 
