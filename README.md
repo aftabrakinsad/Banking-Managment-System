@@ -38,18 +38,18 @@
 <p align="justify">We followed the layered architecture technique to attain the perfect structure for the folders used in our project. The idea behind Layered Architecture is that modules or components with similar functionalities are organized into horizontal layers. As a result, each layer performs a specific role within the application. Our project folder structure is described below. We used control for storing PHP control files of the project, CSS folder for storing .css files, data for JSON, image for storing images that are used in the project, JavaScript for storing .js files, Model for the database queries, uploads for the uploaded files through the form. And lastly view for containing all the HTML files of the project.</p>
 <p align="center"><img width="665" alt="Layered Architecture" src="https://user-images.githubusercontent.com/66327542/193192162-fcc2994d-a22a-416a-9c3d-3140c25f9b54.png"></p>
 
-<h3>Short Description</h3>
+<h3><u>Short Descriptions</u></h3>
 <p>
+  <b>Four types of users:</b>
   <ol>
-    <b>Four types of users:</b>
     <li>Admin</li>
     <li>Manager</li>
     <li>Employee</li>
     <li>Customer/User</li>
   </ol>
   
+  <b>Common features for all user:</b>
   <ol>
-    <b>Common features for all user:</b>
     <li>User registration.</li>
     <li>Users can sign-in & sign-out from the system.</li>
     <li>Users can view his/her profile.</li>
@@ -73,24 +73,24 @@
     <li>Can view user’s transjection history.</li>
   </ol>
   
+  <b>Manager Functionality:</b>
   <ol>
-    <b>Manager Functionality:</b>
-    <liManage deposit & withdrawal.</li>
-    <liEnable loan for customer.</li>
-    <liCustomer information. (Add + Delete + Update + View)</li>
-    <liEmployee information. (Add + Delete + Update + View)</li>
-    <liManage accounts.</li>
-    <liProcess customer request.</li>
-    <liEnable utilities.</li>
-    <liIssue debit & credit card.</li>
-    <liCan view work hour of the employees.</li>
-    <liTransfer funds.</li>
-    <liSearch employee and Customer information.</li>
-    <liCan view user’s transjection history.</li>
+    <li>Manage deposit & withdrawal.</li>
+    <li>Enable loan for customer.</li>
+    <li>Customer information. (Add + Delete + Update + View)</li>
+    <li>Employee information. (Add + Delete + Update + View)</li>
+    <li>Manage accounts.</li>
+    <li>Process customer request.</li>
+    <li>Enable utilities.</li>
+    <li>Issue debit & credit card.</li>
+    <li>Can view work hour of the employees.</li>
+    <li>Transfer funds.</li>
+    <li>Search employee and Customer information.</li>
+    <li>Can view user’s transjection history.</li>
   </ol>
   
+  <b>Employee Functionality:</b>
   <ol>
-    <b>Employee Functionality:</b>
     <li>Can view customer information.</li>
     <li>Can view customers’ accounts.</li>
     <li>Can open or close accounts.</li>
