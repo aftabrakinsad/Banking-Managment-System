@@ -1,5 +1,5 @@
 <p align="center">
-<p align="center">Banking Management System</p>
+<h2 align="center">Banking Management System</h2>
 <table align="center">
   <tr>
   	<th colspan="4"><h3><a href="https://www.aiub.edu">American International University-Bangladesh(AIUB)</a></h3></th>
