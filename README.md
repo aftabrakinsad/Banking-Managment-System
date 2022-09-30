@@ -37,3 +37,36 @@
 <h3>Project Folder Structure</h3>
 <p align="justify">We followed the layered architecture technique to attain the perfect structure for the folders used in our project. The idea behind Layered Architecture is that modules or components with similar functionalities are organized into horizontal layers. As a result, each layer performs a specific role within the application. Our project folder structure is described below. We used control for storing PHP control files of the project, CSS folder for storing .css files, data for JSON, image for storing images that are used in the project, JavaScript for storing .js files, Model for the database queries, uploads for the uploaded files through the form. And lastly view for containing all the HTML files of the project.</p>
 <p align="center"><img width="665" alt="Layered Architecture" src="https://user-images.githubusercontent.com/66327542/193192162-fcc2994d-a22a-416a-9c3d-3140c25f9b54.png"></p>
+
+<h3>Short Description</h3>
+<p>
+  <ol>Four types of users:
+    <li>Admin</li>
+    <li>Manager</li>
+    <li>Employee</li>
+    <li>Customer/User</li>
+  </ol>
+  
+  <ol>Common features for all user:
+    <li>User registration.</li>
+    <li>Users can sign-in & sign-out from the system.</li>
+    <li>Users can view his/her profile.</li>
+    <li>Users can update his/her profile.</li>
+    <li>Users can change password.</li>
+  </ol>
+  
+  <ol>Admin Functionality:
+    <li>Can add new functionality of the system.</li>
+    <li>Can delete old functionality of the system.</li>
+    <li>Access on hole website.</li>
+    <li>Can verify user data.</li>
+    <li>Can delete user’s account.</li>
+    <li>Can edit manager, employee’s & user’s account.</li>
+    <li>Can search user.</li>
+    <li>Can delete user history.</li>
+    <li>Can manipulate website information.</li>
+    <li>Can post notice or announcement.</li>
+    <li>Can view user data base.</li>
+    <li>Can view user’s transjection history.</li>
+  </ol>
+</p>
