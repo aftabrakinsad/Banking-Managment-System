@@ -57,8 +57,8 @@
     <li>Users can change password.</li>
   </ol>
   
+  <b>Admin Functionality:</b>
   <ol>
-    <b>Admin Functionality:</b>
     <li>Can add new functionality of the system.</li>
     <li>Can delete old functionality of the system.</li>
     <li>Access on hole website.</li>
