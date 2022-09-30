@@ -40,16 +40,16 @@
 
 <h3>Short Description</h3>
 <p>
-  <b>Four types of users:</b>
   <ol>
+    <b>Four types of users:</b>
     <li>Admin</li>
     <li>Manager</li>
     <li>Employee</li>
     <li>Customer/User</li>
   </ol>
   
-  <b>Common features for all user:</b>
   <ol>
+    <b>Common features for all user:</b>
     <li>User registration.</li>
     <li>Users can sign-in & sign-out from the system.</li>
     <li>Users can view his/her profile.</li>
@@ -57,8 +57,8 @@
     <li>Users can change password.</li>
   </ol>
   
-  <b>Admin Functionality:</b>
   <ol>
+    <b>Admin Functionality:</b>
     <li>Can add new functionality of the system.</li>
     <li>Can delete old functionality of the system.</li>
     <li>Access on hole website.</li>
@@ -71,5 +71,37 @@
     <li>Can post notice or announcement.</li>
     <li>Can view user data base.</li>
     <li>Can view user’s transjection history.</li>
+  </ol>
+  
+  <ol>
+    <b>Manager Functionality:</b>
+    <liManage deposit & withdrawal.</li>
+    <liEnable loan for customer.</li>
+    <liCustomer information. (Add + Delete + Update + View)</li>
+    <liEmployee information. (Add + Delete + Update + View)</li>
+    <liManage accounts.</li>
+    <liProcess customer request.</li>
+    <liEnable utilities.</li>
+    <liIssue debit & credit card.</li>
+    <liCan view work hour of the employees.</li>
+    <liTransfer funds.</li>
+    <liSearch employee and Customer information.</li>
+    <liCan view user’s transjection history.</li>
+  </ol>
+  
+  <ol>
+    <b>Employee Functionality:</b>
+    <li>Can view customer information.</li>
+    <li>Can view customers’ accounts.</li>
+    <li>Can open or close accounts.</li>
+    <li>Managing customers bank accounts.</li>
+    <li>Can manage customers transitions.</li>
+    <li>Can manage debit and credit.</li>
+    <li>Can handle inquiries.</li>
+    <li>Handle the currency exchange.</li>
+    <li>Resolving client queries and complaints.</li>
+    <li>Can authorizing loans to the customers.</li>
+    <li>Overseeing ATM deposits and withdrawals.</li>
+    <li>Balancing numbers at the end of the business day.</li>
   </ol>
 </p>
