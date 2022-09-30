@@ -29,4 +29,4 @@
 </p>
 
 <h3>About</h3>
-<p align="justify">This is a web techonology based project offered by <a href="https://cs.aiub.edu/">Depertment of Computer Science</a>. In this course, we got to know about XAMPP control panel and used it as a local server for running our php code. We have learned how to implement html code into .php extaintioned file. We learned css, json, javascript, ajax, jquery, php and mysql. We also learned about Layered architecture. OOP conceped is used to implement.</p>
+<p align="justify">This is a web techonology based project offered by <a href="https://cs.aiub.edu/">Depertment of Computer Science</a>. In this course, we got to know about XAMPP control panel and used it as a local server for running our php code. We have learned how to implement html code into .php extaintioned file. We learned css, json, javascript, ajax, jquery, php and mysql. We also learned about Layered architecture. OOP conceped is used to implement. In this project we developed an online based Banking Management System using above mentioned learnings.</p>
