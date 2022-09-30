@@ -40,14 +40,16 @@
 
 <h3>Short Description</h3>
 <p>
-  <ol>Four types of users:
+  <b>Four types of users:</b>
+  <ol>
     <li>Admin</li>
     <li>Manager</li>
     <li>Employee</li>
     <li>Customer/User</li>
   </ol>
   
-  <ol>Common features for all user:
+  <b>Common features for all user:</b>
+  <ol>
     <li>User registration.</li>
     <li>Users can sign-in & sign-out from the system.</li>
     <li>Users can view his/her profile.</li>
@@ -55,7 +57,8 @@
     <li>Users can change password.</li>
   </ol>
   
-  <ol>Admin Functionality:
+  <b>Admin Functionality:</b>
+  <ol>
     <li>Can add new functionality of the system.</li>
     <li>Can delete old functionality of the system.</li>
     <li>Access on hole website.</li>
