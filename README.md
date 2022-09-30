@@ -106,7 +106,8 @@
   </ol>
   
   <h3>Entity Relationship Diagram</h3>
-  <p align="center"><img width="726" alt="Entitydiagram" src="https://user-images.githubusercontent.com/66327542/193196348-6e5dde5d-36c1-4cce-a406  dfc371c29e85.png"></p>
+  <p align="center"><img width="726" alt="Entitydiagram" 
+   src="https://user-images.githubusercontent.com/66327542/193196348-6e5dde5d-36c1-4cce-a406-dfc371c29e85.png"></p>
   <p align="center">Figure: ER Diagram (there have some mistake with our er diagram)</p>
 
 </p>
