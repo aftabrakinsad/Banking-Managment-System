@@ -26,6 +26,27 @@
     <td>L</td>
     <td>Admin (100%)</td>
   </tr>
+  
+  <tr>
+    <td><a href="https://github.com/sajidmahbub10">SAJID IBNA MAHBUB</a></td>
+    <td>20-42109-1</td>
+    <td>L</td>
+    <td>Manager (100%)</td>
+  </tr>
+  
+  <tr>
+    <td><a href="https://github.com/Arifeenhamim">SULTANUL ARIFEEN HAMIM</a></td>
+    <td>20-42017-1</td>
+    <td>L</td>
+    <td>Employee (100%)</td>
+  </tr>
+  
+  <tr>
+    <td><a href="https://github.com/tahmid888">TAHAMIDUL HAQUE</a></td>
+    <td>20-42139-1</td>
+    <td>L</td>
+    <td>User (100%)</td>
+  </tr>
 
 </table>
 </p>
