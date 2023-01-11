@@ -1,15 +1,15 @@
 <p align="center">
     <a href="https://github.com/aftabrakinsad/Banking-Managment-System/graphs/contributors">
-      <img alt="GitHub Contributors" src="https://img.shields.io/github/contributors/aftabrakinsad/aftabrakinsad?label=Contributors&color=limegreen&logo=github" />
+      <img alt="GitHub Contributors" src="https://img.shields.io/github/contributors/aftabrakinsad/Banking-Managment-System?label=Contributors&color=limegreen&logo=github" />
     </a>
     <a href="https://github.com/aftabrakinsad/Banking-Managment-System/network/members">
-      <img alt="Forks" src="https://img.shields.io/github/forks/aftabrakinsad/aftabrakinsad?label=Forks&color=limegreen&logo=github" />
+      <img alt="Forks" src="https://img.shields.io/github/forks/aftabrakinsad/Banking-Managment-System?label=Forks&color=limegreen&logo=github" />
     </a>
     <a href="https://github.com/aftabrakinsad/Banking-Managment-System/issues">
-      <img alt="Issues" src="https://img.shields.io/github/issues/aftabrakinsad/aftabrakinsad?label=Issues&color=0088ff&logo=github" />
+      <img alt="Issues" src="https://img.shields.io/github/issues/aftabrakinsad/Banking-Managment-System?label=Issues&color=0088ff&logo=github" />
     </a>
     <a href="https://github.com/aftabrakinsad/Banking-Managment-System/pulls">
-      <img alt="GitHub pull requests" src="https://img.shields.io/github/issues-pr/aftabrakinsad/aftabrakinsad?label=Pull Requests&color=0088ff&logo=github" />
+      <img alt="GitHub pull requests" src="https://img.shields.io/github/issues-pr/aftabrakinsad/Banking-Managment-System?label=Pull Requests&color=0088ff&logo=github" />
     </a>
 </p>
 <p align="center">
