@@ -1,4 +1,21 @@
 <p align="center">
+    <a href="https://github.com/aftabrakinsad/aftabrakinsad/actions">
+      <img alt="Tests Passing" src="https://img.shields.io/static/v1?label=Test&message=Passing&color=limegreen&logo=github" />
+    </a>
+    <a href="https://github.com/aftabrakinsad/aftabrakinsad/graphs/contributors">
+      <img alt="GitHub Contributors" src="https://img.shields.io/github/contributors/aftabrakinsad/aftabrakinsad?label=Contributors&color=limegreen&logo=github" />
+    </a>
+    <a href="https://github.com/aftabrakinsad/aftabrakinsad/network/members">
+      <img alt="Forks" src="https://img.shields.io/github/forks/aftabrakinsad/aftabrakinsad?label=Forks&color=limegreen&logo=github" />
+    </a>
+    <a href="https://github.com/aftabrakinsad/aftabrakinsad/issues">
+      <img alt="Issues" src="https://img.shields.io/github/issues/aftabrakinsad/aftabrakinsad?label=Issues&color=0088ff&logo=github" />
+    </a>
+    <a href="https://github.com/aftabrakinsad/aftabrakinsad/pulls">
+      <img alt="GitHub pull requests" src="https://img.shields.io/github/issues-pr/aftabrakinsad/aftabrakinsad?label=Pull Requests&color=0088ff&logo=github" />
+    </a>
+</p>
+<p align="center">
 <h2 align="center">Banking Management System</h2>
 <table align="center">
   <tr>
