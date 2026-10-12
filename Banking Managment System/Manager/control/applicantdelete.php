@@ -1,6 +1,6 @@
 <?php
 
-@include("../Model/db.php");
+@include("../model/db.php");
 
 if(isset($_GET['deleteid']))
 {

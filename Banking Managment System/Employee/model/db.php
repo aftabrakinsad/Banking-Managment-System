@@ -216,6 +216,14 @@ function NIDreg_Ajex($NID, $registrationofemployee, $conn)
     return $conn -> query($sqlstr);
 }
 
+
+function insertUser($FirsName,$LastName,$Username,$Password,$ConfirmPassword,$Email,$NID,$Phone,$Date,$Street,$City,$Postal,$gender,$table,$conn)
+{
+$sqlstr = "INSERT INTO $table (FirsName,LastName,Username,Password,ConfirmPassword,Email,NID,Phone,`Date`,Street,City,Postal,gender)
+VALUES ('$FirsName','$LastName','$Username','$Password','$ConfirmPassword','$Email','$NID','$Phone','$Date','$Street','$City','$Postal','$gender')";
+return $conn->query($sqlstr);
+}
+
 }
 
 ?>
