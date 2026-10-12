@@ -16,7 +16,7 @@
             <a id="link" href="../View/adminlogin.php">Admin</a>
             <a id="link" href="/Manager/view/managerlogin.php">Manager</a>
             <a id="link" href="/Employee/view/employelogin.php">Employee</a>
-            <a id="link" href="#">User</a>
+            <a id="link" href="/User/View/login.php">User</a>
             <a id="link" href="../View/News.php">News</a>
         </div>
     </div>
