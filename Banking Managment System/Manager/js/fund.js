@@ -92,7 +92,7 @@ if(this.readyState==4 && this.status ==200)
     document.getElementById("accountcheck").innerHTML=this.responseText;
 }
     };
-    myxhttp.open("POST","http://localhost/Bankin%20Managment%20System/Manager/control/checkaccount.php",true);
+    myxhttp.open("POST","/Manager/control/checkaccount.php",true);
     myxhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
     myxhttp.send("accountno="+accountno);
 }

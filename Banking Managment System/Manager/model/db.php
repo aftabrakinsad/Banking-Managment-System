@@ -3,17 +3,8 @@ class db{
 
     function openConn()
     {
-        $servername="localhost";
-        $username = "root";
-        $password = "";
-        $dbname = "bankinmanagmentsystemmm";
-        $conn =  new mysqli($servername,$username,$password,$dbname);
-        if($conn -> connect_error)
-        {
-            echo "error connecting database";
-        
-        }
-        return $conn;
+        require_once __DIR__ . '/../../config/database.php';
+        return bank_db_connect();
     }
 
 

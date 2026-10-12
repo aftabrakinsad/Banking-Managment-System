@@ -329,7 +329,7 @@ function email_AJAX()
 
         }
     };
-    emailxhttp.open("POST", "http://localhost/WT_Summer/Admin/Control/ajax.emailcheck.php", true);
+    emailxhttp.open("POST", "/Admin/Control/ajax.emailcheck.php", true);
     emailxhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     emailxhttp.send("email="+email);
 }
@@ -350,7 +350,7 @@ function registration_email_AJAX()
 
         }
     };
-    emailxhttp.open("POST", "http://localhost/WT_Summer/Admin/Control/ajax.emailcheck_registration.php", true);
+    emailxhttp.open("POST", "/Admin/Control/ajax.emailcheck_registration.php", true);
     emailxhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     emailxhttp.send("email="+email);
 }
@@ -371,7 +371,7 @@ function registration_nid_AJAX()
 
         }
     }
-    nidxhttp.open("POST", "http://localhost/WT_Summer/Admin/Control/ajax.nidcheck_registration.php", true);
+    nidxhttp.open("POST", "/Admin/Control/ajax.nidcheck_registration.php", true);
     nidxhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     nidxhttp.send("nid="+nid);
 }
@@ -392,7 +392,7 @@ function registration_phone_AJAX()
 
         }
     }
-    phonexhttp.open("POST", "http://localhost/WT_Summer/Admin/Control/ajax.phonecheck_registration.php", true);
+    phonexhttp.open("POST", "/Admin/Control/ajax.phonecheck_registration.php", true);
     phonexhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     phonexhttp.send("phone="+phone);
 }

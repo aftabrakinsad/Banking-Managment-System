@@ -14,8 +14,8 @@
         <div class="topnav" id="theTopNav">
             <a href="javascript:void(0);" class="icon" onclick="openNav()" id="hamburger">&#9776;</a>
             <a id="link" href="../View/adminlogin.php">Admin</a>
-            <a id="link" href="http://localhost/Bankin%20Managment%20System/Manager/view/managerlogin.php">Manager</a>
-            <a id="link" href="http://localhost/Bankin%20Managment%20System/Employee/view/employelogin.php">Employee</a>
+            <a id="link" href="/Manager/view/managerlogin.php">Manager</a>
+            <a id="link" href="/Employee/view/employelogin.php">Employee</a>
             <a id="link" href="#">User</a>
             <a id="link" href="../View/News.php">News</a>
         </div>

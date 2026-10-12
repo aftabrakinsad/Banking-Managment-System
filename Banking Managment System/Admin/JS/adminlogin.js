@@ -81,7 +81,7 @@ function uname_AJAX()
             document.getElementById("unameajaxresponse").innerHTML = this.responseText;
         }
     };
-    unamexhttp.open("POST", "http://localhost/WT_Summer/Admin/Control/ajax.unamecheck.php", true);
+    unamexhttp.open("POST", "/Admin/Control/ajax.unamecheck.php", true);
     unamexhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
     unamexhttp.send("uname="+uname);
 }

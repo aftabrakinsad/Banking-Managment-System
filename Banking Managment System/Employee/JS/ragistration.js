@@ -258,7 +258,7 @@ function uname_AJAX()
             document.getElementById("unameajaxresponse").innerHTML = this.responseText;
         }
     };
-    unamexhttp.open("POST", "http://localhost/Bankin%20Managment%20System/Employee/control/ajax.unamecheckreg.php", true);
+    unamexhttp.open("POST", "/Employee/control/ajax.unamecheckreg.php", true);
     unamexhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
     unamexhttp.send("Username="+Username);
 }
@@ -276,7 +276,7 @@ function Email_AJAX()
             document.getElementById("Emailajaxresponse").innerHTML = this.responseText;
         }
     };
-    Emailxhttp.open("POST", "http://localhost/Bankin%20Managment%20System/Employee/control/ajax.Emailcheckreg.php", true);
+    Emailxhttp.open("POST", "/Employee/control/ajax.Emailcheckreg.php", true);
     Emailxhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
     Emailxhttp.send("Email="+Email);
 }
@@ -293,7 +293,7 @@ function Phone_AJAX()
             document.getElementById("Phoneajaxresponse").innerHTML = this.responseText;
         }
     };
-    Phonexhttp.open("POST", "http://localhost/Bankin%20Managment%20System/Employee/control/ajax.Phonecheckreg.php", true);
+    Phonexhttp.open("POST", "/Employee/control/ajax.Phonecheckreg.php", true);
     Phonexhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
     Phonexhttp.send("Phone="+Phone);
 }
@@ -310,7 +310,7 @@ function NID_Ajex()
             document.getElementById("NIDajaxresponse").innerHTML = this.responseText;
         }
     };
-    NIDxhttp.open("POST","http://localhost/Bankin%20Managment%20System/Employee/control/ajax.NIDcheckreg.php", true);
+    NIDxhttp.open("POST","/Employee/control/ajax.NIDcheckreg.php", true);
     NIDxhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
     NIDxhttp.send("NID="+NID);
 }

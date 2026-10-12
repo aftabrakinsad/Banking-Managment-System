@@ -23,7 +23,7 @@
             @include("../Control/viewnews.process.php");
             ?>
         </p>
-        <a id="btn" href="http://localhost/Bankin%20Managment%20System/Admin/View/Home.php">Back To Home</a>
+        <a id="btn" href="/Admin/View/Home.php">Back To Home</a>
     </form>
 </body>
 

@@ -1,0 +1,36 @@
+services:
+  web:
+    build: .
+    ports:
+      - "8080:80"
+    environment:
+      DB_HOST: db
+      DB_USER: bank
+      DB_PASS: bank
+      DB_NAME: bankingmanagementsystem
+    volumes:
+      # live-edit PHP without rebuilding
+      - "./Banking Managment System:/var/www/html"
+    depends_on:
+      db:
+        condition: service_healthy
+
+  db:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: bankingmanagementsystem
+      MYSQL_USER: bank
+      MYSQL_PASSWORD: bank
+    volumes:
+      - dbdata:/var/lib/mysql
+      # every .sql file here runs once, on first start
+      - ./db/init:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-proot"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+volumes:
+  dbdata:

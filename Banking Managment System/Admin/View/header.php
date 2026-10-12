@@ -9,7 +9,7 @@
 <body>
     <div class="flex-container-header">
         <div class="flex-item-header">
-            <a href="http://localhost/Bankin%20Managment%20System/Admin/View/Home.php"><img class="img" src="../Image/banklogo.png"></a>
+            <a href="/Admin/View/Home.php"><img class="img" src="../Image/banklogo.png"></a>
         </div>
 
         <div>
@@ -17,7 +17,7 @@
         </div>
 
         <div id="flex-item-header">
-            <a href="http://localhost/Bankin%20Managment%20System/Admin/View/Home.php"><img class="img" src="../Image/banklogo.png"></a>
+            <a href="/Admin/View/Home.php"><img class="img" src="../Image/banklogo.png"></a>
         </div>
     </div>
 

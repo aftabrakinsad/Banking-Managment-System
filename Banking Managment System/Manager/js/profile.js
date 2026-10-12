@@ -81,7 +81,7 @@ if(this.readyState==4 && this.status ==200)
     document.getElementById("ajaxresponse").innerHTML=this.responseText;
 }
     };
-    myxhttp.open("POST","http://localhost/test/project/control/usernamecheck.php",true);
+    myxhttp.open("POST","/Manager/control/usernamecheck.php",true);
     myxhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
     myxhttp.send("username="+username);
 }
@@ -100,7 +100,7 @@ if(this.readyState==4 && this.status ==200)
     document.getElementById("ajaxemail").innerHTML=this.responseText;
 }
     };
-    myxhttp.open("POST","http://localhost/test/project/control/emailcheck.php",true);
+    myxhttp.open("POST","/Manager/control/emailcheck.php",true);
     myxhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
     myxhttp.send("email="+email);
 }
