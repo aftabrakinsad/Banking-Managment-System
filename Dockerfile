@@ -4,6 +4,8 @@ FROM php:8.3-apache
 RUN docker-php-ext-install mysqli \
     && a2enmod rewrite headers
 
+COPY docker/php.ini /usr/local/etc/php/conf.d/app.ini
+
 # The app's web root is the project folder
 COPY ["Banking Managment System/", "/var/www/html/"]
 
