@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . '/../Control/bootstrap.php';
+if (!empty($_SESSION['cust_id'])) { $u = udb()->findById((int)$_SESSION['cust_id']); if ($u) { log_activity('customer', $u['uname'], 'logout'); } }
 $_SESSION = [];
 if (ini_get('session.use_cookies')) {
     $p = session_get_cookie_params();

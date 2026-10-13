@@ -1,34 +1,45 @@
+<?php
+require_once __DIR__ . '/../Control/bootstrap.php';
+$admin = require_admin();
+$cur = strtolower(basename($_SERVER['SCRIPT_NAME']));
+$pending = adb()->pendingCount();
+function admin_link($file, $label, $cur, $badge = 0) {
+    $cls = $cur === strtolower($file) ? ' class="active"' : '';
+    $b = $badge > 0 ? ' <span class="badge">' . (int)$badge . '</span>' : '';
+    return '<a href="/Admin/View/' . $file . '"' . $cls . '>' . $label . $b . '</a>';
+}
+$flash = take_flash();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo htmlspecialchars(isset($pageTitle) ? $pageTitle : 'Admin', ENT_QUOTES, 'UTF-8'); ?> · Banking Management System</title>
+    <title><?php echo h(isset($pageTitle) ? $pageTitle : 'Admin'); ?> · Banking Management System</title>
     <link rel="stylesheet" href="/assets/theme.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 <body>
-<?php $cur = strtolower(basename($_SERVER['SCRIPT_NAME'])); ?>
 <header class="topbar">
     <a class="brand" href="/Admin/View/adminhomepage.php"><img src="/Admin/Image/banklogo.png" alt="">Banking Management System</a>
     <input type="checkbox" id="nav-toggle" class="nav-toggle">
     <label for="nav-toggle" class="hamburger" aria-label="Menu">&#9776;</label>
     <nav>
         <a href="/Admin/View/Home.php">Home</a>
-        <a href="../View/adminhomepage.php"<?php echo $cur === 'adminhomepage.php' ? ' class="active"' : ''; ?>>Dashboard</a>
-        <a href="../View/adminrequest.php"<?php echo $cur === 'adminrequest.php' ? ' class="active"' : ''; ?>>Requests</a>
-        <a href="../View/usermanage.php"<?php echo $cur === 'usermanage.php' ? ' class="active"' : ''; ?>>Customers</a>
-        <a href="../View/manager.php"<?php echo $cur === 'manager.php' ? ' class="active"' : ''; ?>>Managers</a>
-        <a href="../View/addemp.php"<?php echo $cur === 'addemp.php' ? ' class="active"' : ''; ?>>Employees</a>
+        <?php
+        echo admin_link('adminhomepage.php', 'Dashboard', $cur);
+        echo admin_link('applications.php', 'Applications', $cur, $pending);
+        echo admin_link('staff.php', 'Staff', $cur);
+        echo admin_link('customers.php', 'Customers', $cur);
+        echo admin_link('tasks.php', 'Tasks', $cur);
+        ?>
         <details class="more"><summary>More &#9662;</summary><div class="menu">
-            <a href="../View/adminmanage.php">Manage admins</a>
-            <a href="../View/admin_salary_accno.php">Salary &amp; account no.</a>
-            <a href="../View/atm.php">ATM deposit / withdraw</a>
-            <a href="../View/transferfunds.php">Transfer funds</a>
-            <a href="../View/mytransaction.php">Transactions</a>
-            <a href="../View/postnews.php">Post news</a>
+            <a href="/Admin/View/postnews.php">Post news</a>
+            <a href="/Admin/View/transactions.php">All transactions</a>
+            <a href="/Admin/View/activity.php">Activity log</a>
         </div></details>
-        <a href="../Control/adminlogout.php" class="logout">Sign out</a>
+        <a href="/Admin/Control/adminlogout.php" class="logout">Sign out</a>
     </nav>
 </header>
 <main class="page">
+<?php if ($flash) { ?><div class="alert alert-<?php echo h($flash[0]); ?>" role="alert"><?php echo h($flash[1]); ?></div><?php } ?>

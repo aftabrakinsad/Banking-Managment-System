@@ -14,12 +14,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (!verify_secret($current, $me['password'])) { $errors[] = 'Current password is incorrect.'; }
         elseif (!valid_password($new)) { $errors[] = 'New password needs 8+ characters with upper, lower, a number and a symbol.'; }
         elseif ($new !== $confirm) { $errors[] = 'New passwords do not match.'; }
-        else { udb()->setPassword((int)$me['user_id'], password_hash($new, PASSWORD_DEFAULT)); flash('success', 'Password changed.'); redirect('security.php'); }
+        else { udb()->setPassword((int)$me['user_id'], password_hash($new, PASSWORD_DEFAULT)); log_activity('customer', $me['uname'], 'password_changed'); flash('success', 'Password changed.'); redirect('security.php'); }
     } elseif ($action === 'pin') {
         $new = isset($_POST['new_pin']) ? $_POST['new_pin'] : '';
         if (!verify_secret($current, $me['pin'])) { $errors[] = 'Current PIN is incorrect.'; }
         elseif (!preg_match('/^[0-9]{4}$/', $new)) { $errors[] = 'PIN must be exactly 4 digits.'; }
-        else { udb()->setPin((int)$me['user_id'], password_hash($new, PASSWORD_DEFAULT)); flash('success', 'PIN changed.'); redirect('security.php'); }
+        else { udb()->setPin((int)$me['user_id'], password_hash($new, PASSWORD_DEFAULT)); log_activity('customer', $me['uname'], 'pin_changed'); flash('success', 'PIN changed.'); redirect('security.php'); }
     }
 }
 $title = 'Security';

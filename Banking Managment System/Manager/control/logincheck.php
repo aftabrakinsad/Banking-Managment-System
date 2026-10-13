@@ -3,6 +3,7 @@ include("../control/managerprocess.php");
 
 ?>
 <?php
+require_once __DIR__ . '/../../config/activity.php';
 $temname="";
 $tempass = "";
 $remember = false;
@@ -34,6 +35,7 @@ if (isset($_POST['submit'])) {
         if ($userQuery->num_rows > 0) {
         $_SESSION["username"] = $username;
         $_SESSION["password"] = $password;
+        log_activity('manager', $username, 'login');
         
            }
 
@@ -52,6 +54,7 @@ if (isset($_POST['submit'])) {
 
          else {
         $error = "Username or Password is invalid";
+        log_activity('manager', isset($_POST['username']) ? $_POST['username'] : '', 'login_failed');
         }
     
 

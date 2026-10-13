@@ -144,7 +144,7 @@ class UserDb
 
     function news($limit = 20)
     {
-        return $this->rows("SELECT * FROM news ORDER BY news_id DESC LIMIT ?", 'i', [$limit]);
+        return $this->rows("SELECT * FROM news WHERE audience IN ('all','customer') ORDER BY news_id DESC LIMIT ?", 'i', [$limit]);
     }
 
     /**

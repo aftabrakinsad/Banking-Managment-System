@@ -23,10 +23,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             session_regenerate_id(true);
             $_SESSION['cust_id'] = (int)$u['user_id'];
             unset($_SESSION['login_fails'], $_SESSION['login_lock']);
+            log_activity('customer', $u['uname'], 'login');
             redirect('dashboard.php');
         }
         $_SESSION['login_fails'] = (isset($_SESSION['login_fails']) ? $_SESSION['login_fails'] : 0) + 1;
         if ($_SESSION['login_fails'] >= 5) { $_SESSION['login_lock'] = $now + 300; $_SESSION['login_fails'] = 0; }
+        log_activity('customer', $uname, 'login_failed');
         $error = 'Invalid username or password.';
     }
 }

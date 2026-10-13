@@ -1,5 +1,6 @@
 <?php
 @include("../model/db.php");
+require_once __DIR__ . '/../../config/activity.php';
 
 session_start();   #session suru user information store
 
@@ -28,6 +29,7 @@ if(isset($_POST['submit']))
 
                         $_SESSION['username'] = $employeuser["username"];
                          $_SESSION['password'] = $employeuser["password"];
+                         log_activity('employee', $employeuser["username"], 'login');
 
                          if (!empty($_POST["remember"]))
                          {
@@ -55,6 +57,7 @@ if(isset($_POST['submit']))
             }
             else if ($f == 0) 
             {
+                 log_activity('employee', $_POST['username'], 'login_failed');
                  echo  "Username and Password Doesn't Match";
             }
         }

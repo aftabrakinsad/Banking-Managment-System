@@ -17,6 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (!$errors) {
         udb()->updateProfile((int)$me['user_id'], $fname, $lname, $email, $phone);
+        log_activity('customer', $me['uname'], 'profile_updated');
         flash('success', 'Profile updated.');
         redirect('profile.php');
     }

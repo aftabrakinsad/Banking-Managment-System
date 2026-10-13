@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (!$errors) {
         list($ok, $msg) = udb()->transfer((int)$me['accountno'], (int)$to, (int)$amountRaw, $pin);
-        if ($ok) { flash('success', $msg); redirect('dashboard.php'); }
+        if ($ok) { log_activity('customer', $me['uname'], 'transfer', $amountRaw . ' to account ' . $to); flash('success', $msg); redirect('dashboard.php'); }
         $errors[] = $msg;
     }
 }

@@ -5,6 +5,8 @@ RUN docker-php-ext-install mysqli \
     && a2enmod rewrite headers
 
 COPY docker/php.ini /usr/local/etc/php/conf.d/app.ini
+COPY docker/sessions.conf /etc/apache2/conf-available/sessions.conf
+RUN a2enconf sessions
 
 # The app's web root is the project folder
 COPY ["Banking Managment System/", "/var/www/html/"]

@@ -156,3 +156,6 @@ main table:has(thead) { font-size: .88rem; width: 100%; }
 main table:has(thead) th, main table:has(thead) td { border-bottom: 1px solid var(--line); padding: .55rem .5rem; word-break: break-word; overflow-wrap: anywhere; vertical-align: middle; }
 main table caption { text-align: left; font-weight: 700; font-size: 1.1rem; padding: 0 0 .75rem; }
 .avatar-lg { display: block; width: 96px; height: 96px; object-fit: cover; border-radius: 12px; border: 1px solid var(--line); margin-bottom: .5rem; }
+
+.page-actions.tabs { flex-direction: row; flex-wrap: wrap; }
+.page-actions.tabs .btn { width: auto; }

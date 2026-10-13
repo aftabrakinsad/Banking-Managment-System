@@ -23,7 +23,6 @@ include("../control/homepageProcess.php");
         <a href="../view/transferfunds.php"<?php echo $cur === 'transferfunds.php' ? ' class="active"' : ''; ?>>Transfer</a>
         <a href="../view/transaction.php"<?php echo $cur === 'transaction.php' ? ' class="active"' : ''; ?>>Transactions</a>
         <a href="../view/Viewemployee.php"<?php echo $cur === 'viewemployee.php' ? ' class="active"' : ''; ?>>Employees</a>
-        <a href="../view/managerrequest.php"<?php echo $cur === 'managerrequest.php' ? ' class="active"' : ''; ?>>Requests</a>
         <details class="more"><summary>More &#9662;</summary><div class="menu">
             <a href="../view/postnews.php">Post news</a>
             <a href="../view/ViewInformation.php">Manager info</a>
