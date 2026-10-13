@@ -2,26 +2,13 @@
 @include("../Control/updateuser.process.php");
 session_start();
 if (empty($_SESSION["username"]) && empty($_SESSION["password"])) {
-    header("location: ../View/adminlogin.php");
+    { header("location: ../View/adminlogin.php"); exit; }
 }
 
 @include("../View/header.php");
-@include("../View/navbar.php");
-@include("../View/adminsidebar.php");
 
 ?>
 
-<!DOCTYPE html>
-<html>
-
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/CSS" href="../CSS/adminmanage.css">
-    <link rel="stylesheet" type="text/CSS" href="../CSS/adminrequest.css">
-    <title>Admin Manage</title>
-</head>
-
-<body>
     <form action="" method="POST" enctype="multipart/form-data" onsubmit="return accountno_addacc()">
 
         <div class="flex-container-form_header">
@@ -116,6 +103,4 @@ if (empty($_SESSION["username"]) && empty($_SESSION["password"])) {
 
     </form>
     <script src="../JS/adduser.js"></script>
-</body>
-
-</html>
+<?php @include("../View/footer.php"); ?>

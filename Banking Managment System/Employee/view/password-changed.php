@@ -8,7 +8,7 @@
 
  if ($_SESSION['info'] == false)
   {
-     header('location: ../view/employelogin.php');
+     { header('location: ../view/employelogin.php'); exit; }
  }
 
 ?>

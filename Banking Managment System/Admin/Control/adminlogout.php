@@ -4,7 +4,7 @@ session_start();
 
 if (session_destroy())
 {
-    header("Location: ../View/adminlogin.php");
+    { header("Location: ../View/adminlogin.php"); exit; }
 }
 
 ?>

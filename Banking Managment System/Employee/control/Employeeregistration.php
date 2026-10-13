@@ -196,7 +196,7 @@ if(isset($_POST["submit"]))
 }
 if(isset($_POST["return"]))
 {
-    header("location: ../view/employelogin.php");
+    { header("location: ../view/employelogin.php"); exit; }
 }
 
 ?>

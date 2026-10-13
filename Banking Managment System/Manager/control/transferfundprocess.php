@@ -2,7 +2,7 @@
 
 //include("../model/db.php");
 // if (empty($_SESSION["username"]) && empty($_SESSION["password"])) {
-//     header("location: ../view/managerlogin.php");
+//     { header("location: ../view/managerlogin.php"); exit; }
 // }
 if(!empty($_SESSION["username"])&&!empty($_SESSION["password"])) 
 {

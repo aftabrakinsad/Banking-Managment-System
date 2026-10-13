@@ -368,7 +368,7 @@ if(!empty($FirsName)&&!empty($Username)&&!empty($Password) &&!empty($NID)&&strcm
 }
 if(isset($_POST["login"]))
 {
-    header("location: ../view/employelogin.php");
+    { header("location: ../view/employelogin.php"); exit; }
 }
 
 

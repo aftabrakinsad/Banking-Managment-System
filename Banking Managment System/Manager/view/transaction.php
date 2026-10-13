@@ -4,7 +4,7 @@ session_start();
 
 if(empty($_SESSION["username"])) 
 {
-header("Location: managerlogin.php"); // Redirecting To Home Page
+{ header("Location: managerlogin.php"); exit; } // Redirecting To Home Page
 }
 @include("../view/header.php");
 

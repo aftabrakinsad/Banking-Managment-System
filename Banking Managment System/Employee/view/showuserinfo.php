@@ -3,7 +3,7 @@
 session_start();
 if(empty($_SESSION["username"]) && empty($_SESSIO["password"]))
 {
-    header("location: ../view/employelogin.php");
+    { header("location: ../view/employelogin.php"); exit; }
 }
 
 @include("../view/header.php");

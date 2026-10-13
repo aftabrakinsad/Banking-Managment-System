@@ -1,27 +1,13 @@
 <?php
 session_start();
 if (empty($_SESSION["username"]) && empty($_SESSION["password"])) {
-    header("location: ../View/adminlogin.php");
+    { header("location: ../View/adminlogin.php"); exit; }
 }
 
 @include("../View/header.php");
-@include("../View/navbar.php");
-@include("../View/adminsidebar.php");
 
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/CSS" href="../CSS/adminrequest.css">
-    <title>Manager Information</title>
-</head>
-
-<body>
     <form action="" method="POST" enctype="multipart/form-data">
         <table>
             <caption>Manager Information</caption>
@@ -48,6 +34,4 @@ if (empty($_SESSION["username"]) && empty($_SESSION["password"])) {
             </tbody>
         </table>
     </form>
-</body>
-
-</html>
+<?php @include("../View/footer.php"); ?>

@@ -44,28 +44,28 @@ if (isset($_POST['submit']))
         }
         else if ($f == 0)
         {
-            header("location: ../View/adminlogin.php?login_info=incorrect");
+            { header("location: ../View/adminlogin.php?login_info=incorrect"); exit; }
             exit();
         }
     }
     if (empty($uname) && empty($password))
     {
-        header("location: ../View/adminlogin.php?login=empty");
+        { header("location: ../View/adminlogin.php?login=empty"); exit; }
         exit();
     } 
     else if (empty($uname))
     {
-        header("location: ../View/adminlogin.php?username=empty");
+        { header("location: ../View/adminlogin.php?username=empty"); exit; }
         exit();
     }
     else if (empty($password))
     {
-        header("location: ../View/adminlogin.php?password=empty");
+        { header("location: ../View/adminlogin.php?password=empty"); exit; }
         exit();
     }
     else
     {
-        header("location: ../View/adminlogin.php?login=success");
+        { header("location: ../View/adminlogin.php?login=success"); exit; }
         exit();
     }
 }

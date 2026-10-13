@@ -7,7 +7,7 @@ session_start();
 
 if (isset($_SESSION['username']))
 {
-    header("location: ../view/employelogin.php");
+    { header("location: ../view/employelogin.php"); exit; }
 }
 
 include('../control/Employeeregistration.php');

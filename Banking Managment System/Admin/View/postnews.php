@@ -1,22 +1,11 @@
 <?php
 
 @include("../View/header.php");
-@include("../View/navbar.php");
-@include("../View/adminsidebar.php");
 
 @include("../Control/post_news.process.php");
 
 ?>
 
-<!DOCTYPE html>
-<html>
-
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../CSS/post.css">
-</head>
-
-<body>
     <form class="news_form" action="" method="POST" onsubmit="return postnews_formcheck()">
         <?php
         if (count($error) > 0)
@@ -74,6 +63,4 @@
 
     </form>
     <script src="../JS/postnews.js"></script>
-</body>
-
-</html>
+<?php @include("../View/footer.php"); ?>

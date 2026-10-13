@@ -1,103 +1,38 @@
 <?php
-
+$pageTitle = 'Admin sign in';
 @include('../Control/adminlogincheck.php');
 
-if (isset($_SESSION['username'])) 
-{
+if (isset($_SESSION['username'])) {
     header("location: ../View/adminhomepage.php");
+    exit;
 }
+@include("../View/public_top.php");
 
+$q = $_SERVER['REQUEST_URI'];
+$msg = '';
+if (strpos($q, "login=empty") !== false) { $msg = 'You did not fill all the fields.'; }
+elseif (strpos($q, "username=empty") !== false) { $msg = 'Please enter your username.'; }
+elseif (strpos($q, "password=empty") !== false) { $msg = 'Please enter your password.'; }
+elseif (strpos($q, "login_info=incorrect") !== false) { $msg = 'Username or password is incorrect.'; }
 ?>
-
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/CSS" href="../CSS/adminlogin.css">
-    <title>Admin Log in</title>
-</head>
-
-<body class="bodyimage">
-    <header>
-        <?php
-        @include("../View/header.php");
-        ?>
-    </header>
-
-    <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST" onsubmit="return form_check_admin()" enctype="multipart/form-data">
-
-        <h2 class="h2">Admin Login</h2>
-        <img class="adminimage" src="../Image/admin_pro.jpeg">
-        <table class="container">
-
-            <tr>
-                <td>
-                    <label for="uname"> <input type="text" name="uname" id="uname" placeholder="Username" onchange="uname_AJAX()" onkeyup="usernamecheck_admin()"><br></label>
-                    <p id="nameerr"></p>
-                    <p id="unameajaxresponse"></p>
-                </td>
-
-            </tr>
-
-            <tr>
-                <td>
-                    <label for="pass"> <input type="password" name="pass" id="pass" onkeyup="passwordcheck_admin()" placeholder="Password"><br></label>
-                    <p id="passerr"></p>
-                </td>
-            </tr>
-
-            <tr>
-                <td>
-                    <?php
-
-                    $fullfill = "https://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-
-                    if (strpos($fullfill, "login=empty") == true) {
-                        echo "<p id = 'denger'>You did not fill all the fields!</p>";
-                    } else if (strpos($fullfill, "username=empty") == true) {
-                        echo "<p id = 'denger'>Please enter Username!<p>";
-                    } else if (strpos($fullfill, "password=empty") == true) {
-                        echo "<p id = 'denger'>Please enter Password!<p>";
-                    } else if (strpos($fullfill, "login_info=incorrect") == true) {
-                        echo "<p id = 'denger'>Username or Password is incorrect!<p>";
-                    } else if (strpos($fullfill, "login=success") == true) {
-                        echo "<p id = 'success'>Login Successfull<p>";
-                    } else {
-                        echo "";
-                    }
-
-                    ?>
-
-                    <br>
-                    <input type="checkbox" name="remember" id="remember" checked>
-                    <label id="success" for="remember"><b>Remember Me</b></label>
-                </td>
-            </tr>
-
-            <tr>
-                <td>
-                    <input class="inputbutton" type="submit" name="submit" value="Login">
-                </td>
-            </tr>
-
-            <tr>
-                <th id="uniqueuse">
-                    <a id="denger" href="../View/forgetpassword.php">Forget Password?</a><br><br>
-                    <a id="primary" href="../View/adminregistration.php">Apply Admin</a>
-                </th>
-            </tr>
-        </table>
+<section class="card auth">
+    <h1>Admin sign in</h1>
+    <p class="muted">Manage customers, staff, requests and bank operations.</p>
+    <?php if ($msg) { ?><div class="alert alert-error" role="alert"><?php echo htmlspecialchars($msg, ENT_QUOTES, 'UTF-8'); ?></div><?php } ?>
+    <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF'], ENT_QUOTES, 'UTF-8'); ?>" method="POST" onsubmit="return form_check_admin()" enctype="multipart/form-data">
+        <label>Username
+            <input type="text" name="uname" id="uname" placeholder="Username" onchange="uname_AJAX()" onkeyup="usernamecheck_admin()" autocomplete="username">
+        </label>
+        <p id="nameerr"></p><p id="unameajaxresponse"></p>
+        <label>Password
+            <input type="password" name="pass" id="pass" onkeyup="passwordcheck_admin()" placeholder="Password" autocomplete="current-password">
+        </label>
+        <p id="passerr"></p>
+        <label style="font-weight:400"><input type="checkbox" name="remember" id="remember">Remember me</label>
+        <input class="inputbutton" type="submit" name="submit" value="Sign in">
     </form>
-    <script src="../JS/adminlogin.js"></script>
-</body>
-
-<footer>
-    <?php
-    @include("../View/footer.php");
-    ?>
-</footer>
-
-</html>
+    <p class="small"><a href="../View/forgetpassword.php">Forgot password?</a> · <a href="../View/adminregistration.php">Apply for admin access</a></p>
+    <p class="muted small">Demo: <code>admin</code> / <code>Demo@1234</code></p>
+</section>
+<script src="../JS/adminlogin.js"></script>
+<?php @include("../View/footer.php"); ?>

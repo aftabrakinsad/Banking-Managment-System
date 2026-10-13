@@ -1,30 +1,14 @@
 <?php
 session_start();
 if (empty($_SESSION["username"]) && empty($_SESSION["password"])) {
-    header("location: ../View/adminlogin.php");
+    { header("location: ../View/adminlogin.php"); exit; }
 }
 
 @include("../View/header.php");
-@include("../View/navbar.php");
-@include("../View/adminsidebar.php");
 
 @include("../Control/add_user.process.php");
 
 ?>
-
-
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/CSS" href="../CSS/addemp.css">
-    <title>Add User</title>
-</head>
-
-<body class="bodycolor">
 
     <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST" enctype="multipart/form-data" onsubmit="return adduser_formcheck()">
     <nav>
@@ -143,6 +127,6 @@ if (empty($_SESSION["username"]) && empty($_SESSION["password"])) {
     </form>
 
     <script src="../JS/user.js"></script>
-</body>
 
 </html
+<?php @include("../View/footer.php"); ?>

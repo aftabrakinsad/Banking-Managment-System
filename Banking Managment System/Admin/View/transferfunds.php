@@ -2,26 +2,15 @@
 
 session_start();
 if (empty($_SESSION["username"]) && empty($_SESSION["password"])) {
-    header("location: ../View/adminlogin.php");
+    { header("location: ../View/adminlogin.php"); exit; }
 }
 
 @include("../View/header.php");
-@include("../View/navbar.php");
-@include("../View/adminsidebar.php");
 
 // @include("../Control/transferfunds.process.php");
 
 ?>
-<!DOCTYPE html>
-<html>
 
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../CSS/transferfunds.css">
-    <title>Transfer Some Funds to Others</title>
-</head>
-
-<body>
     <form action="../Control/transferfunds.process.php" method="post" onsubmit="return formcheck_atm()">
         <div class="flex-container-form_header">
             <h1 id="form_header">Transfer Funds</h1>
@@ -71,6 +60,4 @@ if (empty($_SESSION["username"]) && empty($_SESSION["password"])) {
 
     </form>
     <script src="../JS/atm.js"></script>
-</body>
-
-</html>
+<?php @include("../View/footer.php"); ?>

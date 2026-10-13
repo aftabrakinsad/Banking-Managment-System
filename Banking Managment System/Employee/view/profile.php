@@ -13,7 +13,7 @@ include('../control/UpdateCheck.php');
 
 if(empty($_SESSION["Email"])) // Destroying All Sessions
 {
-//header("location: ../control/emplogin.php"); // Redirecting To Home Page
+//{ header("location: ../control/emplogin.php"); exit; } // Redirecting To Home Page
 }
 
 ?>

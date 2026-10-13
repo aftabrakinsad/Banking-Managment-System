@@ -3,7 +3,7 @@
 
 session_start();
 if (empty($_SESSION["username"]) && empty($_SESSION["password"])) {
-    header("location: ../View/adminlogin.php");
+    { header("location: ../View/adminlogin.php"); exit; }
 }
 @include("../View/header.php");
 @include("../View/navbar.php");

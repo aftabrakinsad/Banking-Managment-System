@@ -6,7 +6,7 @@ $errors = array();
 
 session_start();
 if (empty($_SESSION["username"]) && empty($_SESS["password"])) {
-    header("location: ../View/adminlogin.php");
+    { header("location: ../View/adminlogin.php"); exit; }
 }
 
 @include("../View/header.php");

@@ -1,29 +1,15 @@
 <?php
 session_start();
 if (empty($_SESSION["username"]) && empty($_SESSION["password"])) {
-    header("location: ../View/adminlogin.php");
+    { header("location: ../View/adminlogin.php"); exit; }
 }
 
 @include("../View/header.php");
-@include("../View/navbar.php");
-@include("../View/adminsidebar.php");
 
 @include("../Control/add_account.process.php");
 
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/CSS" href="../CSS/add_salary.css">
-    <title>Add Account</title>
-</head>
-
-<body>
     <form action="" method="POST" onsubmit="return addacc_formcheck()">
 
         <table>
@@ -95,6 +81,4 @@ if (empty($_SESSION["username"]) && empty($_SESSION["password"])) {
 
     <script src="../JS/otp.js"></script>
     <script src="../JS/addccno.js"></script>
-</body>
-
-</html>
+<?php @include("../View/footer.php"); ?>

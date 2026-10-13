@@ -81,7 +81,7 @@ if(isset($_POST['passwordsubmission']))
 
 if(isset($_POST['returntologin']))
 {
-    header('location: ../view/employelogin.php');
+    { header('location: ../view/employelogin.php'); exit; }
 }
 
 ?>
