@@ -1,5 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php @include("../view/public_top.php"); ?>
+<?php @include("../view/public_top.php"); ?>
+
 <?php
 session_start();
 if(empty($_SESSION["username"])) 
@@ -14,15 +15,7 @@ include("../control/managerprocess.php");
 
 ?>
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/CSS" href="../css/registrationdesign.css">
-    <title>Document</title>
-</head>
 <form action="" method="POST" enctype="multipart/form-data" onsubmit="return formcheck()">
-<body >
 
     <center><h1>Hello<?php include('../control/cookie.php');?></h1></center>
     <center>
@@ -186,7 +179,7 @@ include("../control/managerprocess.php");
                     </tr>
                
                     <tr>
-                        <td><a href="../view/managerHomepage.php" class="button3">Back</td>
+                        <td><a href="../view/managerHomePage.php" class="button3">Back</td>
                     </tr>
                     <tr>
                     <br>
@@ -197,5 +190,4 @@ include("../control/managerprocess.php");
         </form>
     </center>
     <script src="../js/registration.js"></script>
-</body>
-</html>
+<?php @include("../view/footer.php"); ?>

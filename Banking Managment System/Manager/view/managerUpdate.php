@@ -1,5 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php @include("../view/header.php"); ?>
+<?php @include("../view/header.php"); ?>
+
 <?php
 session_start();
 if(empty($_SESSION["username"])) 
@@ -10,11 +11,7 @@ include("../control/updateProcess.php");
 include("../control/deleteProcess.php");
 
 ?>
-<head>
-<link rel="stylesheet" type="text/CSS" href="../css/updatedesign.css">
-    
-</head>
-<body>
+
     
 <form action="" method="POST" enctype="multipart/form-data" >
             <center>
@@ -157,5 +154,4 @@ include("../control/deleteProcess.php");
         </form>
     </center>
     <script src="../js/update.js"></script>
-</body>
-</html>
+<?php @include("../view/footer.php"); ?>

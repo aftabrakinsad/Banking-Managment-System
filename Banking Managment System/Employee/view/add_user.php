@@ -1,21 +1,13 @@
 <?php
 // @include("../view/header.php");
-@include("../view/emp_navbar.php");
-@include("../view/employeeinsidebar.php");
+
 @include("../control/adduser.process.php");
 ?>
 
+ 
 
-<!DOCTYPE html>
-<html>
  
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/CSS" href="../css/usermanage.css">
-    <title> Manage</title>
-</head>
- 
-<body>
+
     <form action="" method="POST" enctype="multipart/form-data" onsubmit="return checkusername()">
  
         <div class="flex-container-form_header">
@@ -80,6 +72,4 @@
  
     </form>
     <script src="../JS/adminmanage.js"></script>
-</body>
- 
-</html>
+<?php @include("../view/footer.php"); ?>

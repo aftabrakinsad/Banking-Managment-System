@@ -1,8 +1,7 @@
 <?php
 
-
 // if (empty($_SESSION["username"]) && empty($_SESSION["password"])) {
-//     header("location: ../View/adminlogin.php");
+//     header("location: ../view/managerlogin.php");
 // }
 session_start();
 if(empty($_SESSION["username"])) 
@@ -10,21 +9,11 @@ if(empty($_SESSION["username"]))
 header("Location: managerlogin.php"); // Redirecting To Home Page
 }
 @include("../view/header.php");
-@include("../view/navbar.php");
-@include("../view/sidebar.php");
 
 include("../control/transferfundprocess.php")
 
 ?>
-<!DOCTYPE html>
-<html>
 
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/transferfunds.css">
-</head>
-
-<body>
 <form action="" method="POST" enctype="multipart/form-data" onsubmit="return formcheck()">
         <div class="flex-container-form_header">
             <h1 id="form_header">Transfer Funds</h1>
@@ -64,5 +53,4 @@ include("../control/transferfundprocess.php")
 
     </form>
     <script src="../js/fund.js"></script>
-</body>
-</html>
+<?php @include("../view/footer.php"); ?>

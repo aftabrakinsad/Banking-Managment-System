@@ -31,7 +31,7 @@ if($result == true)
         <td>'.$row['doj'].'</td>
         <td>
             <a class="accept" href="../control/newmanager.php?email='.$email.'">Accept</a> <br><br><br>
-            <a class="reject" href="../Control/applicantdelete.php?deleteid='.$applicant_serial.'">Reject</a>
+            <a class="reject" href="../control/applicantdelete.php?deleteid='.$applicant_serial.'">Reject</a>
         </td>
         </tr>';
     }

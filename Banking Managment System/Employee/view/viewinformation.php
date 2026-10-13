@@ -1,21 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php @include("../view/header.php"); ?>
+<?php @include("../view/header.php"); ?>
+
 <?php
 
 include("../control/viewinformationemp.php");
 ?>
 
-<head>
-<meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<link rel="stylesheet" type="text/CSS" href="../css/registration.css">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title> Information Form</title>
-</head>
-
 <!-- <h2><a href=''>Back </a></h2> -->
-
-<body bgcolor="skyblue">
 
 <header>
 
@@ -28,7 +19,6 @@ include("../control/viewinformationemp.php");
 <h2 class="h3" id="h3">Update ation Form </h2>
 
 <table>
-
 
 <tr>
 <td>
@@ -104,7 +94,6 @@ Please upload your cv
 <tr>
 <td>
 
-
 <br>
 <br>
 <a class="goback" href="../view/employeregistration.php">Back</a>
@@ -114,6 +103,4 @@ Please upload your cv
 
 </table>
 </form>
-</body>
-
-</html>
+<?php @include("../view/footer.php"); ?>

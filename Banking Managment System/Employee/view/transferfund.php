@@ -1,32 +1,18 @@
 <?php
 session_start();
 
-
-
 @include("../view/header.php");
-@include("../view/emp_navbar.php");
-@include("../view/employeeinsidebar.php");
-
 
 ?>
-<!DOCTYPE html>
-<html>
 
-<head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="../CSS/transfermoney.css">
-<title>Transfer Some Money to Customer</title>
-</head>
-
-<body>
-<form action="../Control/transferfunds.process.php" method="post" onsubmit="return formcheck_transfer()">
+<form action="../control/transferfunds.process.php" method="post" onsubmit="return formcheck_transfer()">
 <div class="flex-container-form_header">
 <h1 id="form_header">Money Transition </h1>
 </div>
 
 <!-- <div>
 <nav>
-<a class="a" href="../View/mytransaction.php">See your Transactions</a>
+<a class="a" href="../view/transferfund.php">See your Transactions</a>
 </nav>
 </div> -->
 
@@ -68,6 +54,4 @@ session_start();
 
 </form>
 <script src="../JS/transfermoney.js"></script>
-</body>
-
-</html>
+<?php @include("../view/footer.php"); ?>

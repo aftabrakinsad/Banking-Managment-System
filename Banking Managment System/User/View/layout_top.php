@@ -14,12 +14,12 @@ function navlink($file, $label, $page, $badge = 0) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo h($title); ?> · PennyWise</title>
-    <link rel="stylesheet" href="../CSS/user.css">
+    <title><?php echo h($title); ?> · Banking Management System</title>
+    <link rel="stylesheet" href="/assets/theme.css">
 </head>
 <body>
 <header class="topbar">
-    <a class="brand" href="dashboard.php"><img src="../../Admin/Image/banklogo.png" alt="" onerror="this.style.display='none'">PennyWise</a>
+    <a class="brand" href="dashboard.php"><img src="/Admin/Image/banklogo.png" alt="">Banking Management System</a>
     <?php if (isset($me)) { ?>
     <input type="checkbox" id="nav-toggle" class="nav-toggle">
     <label for="nav-toggle" class="hamburger" aria-label="Menu">&#9776;</label>
@@ -38,7 +38,7 @@ function navlink($file, $label, $page, $badge = 0) {
     </nav>
     <?php } ?>
 </header>
-<main class="container">
+<main class="page">
 <?php if ($flash) { ?>
     <div class="alert alert-<?php echo h($flash[0]); ?>" role="alert"><?php echo h($flash[1]); ?></div>
 <?php } ?>

@@ -5,23 +5,11 @@ if(empty($_SESSION["username"]))
 header("Location: managerlogin.php"); // Redirecting To Home Page
 }
 @include("../view/header.php");
-@include("../view/navbar.php");
-@include("../view/sidebar.php");
 
 @include("../control/post_news.process.php");
 
-
 ?>
 
-<!DOCTYPE html>
-<html>
-
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/post.css">
-</head>
-
-<body>
     <form class="news_form" action="" method="POST" onsubmit="return postnews_formcheck()">
         <div class="flex-container">
             <div class=container>
@@ -51,6 +39,4 @@ header("Location: managerlogin.php"); // Redirecting To Home Page
 
     </form>
     <script src="../js/postnews.js"></script>
-</body>
-
-</html>
+<?php @include("../view/footer.php"); ?>

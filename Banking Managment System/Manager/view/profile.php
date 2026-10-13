@@ -6,22 +6,11 @@ if(empty($_SESSION["username"]))
 header("Location: managerlogin.php"); // Redirecting To Home Page
 }
 @include("../view/header.php");
-@include("../view/navbar.php");
-@include("../view/sidebar.php");
+
 @include("../view/profileprocess.php")
 
 ?>
 
-<!DOCTYPE html>
-<html>
-
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/admin_profile.css">
-    <title>Profile</title>
-</head>
-
-<body>
     <form class="add_customer_form" action="" method="POST" enctype="multipart/form-data" onsubmit="return formcheck()">
         <div class="flex-container-form_header">
             <!-- <h1 id="form_header">____Account Details___</h1> -->
@@ -103,6 +92,4 @@ header("Location: managerlogin.php"); // Redirecting To Home Page
 
     </form>
     <script src="../js/profile.js"></script>
-</body>
-
-</html>
+<?php @include("../view/footer.php"); ?>

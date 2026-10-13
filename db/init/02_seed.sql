@@ -15,7 +15,7 @@ INSERT INTO `user` (fname,lname,uname,email,nid,phone,accountno,pin,password,cpa
   VALUES ('Casey','Customer','casey','casey@example.com',10000004,'+8801700000004',3000001,1111,'Demo@1234','Demo@1234'),
          ('Riley','Customer','riley','riley@example.com',10000005,'+8801700000005',3000002,2222,'Demo@1234','Demo@1234');
 
-INSERT INTO news (tittle,news_body,created) VALUES ('Welcome to PennyWise','This is a demo banking system built for portfolio purposes.',NOW());
+INSERT INTO news (tittle,news_body,created) VALUES ('Welcome to Banking Management System','This is a demo banking system built for portfolio purposes.',NOW());
 INSERT INTO passbook (trans_date,remarks,debit,credit,balance,accountno) VALUES
   (NOW(),'Opening balance',0,100000,100000,1000001);
 INSERT INTO prebookfunds (trans_date,remarks,debit,credit,balance,accountno) VALUES

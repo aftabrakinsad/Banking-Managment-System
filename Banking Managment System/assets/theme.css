@@ -30,7 +30,7 @@ code { background: var(--line); padding: .1em .4em; border-radius: 4px; }
   .nav-toggle:checked ~ nav { display:flex; }
 }
 
-.container { max-width: 980px; margin: 0 auto; padding: 1.5rem 1rem 3rem; }
+.page { max-width: 980px; margin: 0 auto; padding: 1.5rem 1rem 3rem; }
 .footer { text-align:center; color:var(--muted); font-size:.8rem; padding:1.5rem 1rem; }
 
 .card { background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); padding:1.25rem; margin-bottom:1rem; box-shadow:0 1px 2px rgba(0,0,0,.04); }
@@ -79,3 +79,46 @@ td.in { color:var(--in); } td.out { color:var(--out); }
 .facts dt { color:var(--muted); } .facts dd { margin:0; font-weight:600; }
 
 @media print { .topbar, .filters, .footer { display:none; } body { background:#fff; color:#000; } .card { border:0; box-shadow:none; } }
+
+/* ---------- Legacy pages (Admin / Manager / Employee) ---------- */
+.brand span { white-space: nowrap; }
+.topbar .avatar { width: 32px; height: 32px; border-radius: 50%; object-fit: cover; border: 1px solid var(--line); }
+.topbar .who { color: var(--muted); font-size: .85rem; }
+details.more { position: relative; }
+details.more > summary { list-style: none; cursor: pointer; padding: .4rem .7rem; border-radius: 8px; font-size: .95rem; }
+details.more > summary::-webkit-details-marker { display: none; }
+details.more > summary:hover { background: var(--bg); }
+details.more .menu { position: absolute; right: 0; top: 110%; min-width: 200px; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: .3rem; box-shadow: 0 8px 24px rgba(0,0,0,.12); display: flex; flex-direction: column; z-index: 20; }
+@media (max-width: 760px) { details.more .menu { position: static; box-shadow: none; } }
+
+main center, main .center { display: block; text-align: center; }
+main form table { width: 100%; border-collapse: separate; border-spacing: 0; }
+main form table td, main form table th { border: 0; padding: .3rem .4rem; vertical-align: top; text-align: left; }
+main input[type=submit], main input[type=button], main button {
+  display: inline-block; width: auto; margin-top: .4rem; padding: .6rem 1.1rem; border: 1px solid var(--brand);
+  background: var(--brand); color: #fff; border-radius: 8px; font: inherit; font-weight: 600; cursor: pointer; }
+main input[type=submit]:hover, main input[type=button]:hover, main button:hover { background: var(--brand-dark); }
+main input[type=checkbox], main input[type=radio] { display: inline-block; width: auto; margin: 0 .4rem 0 0; }
+main input[type=file] { background: transparent; border: 0; padding-left: 0; }
+main textarea { display: block; width: 100%; margin-top: .3rem; padding: .6rem .7rem; font: inherit; color: var(--text); background: var(--bg); border: 1px solid var(--line); border-radius: 8px; min-height: 120px; }
+main p[id], main span[id] { font-size: .85rem; margin: .2rem 0; }
+main td img, main th img { max-width: 72px; max-height: 72px; border-radius: 8px; }
+main a.regi, main a#denger { font-size: .9rem; }
+main table:not(form table) { background: var(--surface); }
+.auth h1 { text-align: center; }
+.auth table { width: 100%; }
+.auth input[type=submit] { width: 100%; }
+.page-actions { display: flex; gap: .5rem; flex-wrap: wrap; margin-bottom: 1rem; }
+.stat-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 1rem; margin-bottom: 1rem; }
+.stat { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 1rem; }
+.stat b { display: block; font-size: 1.6rem; }
+.table-tools { display: flex; gap: .5rem; margin-bottom: .75rem; }
+.table-tools input { max-width: 320px; margin: 0; }
+
+/* Legacy pages: top-level forms/tables read as cards */
+main.page > form, main.page > table, main.page > center > form, main.page > center > table {
+  background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
+  padding: 1.25rem; margin-bottom: 1rem; display: block; overflow-x: auto; }
+main.page > table { display: table; padding: 0; }
+main.page div[class*="flex-container"], main.page .container { display: block; padding: 0; margin: 0; }
+main.page h1[id], main.page h1 { text-align: left; margin-left: 0; }
