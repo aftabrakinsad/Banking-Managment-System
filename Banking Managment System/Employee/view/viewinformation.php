@@ -1,10 +1,8 @@
-<?php @include("../view/header.php"); ?>
-<?php @include("../view/header.php"); ?>
-
 <?php
 
 include("../control/viewinformationemp.php");
 ?>
+<?php @include("../view/header.php"); ?>
 
 <!-- <h2><a href=''>Back </a></h2> -->
 

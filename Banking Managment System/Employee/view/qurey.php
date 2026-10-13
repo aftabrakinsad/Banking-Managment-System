@@ -1,9 +1,11 @@
 <?php
+if (session_status() === PHP_SESSION_NONE) { session_start(); }
+if (empty($_SESSION["username"])) { header("location: ../view/employelogin.php"); exit; }
 @include("../control/query_news.php");
-
-// @include("../view/header.php");
-
+$pageTitle = 'Customer queries';
+@include("../view/header.php");
 ?>
+<h1>Customer queries</h1>
 
 <form class="news_form" action="" method="POST" onsubmit="return postnews_formcheck()">
 <div class="flex-container">

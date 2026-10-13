@@ -11,6 +11,7 @@ $email = $_SESSION['email'];
         @include("../View/public_top.php");
 
         ?>
+<section class="card auth auth-wide">
     </header>
 
     <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST" enctype="multipart/form-data" onsubmit="return change_password_formcheck()">
@@ -61,4 +62,5 @@ $email = $_SESSION['email'];
 
     </form>
     <script src="../JS/changepassword.js"></script>
+</section>
 <?php @include("../View/footer.php"); ?>

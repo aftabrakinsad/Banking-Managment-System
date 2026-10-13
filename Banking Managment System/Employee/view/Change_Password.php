@@ -11,6 +11,7 @@ $Email = $_SESSION['Email'];
         @include("../view/public_top.php");
 
         ?>
+<section class="card auth auth-wide">
     </header>
 
     <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST" enctype="multipart/form-data">
@@ -40,4 +41,5 @@ $Email = $_SESSION['Email'];
         </table>
 
     </form>
+</section>
 <?php @include("../view/footer.php"); ?>

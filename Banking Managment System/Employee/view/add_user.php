@@ -1,7 +1,9 @@
 <?php
-// @include("../view/header.php");
-
+if (session_status() === PHP_SESSION_NONE) { session_start(); }
+if (empty($_SESSION["username"])) { header("location: ../view/employelogin.php"); exit; }
 @include("../control/adduser.process.php");
+$pageTitle = 'Add customer';
+@include("../view/header.php");
 ?>
 
  

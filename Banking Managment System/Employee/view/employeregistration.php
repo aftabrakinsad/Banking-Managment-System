@@ -1,6 +1,3 @@
-<?php @include("../view/public_top.php"); ?>
-<?php @include("../view/public_top.php"); ?>
-
 <?php
 
 session_start();
@@ -13,6 +10,8 @@ if (isset($_SESSION['username']))
 include('../control/Employeeregistration.php');
 
 ?>
+<?php @include("../view/public_top.php"); ?>
+<section class="card auth auth-wide">
 
 <div class= "header sticky"> </div>
 
@@ -148,4 +147,5 @@ include('../control/Employeeregistration.php');
     </form>
 
     <script src="../JS/ragistration.js"></script>
+</section>
 <?php @include("../view/footer.php"); ?>

@@ -1,6 +1,3 @@
-<?php @include("../view/header.php"); ?>
-<?php @include("../view/header.php"); ?>
-
 <?php
 session_start();
 if(empty($_SESSION["username"])) 
@@ -11,6 +8,7 @@ include("../control/updateProcess.php");
 include("../control/deleteProcess.php");
 
 ?>
+<?php @include("../view/header.php"); ?>
 
     
 <form action="" method="POST" enctype="multipart/form-data" >

@@ -14,6 +14,7 @@
     <input type="checkbox" id="nav-toggle" class="nav-toggle">
     <label for="nav-toggle" class="hamburger" aria-label="Menu">&#9776;</label>
     <nav>
+        <a href="/Admin/View/Home.php">Home</a>
         <a href="../View/adminhomepage.php"<?php echo $cur === 'adminhomepage.php' ? ' class="active"' : ''; ?>>Dashboard</a>
         <a href="../View/adminrequest.php"<?php echo $cur === 'adminrequest.php' ? ' class="active"' : ''; ?>>Requests</a>
         <a href="../View/usermanage.php"<?php echo $cur === 'usermanage.php' ? ' class="active"' : ''; ?>>Customers</a>

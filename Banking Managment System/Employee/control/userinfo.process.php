@@ -15,7 +15,7 @@ if($result == true)
 
         echo '<tr>
 
-        <td>'.$row['user_id '].'</td>
+        <td>'.$row['user_id'].'</td>
         <td>'.$row['fname'].'</td>
         <td>'.$row['lname'].'</td>
         <td>'.$row['uname'].'</td>
@@ -26,7 +26,7 @@ if($result == true)
         <td><img src="../uploads/'.$row['picture']. '" width="100px" height="100px"></td>
         <td>
         <a class="accept" href="../view/add_user.php">Update</a> <br><br><br>
-        <a class="reject" href=?deleteid='.$user_id.'">Reject</a>
+        
         </td>
         </tr>';
     }

@@ -18,6 +18,7 @@ if ($_SESSION['info'] == false) {
             @include("../View/public_top.php");
     
         ?>
+<section class="card auth auth-wide">
     </header>
     <form action="../View/adminlogin.php">
         <p>
@@ -31,4 +32,5 @@ if ($_SESSION['info'] == false) {
         </p>
         <input class="inputbutton" type="submit" name="returntologin" value="Login">
     </form>
+</section>
 <?php @include("../View/footer.php"); ?>

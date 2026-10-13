@@ -14,13 +14,14 @@
     <input type="checkbox" id="nav-toggle" class="nav-toggle">
     <label for="nav-toggle" class="hamburger" aria-label="Menu">&#9776;</label>
     <nav>
-        <a href="../view/epage1.php"<?php echo $cur === 'epage1.php' ? ' class="active"' : ''; ?>>Home</a>
-        <a href="../view/employeedetails.php"<?php echo $cur === 'employeedetails.php' ? ' class="active"' : ''; ?>>Customers</a>
-        <a href="../view/showuserinfo.php"<?php echo $cur === 'showuserinfo.php' ? ' class="active"' : ''; ?>>Accounts</a>
+        <a href="/Admin/View/Home.php">Home</a>
+        <a href="../view/epage1.php"<?php echo $cur === 'epage1.php' ? ' class="active"' : ''; ?>>Dashboard</a>
+        <a href="../view/showuserinfo.php"<?php echo $cur === 'showuserinfo.php' ? ' class="active"' : ''; ?>>Customers</a>
         <a href="../view/transferfund.php"<?php echo $cur === 'transferfund.php' ? ' class="active"' : ''; ?>>Transfer</a>
         <a href="../view/qurey.php"<?php echo $cur === 'qurey.php' ? ' class="active"' : ''; ?>>Queries</a>
         <details class="more"><summary>More &#9662;</summary><div class="menu">
             <a href="../view/add_user.php">Add customer</a>
+            <a href="../view/employeedetails.php">Employee applications</a>
             <a href="../view/viewinformation.php">My profile</a>
         </div></details>
         <a href="../control/employelogout.php" class="logout">Sign out</a>

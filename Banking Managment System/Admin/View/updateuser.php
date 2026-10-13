@@ -95,6 +95,14 @@ if (empty($_SESSION["username"]) && empty($_SESSION["password"])) {
                 <label>Account No. :</b></label><br>
                 <input name="accountno" type="text" value="<?php echo $accountno; ?>" readonly>
             </div>
+            <div class=container>
+                <label>Profile picture :</label><br>
+                <?php if (!empty($picture)) { ?>
+                    <img class="avatar-lg" src="../uploads/<?php echo htmlspecialchars($picture, ENT_QUOTES, 'UTF-8'); ?>" alt="Current picture" onerror="this.style.display='none'">
+                <?php } ?>
+                <input type="file" name="picture" id="picture" accept="image/jpeg,image/png,image/webp">
+                <p class="muted small">JPG, PNG or WEBP, up to 2 MB. Leave empty to keep the current picture.</p>
+            </div>
             <div>
                 <input class="button" type="submit" name="submit" id="submit" value="update">
                 <a class="button" href="../View/usermanage.php">Go Back</a>

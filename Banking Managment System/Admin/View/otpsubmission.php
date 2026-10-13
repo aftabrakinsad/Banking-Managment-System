@@ -10,6 +10,7 @@
         @include("../View/public_top.php");
 
         ?>
+<section class="card auth auth-wide">
     </header>
 
     <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
@@ -57,4 +58,5 @@
     <script src="../JS/otp.js"></script>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</section>
 <?php @include("../View/footer.php"); ?>

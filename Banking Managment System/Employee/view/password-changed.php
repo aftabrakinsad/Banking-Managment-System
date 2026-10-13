@@ -19,6 +19,7 @@
             @include("../view/public_top.php");
     
         ?>
+<section class="card auth auth-wide">
     </header>
     <form action="../view/employelogin.php">
         <p>
@@ -32,4 +33,5 @@
         </p>
         <input class="inputbutton" type="submit" name="returntologin" value="Login">
     </form>
+</section>
 <?php @include("../view/footer.php"); ?>

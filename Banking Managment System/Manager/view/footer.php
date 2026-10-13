@@ -1,4 +1,4 @@
 </main>
-<footer class="footer">Banking Management System · portfolio demo · not a real bank</footer>
+<footer class="footer">Academic course project · Banking Management System · AIUB, CSC3215 Web Technologies</footer>
 </body>
 </html>

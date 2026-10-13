@@ -1,6 +1,3 @@
-<?php @include("../view/public_top.php"); ?>
-<?php @include("../view/public_top.php"); ?>
-
 <?php
 session_start();
 if(empty($_SESSION["username"])) 
@@ -9,6 +6,8 @@ if(empty($_SESSION["username"]))
 }
 
 ?>
+<?php @include("../view/public_top.php"); ?>
+<section class="card auth auth-wide">
 <?php
 
 include("../control/managerprocess.php");
@@ -190,4 +189,5 @@ include("../control/managerprocess.php");
         </form>
     </center>
     <script src="../js/registration.js"></script>
+</section>
 <?php @include("../view/footer.php"); ?>

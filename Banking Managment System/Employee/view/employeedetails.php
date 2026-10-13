@@ -13,7 +13,7 @@ if(empty($_SESSION["username"]) && empty($_SESSIO["password"]))
     <form action="" method="POST" enctype="multipart/form-data">
 
         <table>
-            <caption>Applicant Requests</caption>
+            <caption>Employee applications</caption>
             <thead>
                 <tr>
                     <th scope="col">Seial</th>
@@ -23,8 +23,6 @@ if(empty($_SESSION["username"]) && empty($_SESSIO["password"]))
                     <th scope="col">Email</th>
                     <th scope="col">NID</th>
                     <th scope="col">Phone</th>
-                    <th scope="col">Password</th>
-                    <th scope="col">Cpassword</th>
                     <th scope="col">Picture</th>
                     <th scope="col">CV</th>
                 </tr>

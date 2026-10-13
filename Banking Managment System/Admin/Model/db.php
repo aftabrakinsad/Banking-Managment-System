@@ -278,7 +278,7 @@ class db
 
     function search_by_User_accountno($accountno, $user, $conn)
     {
-        $sqlstr = "SELECT fname, lname, uname, email, nid, phone, accountno FROM $user WHERE accountno = '$accountno'";
+        $sqlstr = "SELECT fname, lname, uname, email, nid, phone, accountno, picture FROM $user WHERE accountno = '$accountno'";
         return $conn->query($sqlstr);
     }
 
@@ -400,6 +400,16 @@ class db
     {
         $sqlstr = "SELECT * FROM $table ";
         return $conn->query($sqlstr);
+    }
+
+
+    function update_user_picture($accountno, $picture, $conn)
+    {
+        $st = $conn->prepare("UPDATE `user` SET picture = ? WHERE accountno = ?");
+        $st->bind_param('si', $picture, $accountno);
+        $ok = $st->execute();
+        $st->close();
+        return $ok;
     }
 
 }

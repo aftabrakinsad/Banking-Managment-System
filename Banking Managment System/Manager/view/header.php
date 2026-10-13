@@ -18,7 +18,8 @@ include("../control/homepageProcess.php");
     <input type="checkbox" id="nav-toggle" class="nav-toggle">
     <label for="nav-toggle" class="hamburger" aria-label="Menu">&#9776;</label>
     <nav>
-        <a href="../view/managerHomePage.php"<?php echo $cur === 'managerhomepage.php' ? ' class="active"' : ''; ?>>Home</a>
+        <a href="/Admin/View/Home.php">Home</a>
+        <a href="../view/managerHomePage.php"<?php echo $cur === 'managerhomepage.php' ? ' class="active"' : ''; ?>>Dashboard</a>
         <a href="../view/transferfunds.php"<?php echo $cur === 'transferfunds.php' ? ' class="active"' : ''; ?>>Transfer</a>
         <a href="../view/transaction.php"<?php echo $cur === 'transaction.php' ? ' class="active"' : ''; ?>>Transactions</a>
         <a href="../view/Viewemployee.php"<?php echo $cur === 'viewemployee.php' ? ' class="active"' : ''; ?>>Employees</a>

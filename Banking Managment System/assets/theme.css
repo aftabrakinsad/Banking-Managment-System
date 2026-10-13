@@ -129,3 +129,30 @@ main.page h1[id], main.page h1 { text-align: left; margin-left: 0; }
 .portals .portal { text-decoration: none; color: inherit; display: block; transition: transform .12s, border-color .12s; }
 .portals .portal:hover { transform: translateY(-2px); border-color: var(--brand); }
 .portal h2 { color: var(--brand); }
+
+/* ---------- Requested tweaks ---------- */
+.page { max-width: 1280px; }
+body { padding-bottom: 64px; }
+.footer { position: fixed; left: 0; right: 0; bottom: 0; z-index: 15; margin: 0; padding: .65rem 1rem;
+  background: var(--surface); border-top: 1px solid var(--line); }
+.auth-wide { max-width: 760px; margin: 2rem auto; }
+.auth-wide .card, .auth-wide form { border: 0; padding: 0; margin: 0; background: transparent; }
+
+/* Every button is a block button */
+.btn, main button, main input[type=submit], main input[type=button], main input[type=reset],
+a.accept, a.reject, a.button, main a.a, a#info {
+  display: block; width: 100%; text-align: center; box-sizing: border-box; margin: .4rem 0; }
+.filters .btn, .filters button { width: 100%; }
+.actions, .row-actions, .page-actions { flex-direction: column; align-items: stretch; }
+.row-actions form { width: 100%; }
+a.accept, a.reject, a.button, main a.a, a#info { padding: .5rem 1rem; border-radius: 8px; font-weight: 600; text-decoration: none; border: 1px solid var(--brand); color: var(--brand); background: transparent; }
+a.accept { background: var(--brand); color: #fff; }
+a.reject { border-color: var(--danger); color: var(--danger); }
+td br { display: none; }
+td .btn, td a.accept, td a.reject { min-width: 90px; }
+
+/* Data tables (anything with a header row) */
+main table:has(thead) { font-size: .88rem; width: 100%; }
+main table:has(thead) th, main table:has(thead) td { border-bottom: 1px solid var(--line); padding: .55rem .5rem; word-break: break-word; overflow-wrap: anywhere; vertical-align: middle; }
+main table caption { text-align: left; font-weight: 700; font-size: 1.1rem; padding: 0 0 .75rem; }
+.avatar-lg { display: block; width: 96px; height: 96px; object-fit: cover; border-radius: 12px; border: 1px solid var(--line); margin-bottom: .5rem; }

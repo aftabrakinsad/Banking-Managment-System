@@ -20,8 +20,6 @@ if($result == true)
         <td>'.$row['Email'].'</td>
         <td>'.$row['NID'].'</td>
         <td>'.$row['Phone'].'</td>
-        <td>'.$row['Password'].'</td>
-        <td>'.$row['cpassword'].'</td>
         <td><img src="../uploads/'.$row['picture']. '" width="100px" height="100px"></td>
         <td><a id="info" href="../uploads/'.$row['cv']. '">View</a></td>
         </tr>';

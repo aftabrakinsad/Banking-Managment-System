@@ -23,9 +23,9 @@ if($result == true)
         <td>'.$row['accountno'].'</td>
 
 
-        <td><img src="../uploads/'.$row['picture']. '" width="100px" height="100px"></td>
+        <td><img src="../uploads/'.htmlspecialchars($row['picture']).'" width="100" height="100" alt="" onerror="this.style.display=\'none\'"></td>
         <td>
-            <a class="accept" href="../View/updateuser.php">Update</a> <br><br><br>
+            <a class="accept" href="../View/updateuser.php?accountno='.urlencode($row['accountno']).'">Update</a> <br><br><br>
             <a class="reject" href="../Control/applicantdelete.php?deleteid='. $user_id.'">Remove</a>
         </td>
         </tr>';

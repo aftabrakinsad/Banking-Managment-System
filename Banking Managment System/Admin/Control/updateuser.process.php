@@ -10,8 +10,16 @@ $nid = "";
 $phone = "";
 $salary = "";
 $accountno = "";
+$picture = "";
 $errors = array();
 $success = array();
+
+// Allow deep links from the user list: updateuser.php?accountno=1234567
+if (isset($_GET["accountno"]) && !isset($_POST["search"]) && !isset($_POST["submit"]))
+{
+    $_POST["search"] = true;
+    $_POST["accountno"] = $_GET["accountno"];
+}
 
 if (isset($_POST["search"]))
 {
@@ -21,7 +29,7 @@ if (isset($_POST["search"]))
     {
         $errors['empty-username'] =  "Please enter account no";
     }
-    else if (!empty($accountno) && strlen($unaaccountnome) == 7)
+    else if (!empty($accountno) && !preg_match("/^[0-9]{7}$/", $accountno))
     {
         $errors['uname-char'] = "account no must be equal 7 digits!";
     }
@@ -42,6 +50,7 @@ if (isset($_POST["search"]))
                 $nid = $row["nid"];
                 $phone = $row["phone"];
                 $accountno = $row["accountno"];
+                $picture = $row["picture"];
             }
         }
         else
@@ -87,10 +96,45 @@ if(isset($_POST["submit"]))
         $mydb = new db();
         $myconn = $mydb->openConn();
 
+        // Optional new profile picture
+        $newpic = "";
+        if (!empty($_FILES["picture"]["name"]))
+        {
+            $f = $_FILES["picture"];
+            $info = ($f["error"] === UPLOAD_ERR_OK) ? @getimagesize($f["tmp_name"]) : false;
+            $allowed = array(IMAGETYPE_JPEG => "jpg", IMAGETYPE_PNG => "png", IMAGETYPE_WEBP => "webp");
+            if ($f["error"] !== UPLOAD_ERR_OK || !$info || !isset($allowed[$info[2]]))
+            {
+                $errors['picture-invalid'] = "Picture must be a JPG, PNG or WEBP image.";
+            }
+            else if ($f["size"] > 2 * 1024 * 1024)
+            {
+                $errors['picture-size'] = "Picture must be 2 MB or smaller.";
+            }
+            else
+            {
+                $dir = __DIR__ . "/../uploads/user_picture";
+                if (!is_dir($dir)) { mkdir($dir, 0775, true); }
+                $newpic = "user_picture/" . bin2hex(random_bytes(8)) . "." . $allowed[$info[2]];
+                if (!move_uploaded_file($f["tmp_name"], __DIR__ . "/../uploads/" . $newpic))
+                {
+                    $errors['picture-save'] = "Could not save the picture.";
+                    $newpic = "";
+                }
+            }
+        }
+    }
+    if (count($errors) == 0)
+    {
+        $mydb = new db();
+        $myconn = $mydb->openConn();
         $resulta = $mydb->update_user($_POST["fname"], $_POST["lname"] , $_POST["uname"], $_POST["email"], $_POST["phone"], $_POST["accountno"], "user",$myconn);
 
         if($resulta == true)
         {
+            if ($newpic !== "") { $mydb->update_user_picture($_POST["accountno"], $newpic, $myconn); }
+            $again = $mydb->search_by_User_accountno($_POST["accountno"], "user", $myconn);
+            if ($again && ($r2 = $again->fetch_assoc())) { $picture = $r2["picture"]; $accountno = $r2["accountno"]; $uname = $r2["uname"]; $nid = $r2["nid"]; }
             $success['ok']= "Sucessfully Updated";
         }
         else

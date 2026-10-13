@@ -61,7 +61,7 @@ function formcheck()
 
 function myAJAX()
 {
-    var accountno =document.getElementById("username").value;
+    var username = document.getElementById("username").value;
     var myxhttp = new XMLHttpRequest();
 
     myxhttp.onreadystatechange = function(){
@@ -73,5 +73,5 @@ if(this.readyState==4 && this.status ==200)
     };
     myxhttp.open("POST","/Manager/control/usernamecheck.php",true);
     myxhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-    myxhttp.send("username="+username);
+    myxhttp.send("username="+encodeURIComponent(username));
 }
