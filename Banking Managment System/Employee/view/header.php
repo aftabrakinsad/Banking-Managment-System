@@ -9,9 +9,9 @@ $employee = require_employee();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo htmlspecialchars(isset($pageTitle) ? $pageTitle : 'Employee', ENT_QUOTES, 'UTF-8'); ?> · Banking Management System</title>
     <link rel="stylesheet" href="/assets/theme.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 <body>
+<div class="demo-banner" role="note"><strong>Demo project for learning.</strong> This is not a real bank. Do not enter real personal or financial information.</div>
 <?php
 $cur = strtolower(basename($_SERVER['SCRIPT_NAME']));
 $flash = take_flash();

@@ -18,6 +18,7 @@ function navlink($file, $label, $page, $badge = 0) {
     <link rel="stylesheet" href="/assets/theme.css">
 </head>
 <body>
+<div class="demo-banner" role="note"><strong>Demo project for learning.</strong> This is not a real bank. Do not enter real personal or financial information.</div>
 <header class="topbar">
     <a class="brand" href="dashboard.php"><img src="/Admin/Image/banklogo.png" alt="">Banking Management System</a>
     <?php if (isset($me)) { ?>

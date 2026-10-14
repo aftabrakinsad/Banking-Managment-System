@@ -197,3 +197,8 @@ html { scroll-behavior: smooth; }
 .facts.wide { grid-template-columns: minmax(120px, 200px) 1fr; }
 .empty { text-align: center; padding: 2rem 1rem; }
 .field-error { color: var(--danger); font-size: .85rem; margin: .15rem 0 .5rem; }
+
+/* Demo notice shown on every page */
+.demo-banner { background: #fff4d6; color: #5c4300; border-bottom: 1px solid #f0d58a; text-align: center; font-size: .8rem; padding: .35rem .75rem; }
+@media (prefers-color-scheme: dark) { .demo-banner { background: #3a2f10; color: #f5dd9b; border-bottom-color: #5c4a14; } }
+@media print { .demo-banner { display: none; } }
