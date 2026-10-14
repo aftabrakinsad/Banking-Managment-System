@@ -42,6 +42,7 @@ $stack = ['PHP 8', 'MySQL', 'Apache', 'JavaScript + AJAX', 'Docker', 'Layered ar
     <link rel="stylesheet" href="/assets/theme.css">
 </head>
 <body>
+<div class="demo-banner" role="note"><strong>Demo project for learning.</strong> This is not a real bank. Do not enter real personal or financial information.</div>
 <header class="topbar">
     <a class="brand" href="/"><img src="/Admin/Image/banklogo.png" alt="">Banking Management System</a>
     <input type="checkbox" id="nav-toggle" class="nav-toggle">

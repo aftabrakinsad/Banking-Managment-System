@@ -17,9 +17,9 @@ $flash = take_flash();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo h(isset($pageTitle) ? $pageTitle : 'Admin'); ?> · Banking Management System</title>
     <link rel="stylesheet" href="/assets/theme.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 <body>
+<div class="demo-banner" role="note"><strong>Demo project for learning.</strong> This is not a real bank. Do not enter real personal or financial information.</div>
 <header class="topbar">
     <a class="brand" href="/Admin/View/adminhomepage.php"><img src="/Admin/Image/banklogo.png" alt="">Banking Management System</a>
     <input type="checkbox" id="nav-toggle" class="nav-toggle">
