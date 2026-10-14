@@ -6,7 +6,7 @@ $balance = udb()->balance($acct);
 $recent = udb()->recent($acct, 5);
 $sum = udb()->monthSummary($acct);
 $max = max(1, (int)$sum['in_total'], (int)$sum['out_total']);
-$title = 'Dashboard';
+$title = 'Home';
 require __DIR__ . '/layout_top.php';
 ?>
 <h1>Welcome back, <?php echo h($me['fname']); ?></h1>

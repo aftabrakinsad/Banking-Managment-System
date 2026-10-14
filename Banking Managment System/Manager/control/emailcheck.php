@@ -1,21 +1,9 @@
 <?php
+// Registration availability check (prepared statements; no output unless a value was sent).
+require_once __DIR__ . '/../../config/applications.php';
 
-include_once("../model/db.php");
-
-$email = $_POST["email"];
-if(!empty($email))
+$value = trim(isset($_POST['email']) ? (string)$_POST['email'] : '');
+if ($value !== '' && strlen($value) <= 100)
 {
-    $mydb = new db();
-$myconn = $mydb -> openConn();
-$results = $mydb ->searchUserbyEmail($email,"manager",$myconn);
-if($results->num_rows >0)
-{
- echo "Email Exsists";
+    echo (new ApplicationRepo())->taken('email', $value) ? 'That email is already registered.' : 'Email is available.';
 }
-else
-{
-    echo "Email doesn't Exists";
-}
-}
-
-?>

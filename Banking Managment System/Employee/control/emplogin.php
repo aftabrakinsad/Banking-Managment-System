@@ -32,6 +32,11 @@ if (isset($_POST['submit']))
 
         if ($row && verify_secret($password, $row['password']))
         {
+            if (!is_hashed($row['password'])) {
+                $up = $conn->prepare("UPDATE employeelogin SET password = ? WHERE username = ?");
+                $hash = password_hash($password, PASSWORD_DEFAULT);
+                $up->bind_param('ss', $hash, $row['username']); $up->execute(); $up->close();
+            }
             session_regenerate_id(true);
             $_SESSION['username'] = $row['username'];
             unset($_SESSION['emp_fails'], $_SESSION['emp_lock']);

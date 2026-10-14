@@ -1,23 +1,9 @@
 <?php
+// Registration availability check (prepared statements; no output unless a value was sent).
+require_once __DIR__ . '/../../config/applications.php';
 
-@include_once("../model/db.php");
-
-$Email = $_POST["Email"];
-
-#Checking Username via ajax
-if(!empty($Email))
+$value = trim(isset($_POST['Email']) ? (string)$_POST['Email'] : '');
+if ($value !== '' && strlen($value) <= 100)
 {
-$mydb = new db();
-$myconn = $mydb -> openConn();
-$results = $mydb -> Emailreg_Ajex($Email,"registrationofemployee", $myconn);
-if($results -> num_rows > 0)
-{
-echo "User Exsists";
+    echo (new ApplicationRepo())->taken('email', $value) ? 'That email is already registered.' : 'Email is available.';
 }
-else
-{
-echo "User doesn't Exists";
-}
-}
-
-?>

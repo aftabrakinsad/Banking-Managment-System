@@ -185,6 +185,7 @@ class UserDb
 
         if (!isset($by[$fromAcct]) || !isset($by[$toAcct])) { $c->rollback(); return [false, 'Receiver account not found.']; }
         if (!verify_secret($pin, $by[$fromAcct]['pin'])) { $c->rollback(); return [false, 'Incorrect PIN.']; }
+        if (!is_hashed($by[$fromAcct]['pin'])) { $this->run("UPDATE `user` SET pin = ? WHERE user_id = ?", 'si', [password_hash($pin, PASSWORD_DEFAULT), $by[$fromAcct]['user_id']]); }
 
         $fromBal = $this->balance($fromAcct);
         if ($amount > $fromBal) { $c->rollback(); return [false, 'Insufficient balance.']; }

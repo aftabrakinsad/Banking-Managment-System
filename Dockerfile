@@ -7,6 +7,8 @@ RUN docker-php-ext-install mysqli \
 COPY docker/php.ini /usr/local/etc/php/conf.d/app.ini
 COPY docker/sessions.conf /etc/apache2/conf-available/sessions.conf
 RUN a2enconf sessions
+COPY docker/security.conf /etc/apache2/conf-available/security-app.conf
+RUN a2enconf security-app
 
 # The app's web root is the project folder
 COPY ["Banking Managment System/", "/var/www/html/"]

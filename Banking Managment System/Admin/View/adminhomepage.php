@@ -25,6 +25,7 @@ $pendingTotal = $s['pending_managers'] + $s['pending_employees'];
     <div class="stat"><span class="label">Open tasks</span><b><?php echo $s['open_tasks']; ?></b></div>
     <div class="stat"><span class="label">Customer requests open</span><b><?php echo $s['open_requests']; ?></b></div>
     <div class="stat"><span class="label">Transfers today</span><b><?php echo $s['tx_today']; ?></b></div>
+    <div class="stat"><span class="label">Manager fund transfers</span><b><?php echo $s['fund_transfers']; ?></b></div>
     <div class="stat"><span class="label">Transfers, all time</span><b><?php echo $s['tx_total']; ?></b></div>
     <div class="stat"><span class="label">Customer holdings</span><b>৳ <?php echo money($s['holdings']); ?></b></div>
 </section>

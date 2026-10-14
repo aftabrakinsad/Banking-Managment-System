@@ -20,8 +20,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (!$errors) {
         $ok = $v['role'] === 'manager'
-            ? adb()->addManager($v['first'], $v['last'], $v['username'], $v['email'], $v['phone'], $password, (int)$v['salary'])
-            : adb()->addEmployee($v['first'], $v['last'], $v['username'], $v['email'], $v['phone'], $password);
+            ? adb()->addManager($v['first'], $v['last'], $v['username'], $v['email'], $v['phone'], password_hash($password, PASSWORD_DEFAULT), (int)$v['salary'])
+            : adb()->addEmployee($v['first'], $v['last'], $v['username'], $v['email'], $v['phone'], password_hash($password, PASSWORD_DEFAULT));
         if ($ok === false) { $errors[] = 'Could not create the account.'; }
         else {
             log_activity('admin', $admin['uname'], 'added_' . $v['role'], $v['username']);

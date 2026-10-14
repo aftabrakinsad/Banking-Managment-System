@@ -56,6 +56,7 @@ class AdminDb
             'pending_employees' => $c("SELECT COUNT(*) FROM registrationofemployee WHERE status = 'pending'"),
             'tx_today' => $c("SELECT COUNT(*) FROM passbook WHERE DATE(trans_date) = CURDATE() AND debit > 0"),
             'tx_total' => $c("SELECT COUNT(*) FROM passbook WHERE debit > 0"),
+            'fund_transfers' => $c("SELECT COUNT(*) FROM `transaction`"),
             'open_tasks' => $c("SELECT COUNT(*) FROM tasks WHERE status = 'open'"),
             'open_requests' => $c("SELECT COUNT(*) FROM customer_requests WHERE status IN ('open','in_progress')"),
             'holdings' => $bal ? (int)$bal['t'] : 0,
@@ -128,7 +129,7 @@ class AdminDb
                  $a['email'], $a['presentaddress'], $a['nid'], $a['phone'], $a['cvpath'], $a['imgpath'], $a['doj'], $a['salary']]);
             if ($ok === false) { $c->rollback(); return [false, 'Could not create the manager account.']; }
         }
-        $this->run("UPDATE applicationofmanager SET status = ?, review_note = ?, reviewed_at = NOW() WHERE id = ?", 'ssi', [$approve ? 'approved' : 'rejected', $note, $id]);
+        $this->run("UPDATE applicationofmanager SET pass = '', status = ?, review_note = ?, reviewed_at = NOW() WHERE id = ?", 'ssi', [$approve ? 'approved' : 'rejected', $note, $id]);
         $c->commit();
         return [true, $a['firstname'] . ' ' . $a['lastname'] . ($approve ? ' is now a manager.' : "'s application was rejected."), $a['username']];
     }
@@ -144,10 +145,10 @@ class AdminDb
             }
             $ok = $this->run("INSERT INTO employeelogin (username, password, email) VALUES (?, ?, ?)", 'sss', [$a['Username'], $a['Password'], $a['Email']]);
             $ok2 = $this->run("INSERT INTO employee (FirsName,LastName,Username,Password,ConfirmPassword,Email,NID,Phone,gender) VALUES (?,?,?,?,?,?,?,?,?)",
-                'ssssssiss', [$a['fname'], $a['lname'], $a['Username'], $a['Password'], $a['Password'], $a['Email'], $a['NID'], $a['Phone'], $a['gender']]);
+                'ssssssiss', [$a['fname'], $a['lname'], $a['Username'], '', '', $a['Email'], $a['NID'], $a['Phone'], $a['gender']]);
             if ($ok === false || $ok2 === false) { $c->rollback(); return [false, 'Could not create the employee account.']; }
         }
-        $this->run("UPDATE registrationofemployee SET status = ?, review_note = ?, reviewed_at = NOW() WHERE id = ?", 'ssi', [$approve ? 'approved' : 'rejected', $note, $id]);
+        $this->run("UPDATE registrationofemployee SET Password = '', cpassword = '', status = ?, review_note = ?, reviewed_at = NOW() WHERE id = ?", 'ssi', [$approve ? 'approved' : 'rejected', $note, $id]);
         $c->commit();
         return [true, $a['fname'] . ' ' . $a['lname'] . ($approve ? ' is now an employee.' : "'s application was rejected."), $a['Username']];
     }
@@ -184,10 +185,16 @@ class AdminDb
         return (bool)($m || $e);
     }
 
-    function updateManager($id, $first, $last, $email, $phone, $salary, $status)
+    function updateManager($id, $first, $last, $email, $phone, $salary, $status, $fund)
     {
-        return $this->run("UPDATE manager SET firstname = ?, lastname = ?, email = ?, phone = ?, salary = ?, activeStatus = ? WHERE id = ?",
-            'ssssisi', [$first, $last, $email, $phone, $salary, $status, $id]);
+        return $this->run("UPDATE manager SET firstname = ?, lastname = ?, email = ?, phone = ?, salary = ?, activeStatus = ?, fund = ? WHERE id = ?",
+            'ssssisii', [$first, $last, $email, $phone, $salary, $status, $fund, $id]);
+    }
+
+    function setStaffPassword($role, $id, $hash)
+    {
+        if ($role === 'manager') { return $this->run("UPDATE manager SET pass = ? WHERE id = ?", 'si', [$hash, $id]); }
+        return $this->run("UPDATE employeelogin SET password = ? WHERE id = ?", 'si', [$hash, $id]);
     }
 
     function updateEmployee($id, $first, $last, $email, $phone, $managerUsername)
@@ -230,7 +237,7 @@ class AdminDb
             if ($this->one("SELECT 1 FROM employeelogin WHERE username = ?", 's', [$m['username']])) { $c->rollback(); return [false, 'An employee with that username already exists.']; }
             $a = $this->run("INSERT INTO employeelogin (username, password, email) VALUES (?, ?, ?)", 'sss', [$m['username'], $m['pass'], $m['email']]);
             $b = $this->run("INSERT INTO employee (FirsName,LastName,Username,Password,ConfirmPassword,Email,NID,Phone,gender) VALUES (?,?,?,?,?,?,?,?,?)",
-                'ssssssiss', [$m['firstname'], $m['lastname'], $m['username'], $m['pass'], $m['pass'], $m['email'], $m['nid'], $m['phone'], $m['gender']]);
+                'ssssssiss', [$m['firstname'], $m['lastname'], $m['username'], '', '', $m['email'], $m['nid'], $m['phone'], $m['gender']]);
             if ($a === false || $b === false) { $c->rollback(); return [false, 'Role change failed.']; }
             $this->run("DELETE FROM manager WHERE id = ?", 'i', [$id]);
             $this->run("UPDATE employee SET manager = NULL WHERE manager = ?", 's', [$m['username']]);
@@ -306,7 +313,7 @@ class AdminDb
         $a = $this->run("INSERT INTO employeelogin (username, password, email) VALUES (?, ?, ?)", 'sss', [$username, $password, $email]);
         if ($a === false) { return false; }
         return $this->run("INSERT INTO employee (FirsName,LastName,Username,Password,ConfirmPassword,Email,Phone) VALUES (?,?,?,?,?,?,?)",
-            'sssssss', [$first, $last, $username, $password, $password, $email, $phone]);
+            'sssssss', [$first, $last, $username, '', '', $email, $phone]);
     }
 
     // ---------- customers ----------

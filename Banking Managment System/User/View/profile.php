@@ -28,6 +28,9 @@ require __DIR__ . '/layout_top.php';
 ?>
 <h1>Your profile</h1>
 <section class="card narrow">
+    <?php if ($me['picture'] !== '') { ?>
+        <div class="profile-head"><img class="avatar-lg" src="/Admin/uploads/<?php echo h($me['picture']); ?>" alt="Your photo" onerror="this.parentNode.style.display='none'"><span class="muted small">To change your photo, visit a branch.</span></div>
+    <?php } ?>
     <dl class="facts">
         <dt>Username</dt><dd><?php echo h($me['uname']); ?></dd>
         <dt>Account no.</dt><dd><?php echo h($me['accountno']); ?></dd>

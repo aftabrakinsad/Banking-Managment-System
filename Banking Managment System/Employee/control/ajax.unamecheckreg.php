@@ -1,23 +1,9 @@
 <?php
+// Registration availability check (prepared statements; no output unless a value was sent).
+require_once __DIR__ . '/../../config/applications.php';
 
-@include_once("../model/db.php");
-
-$Username = $_POST["Username"];
-
-#Checking Username via ajax
-if(!empty($Username))
+$value = trim(isset($_POST['Username']) ? (string)$_POST['Username'] : '');
+if ($value !== '' && strlen($value) <= 100)
 {
-$mydb = new db();
-$myconn = $mydb -> openConn();
-$results = $mydb -> usernamereg_Ajex($Username,"registrationofemployee", $myconn);
-if($results -> num_rows > 0)
-{
-echo "User Exsists";
+    echo (new ApplicationRepo())->taken('username', $value) ? 'That username is already taken.' : 'Username is available.';
 }
-else
-{
-echo "User doesn't Exists";
-}
-}
-
-?>

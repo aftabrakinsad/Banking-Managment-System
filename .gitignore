@@ -6,3 +6,7 @@
 .idea/
 .vscode/
 vendor/
+
+# user uploads (CVs, photos) must never be committed
+"Banking Managment System/*/uploads/*"
+!"Banking Managment System/*/uploads/.gitkeep"

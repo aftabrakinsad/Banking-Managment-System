@@ -29,6 +29,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
         $errors[] = $res[1];
     }
+    if ($action === 'resetpw') {
+        $new = isset($_POST['new_password']) ? $_POST['new_password'] : '';
+        if (!valid_password($new)) { $errors[] = 'Password needs 8+ characters with upper, lower, a number and a symbol.'; }
+        else {
+            adb()->setStaffPassword($role, $id, password_hash($new, PASSWORD_DEFAULT));
+            log_activity('admin', $admin['uname'], 'reset_staff_password', $username);
+            flash('success', 'Password reset for ' . $username . '.');
+            redirect('/Admin/View/staff_edit.php?role=' . $role . '&id=' . $id);
+        }
+    }
     if ($action === 'save') {
         $first = trim(isset($_POST['first']) ? $_POST['first'] : '');
         $last = trim(isset($_POST['last']) ? $_POST['last'] : '');
@@ -41,13 +51,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($role === 'manager') {
             $salary = isset($_POST['salary']) ? trim($_POST['salary']) : '';
             $status = isset($_POST['status']) && $_POST['status'] === 'inactive' ? 'inactive' : 'active';
+            $fund = isset($_POST['fund']) ? trim($_POST['fund']) : '';
             if (!ctype_digit($salary)) { $errors[] = 'Salary must be a whole number.'; }
+            if (!ctype_digit($fund) || (int)$fund > 100000000) { $errors[] = 'Funds must be a whole number.'; }
         } else {
             $mgr = isset($_POST['manager']) ? $_POST['manager'] : '';
             if ($mgr !== '' && !in_array($mgr, adb()->managerUsernames(), true)) { $errors[] = 'Choose a valid manager.'; }
         }
         if (!$errors) {
-            $role === 'manager' ? adb()->updateManager($id, $first, $last, $email, $phone, (int)$salary, $status)
+            $role === 'manager' ? adb()->updateManager($id, $first, $last, $email, $phone, (int)$salary, $status, (int)$fund)
                                 : adb()->updateEmployee($id, $first, $last, $email, $phone, $mgr);
             log_activity('admin', $admin['uname'], 'updated_' . $role, $username);
             flash('success', 'Saved.');
@@ -76,6 +88,7 @@ $tasks = array_filter(adb()->tasks(), function ($t) use ($role, $username) { ret
             <label>Phone <input type="tel" name="phone" value="<?php echo h($person['phone']); ?>" required></label>
             <?php if ($role === 'manager') { ?>
                 <label>Salary <input type="number" name="salary" min="0" value="<?php echo h($person['salary']); ?>"></label>
+                <label>Funds (৳) <input type="number" name="fund" min="0" value="<?php echo h((int)$person['fund']); ?>"></label>
                 <label>Status
                     <select name="status">
                         <option value="active"<?php echo $person['activeStatus'] !== 'inactive' ? ' selected' : ''; ?>>Active</option>
@@ -104,6 +117,15 @@ $tasks = array_filter(adb()->tasks(), function ($t) use ($role, $username) { ret
             <form method="post" onsubmit="return confirm('Change this person\'s role?');">
                 <?php echo csrf_field(); ?><input type="hidden" name="action" value="role">
                 <button class="btn btn-ghost" type="submit">Make <?php echo $role === 'manager' ? 'an employee' : 'a manager'; ?></button>
+            </form>
+        </div>
+        <div class="card">
+            <h2>Reset password</h2>
+            <p class="muted">Sets a new password. Tell the person securely; they can change it from their profile.</p>
+            <form method="post">
+                <?php echo csrf_field(); ?><input type="hidden" name="action" value="resetpw">
+                <label>New password <input type="password" name="new_password" autocomplete="new-password" required></label>
+                <button class="btn btn-ghost" type="submit">Reset password</button>
             </form>
         </div>
         <div class="card">

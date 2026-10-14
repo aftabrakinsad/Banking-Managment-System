@@ -11,8 +11,26 @@ $me = $st->get_result()->fetch_assoc();
 $st->close();
 if (!$me) { $me = ['fname' => '', 'lname' => '', 'Username' => $employee['username'], 'Email' => $employee['email'], 'NID' => '', 'Phone' => '', 'gender' => '', 'picture' => '', 'cv' => '', 'applied_at' => '', 'manager' => null]; }
 
-$errors = [];
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+$errors = []; $pwErrors = [];
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'password') {
+    csrf_verify();
+    $cur = isset($_POST['current']) ? $_POST['current'] : '';
+    $new = isset($_POST['new']) ? $_POST['new'] : '';
+    $confirm = isset($_POST['confirm']) ? $_POST['confirm'] : '';
+    $q = $conn->prepare("SELECT password FROM employeelogin WHERE username = ?");
+    $q->bind_param('s', $employee['username']); $q->execute(); $pw = $q->get_result()->fetch_assoc(); $q->close();
+    if (!$pw || !verify_secret($cur, $pw['password'])) { $pwErrors[] = 'Your current password is incorrect.'; }
+    elseif (!valid_password($new)) { $pwErrors[] = 'New password needs 8+ characters with upper, lower, a number and a symbol.'; }
+    elseif ($new !== $confirm) { $pwErrors[] = 'The new passwords do not match.'; }
+    else {
+        $u = $conn->prepare("UPDATE employeelogin SET password = ? WHERE username = ?");
+        $hash = password_hash($new, PASSWORD_DEFAULT);
+        $u->bind_param('ss', $hash, $employee['username']); $u->execute(); $u->close();
+        log_activity('employee', $employee['username'], 'password_changed');
+        flash('success', 'Password changed.');
+        redirect('/Employee/view/viewinformation.php');
+    }
+} elseif ($_SERVER['REQUEST_METHOD'] === 'POST') {
     csrf_verify();
     $fname = trim(isset($_POST['fname']) ? $_POST['fname'] : '');
     $lname = trim(isset($_POST['lname']) ? $_POST['lname'] : '');
@@ -39,7 +57,7 @@ require __DIR__ . '/header.php';
         <h2>Details</h2>
         <?php foreach ($errors as $e) { ?><div class="alert alert-error" role="alert"><?php echo h($e); ?></div><?php } ?>
         <form method="post">
-            <?php echo csrf_field(); ?>
+            <?php echo csrf_field(); ?><input type="hidden" name="action" value="profile">
             <label>First name <input type="text" name="fname" value="<?php echo h($me['fname']); ?>" required></label>
             <label>Last name <input type="text" name="lname" value="<?php echo h($me['lname']); ?>" required></label>
             <label>Phone <input type="tel" name="phone" value="<?php echo h($me['Phone']); ?>" required></label>
@@ -56,6 +74,17 @@ require __DIR__ . '/header.php';
             <dt>Reports to</dt><dd><?php echo $me['manager'] ? h($me['manager']) : '<span class="muted">Not assigned yet</span>'; ?></dd>
         </dl>
         <p class="muted small">Your email, role and manager are set by the administrator.</p>
+    </div>
+    <div class="card">
+        <h2>Change password</h2>
+        <?php foreach ($pwErrors as $e) { ?><div class="alert alert-error" role="alert"><?php echo h($e); ?></div><?php } ?>
+        <form method="post">
+            <?php echo csrf_field(); ?><input type="hidden" name="action" value="password">
+            <label>Current password <input type="password" name="current" autocomplete="current-password" required></label>
+            <label>New password <input type="password" name="new" autocomplete="new-password" required></label>
+            <label>Confirm new password <input type="password" name="confirm" autocomplete="new-password" required></label>
+            <button class="btn" type="submit">Update password</button>
+        </form>
     </div>
 </section>
 <?php @include("../view/footer.php"); ?>
