@@ -1,5 +1,5 @@
 <?php
-@include("../model/db.php");
+@include_once("../model/db.php");
 require_once __DIR__ . '/../../config/activity.php';
 
 session_start();   #session suru user information store

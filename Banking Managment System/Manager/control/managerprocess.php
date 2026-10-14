@@ -1,7 +1,7 @@
 
 <?php
 
-include("../model/db.php");
+include_once("../model/db.php");
 $hasError=0;
   $nameErr = "";
   $name2Err = "";
@@ -69,7 +69,6 @@ else{}
         $nameErr= 'Your First Name is ' . $name;
      
     }
-    echo '<br>';
 
     #Last Name
         if (empty ($name2))
@@ -85,7 +84,6 @@ else{}
         $name2Err= 'Your Last Name is ' . $name2;
     }
 
-    echo '<br>';
 
    
 #Gender
@@ -108,7 +106,6 @@ if(!isset($_POST["gender"])) {
         $gender =   $_POST["gender"];
         
     } 
-    echo '<br>';
 #Present Address
 if(empty($street))
     {
@@ -135,10 +132,8 @@ if(empty($street))
     { $emailErr = "Wrong Pattern Email";} 
     else{
         $emailErr= "Your email is ".$email;
-      echo '<br>';
 
     }
-    echo '<br>';
     #Age
     $age = date_diff(date_create($dateofbirth), date_create($currentDate));
     if(empty($dateofbirth))
@@ -155,7 +150,6 @@ if(empty($street))
         $dobErr ="Your Date of Birth is ". $dateofbirth;
         $Age = $age->format('%y');
     }
-    echo '<br>';
     #Fathers Name
     if (empty( $fathername))
     {
@@ -172,7 +166,6 @@ if(empty($street))
         $fnameErr= 'Your Fathers Name is ' .$fathername;
      
     }
-    echo '<br>';
     #Mothers Name
     if (empty( $mothername))
     {
@@ -189,7 +182,6 @@ if(empty($street))
         $mnameErr= 'Your Mothers Name is ' .$mothername;
      
     }
-    echo '<br>';
     #User Name
 if(empty($username))
 {
@@ -218,7 +210,6 @@ else
 {
     $unameErr = "Valid Username";
 }
-echo '<br>';
 #Password
     if(empty($password)||empty($confirmpassword))
     {
@@ -247,7 +238,6 @@ echo '<br>';
         $cpassErr= 'Strong password.';
         
     }
-    echo '<br>';
 #Phone Nummber
 if(empty($phone))    
 {
@@ -267,7 +257,6 @@ else if(!preg_match("/^[0-9]{5}-[0-9]{6}$/", $phone))
 else{
     $phnErr ="Valid Phone Number";
 }
-echo '<br>';
 #NID
 if(empty($nid))    
 {
@@ -287,7 +276,6 @@ else
     $nidErr = "Nid Number is Valid";
 }
 
-echo '<br>';
 #C.V.
 
 #############################################################################################
@@ -350,7 +338,6 @@ else
     }
 }
 
-echo '<br>';
 // #image
 #################################################################################################
 // if(move_uploaded_file($_FILES["img"]["tmp_name"],"../uploads/".$_FILES["img"]["name"]))
@@ -494,7 +481,8 @@ if(!empty($name)&&!empty($username)&&!empty($password) &&!empty($nid)&&strcmp($p
 $mydb = new db();
 $myconn = $mydb -> openConn();
 
-$mydb -> insertapplicationUser($name,$name2,$gender,$Age,$fathername,$mothername,$username,$password,$email,$presentaddress,$nid,$phone,$filepath,$imgpath,$Doj,$Salary,"applicationofmanager",$myconn);
+$saved = $mydb -> insertapplicationUser($name,$name2,$gender,$Age,$fathername,$mothername,$username,$password,$email,$presentaddress,$nid,$phone,$filepath,$imgpath,$Doj,$Salary,"applicationofmanager",$myconn);
+$datasave = $saved ? "saved" : "failed";
 }  
 } 
   

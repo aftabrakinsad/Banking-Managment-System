@@ -63,14 +63,7 @@ function delete_after_selection($email,$table, $conn)
     {
         $sqlstr="INSERT INTO $table(firstname,lastname,gender,age,fathersname,mothersname,username,pass,email,presentaddress,nid,phone,cvpath,imgpath,doj,salary)
         VALUES ('$name','$name2','$gender','$Age','$fathername','$mothername','$username','$password','$email','$presentaddress','$nid','$phone','$filepath','$imgpath','$Doj','$Salary') ";
-
-        if($conn-> query($sqlstr))
-        {
-            echo "Data saved";
-        }
-        else{
-            echo "cant insert". $conn->error;
-        }
+        return $conn->query($sqlstr) === true;
     }
 
     function CheckUser($username,$password,$table,$conn)

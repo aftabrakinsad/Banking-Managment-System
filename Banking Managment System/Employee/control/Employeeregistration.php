@@ -21,8 +21,9 @@ $imageerr = "";
 $imageerr1 = "";
 $signuperr = "";
 $gender="";
+$registered = false;
 
-@include("../model/db.php");
+@include_once("../model/db.php");
 
 $uppercase = $lowercase = $number = $specialchars = "";
 
@@ -36,7 +37,7 @@ if(isset($_POST["submit"]))
     $Phone = $_POST["Phone"];
     $Password = $_POST["password"];
     $cpassword = $_POST["cpassword"];
-    //  $gender=$_POST["gender"];
+    $gender = isset($_POST["gender"]) ? $_POST["gender"] : "";
     $picture = $_FILES["picture"]["name"];
     $cv = $_FILES["cv"]["name"];
    
@@ -181,7 +182,8 @@ if(isset($_POST["submit"]))
 
                     $mydb = new db();
                     $myconn = $mydb->openConn();
-                    $mydb->insertapplicant($fname, $lname, $Username, $Email, $NID, $Phone, $Password, $cpassword,$gender,$imgpath, $filepath, "registrationofemployee", $myconn);
+                    $registered = ($mydb->insertapplicant($fname, $lname, $Username, $Email, $NID, $Phone, $Password, $cpassword,$gender,$imgpath, $filepath, "registrationofemployee", $myconn) === true);
+                    if (!$registered) { $signuperr = "Could not save your application. The username, email or NID may already be registered."; }
 
                     
                 }

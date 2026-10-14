@@ -2,7 +2,7 @@
 
 session_start();
 
-@include("../model/db.php");
+@include_once("../model/db.php");
 
 
 if(isset($_POST['passwordsubmission']))

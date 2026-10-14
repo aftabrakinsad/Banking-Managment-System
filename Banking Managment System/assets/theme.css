@@ -179,3 +179,21 @@ table.apps td:nth-child(3) { white-space: normal; }
 .chips { display: flex; flex-wrap: wrap; gap: .5rem; }
 .chip { background: var(--surface); border: 1px solid var(--line); border-radius: 999px; padding: .25rem .8rem; font-size: .9rem; }
 html { scroll-behavior: smooth; }
+
+/* ---------- Form layout helpers ---------- */
+.auth-wide.wide { max-width: 920px; }
+.form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: .25rem 1.25rem; }
+.form-grid .full { grid-column: 1 / -1; }
+.form-grid h3.group { grid-column: 1 / -1; margin: 1.1rem 0 .4rem; padding-bottom: .3rem; border-bottom: 1px solid var(--line);
+  font-size: .8rem; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+.form-grid h3.group:first-child { margin-top: 0; }
+.form-grid label { margin-bottom: .35rem; }
+.form-grid p[id] { min-height: 0; margin: .15rem 0 .5rem; }
+.radio-row { display: flex; gap: 1.25rem; flex-wrap: wrap; margin-top: .35rem; }
+.radio-row label { display: inline-flex; align-items: center; margin: 0; font-weight: 400; }
+.form-actions { display: grid; gap: .5rem; margin-top: 1.25rem; }
+.profile-head { display: flex; gap: 1rem; align-items: center; margin-bottom: 1rem; }
+.profile-head .avatar-lg { margin: 0; width: 88px; height: 88px; }
+.facts.wide { grid-template-columns: minmax(120px, 200px) 1fr; }
+.empty { text-align: center; padding: 2rem 1rem; }
+.field-error { color: var(--danger); font-size: .85rem; margin: .15rem 0 .5rem; }

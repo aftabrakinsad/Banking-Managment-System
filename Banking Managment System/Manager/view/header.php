@@ -21,12 +21,11 @@ include("../control/homepageProcess.php");
         <a href="../view/managerHomePage.php"<?php echo $cur === 'managerhomepage.php' ? ' class="active"' : ''; ?>>Home</a>
         <a href="../view/transferfunds.php"<?php echo $cur === 'transferfunds.php' ? ' class="active"' : ''; ?>>Transfer</a>
         <a href="../view/transaction.php"<?php echo $cur === 'transaction.php' ? ' class="active"' : ''; ?>>Transactions</a>
-        <a href="../view/Viewemployee.php"<?php echo $cur === 'viewemployee.php' ? ' class="active"' : ''; ?>>Employees</a>
+        <a href="../view/Viewemployee.php"<?php echo $cur === 'viewemployee.php' ? ' class="active"' : ''; ?>>My team</a>
         <details class="more"><summary>More &#9662;</summary><div class="menu">
             <a href="../view/postnews.php">Post news</a>
-            <a href="../view/ViewInformation.php">Manager info</a>
-            <a href="../view/managerUpdate.php">Manage manager</a>
-            <a href="../view/profile.php">My profile</a>
+            <a href="../view/ViewInformation.php">My details</a>
+            <a href="../view/profile.php">Edit profile</a>
         </div></details>
         <?php if (!empty($picture)) { ?><img class="avatar" src="<?php echo htmlspecialchars($picture, ENT_QUOTES, 'UTF-8'); ?>" alt="" onerror="this.style.display='none'"><?php } ?>
         <a href="../control/logout.php" class="logout">Sign out</a>

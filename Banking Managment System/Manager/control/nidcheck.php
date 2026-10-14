@@ -1,6 +1,6 @@
 <?php
 
-include("../model/db.php");
+include_once("../model/db.php");
 
 $nid = $_POST["nid"];
 if(!empty($nid))

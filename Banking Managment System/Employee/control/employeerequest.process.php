@@ -1,6 +1,6 @@
 <?php
 
-@include("../model/db.php");
+@include_once("../model/db.php");
 
 $mydb = new db();
 $myconn = $mydb->openConn();
