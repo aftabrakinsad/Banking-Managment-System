@@ -26,7 +26,13 @@ if ($tables && $reset) {
     echo "Dropped " . count($tables) . " tables.\n";
 }
 
-$files = glob($dir . '/*.sql'); sort($files);
+// Only the numbered schema files (01_name.sql, 02_name.sql ...). Copies such as "01_schema 2.sql" are skipped.
+$files = [];
+foreach (glob($dir . '/*.sql') as $f) {
+    if (preg_match('/^\d{2}_[A-Za-z0-9_]+\.sql$/', basename($f))) { $files[] = $f; }
+    else { echo "Skipping unexpected file: " . basename($f) . "\n"; }
+}
+sort($files);
 $count = 0;
 foreach ($files as $f) {
     foreach (split_sql(file_get_contents($f)) as $stmt) {
