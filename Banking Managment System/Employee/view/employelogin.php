@@ -11,7 +11,9 @@ if (isset($_SESSION['username'])) {
 <section class="card auth">
     <h1>Employee sign in</h1>
     <p class="muted">Sign in to manage customers and accounts.</p>
+    <?php if ($loginError !== '') { ?><div class="alert alert-error" role="alert"><?php echo htmlspecialchars($loginError, ENT_QUOTES, 'UTF-8'); ?></div><?php } ?>
     <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF'], ENT_QUOTES, 'UTF-8'); ?>" method="POST" onsubmit="return validlogin()" enctype="multipart/form-data">
+        <?php echo csrf_field(); ?>
         <label>Username
             <input type="text" id="username" name="username" onchange="uname_AJAX()" onkeyup="usernamecheck()" placeholder="Enter username" autocomplete="username">
         </label>
@@ -20,7 +22,6 @@ if (isset($_SESSION['username'])) {
             <input type="password" id="password" name="password" onkeyup="passwordcheck()" placeholder="Enter password" autocomplete="current-password">
         </label>
         <p id="passworderr"></p>
-        <label style="font-weight:400"><input type="checkbox" name="remember" id="remember">Remember me</label>
         <input class="login" type="submit" name="submit" value="Sign in">
     </form>
     <p class="small"><a href="../view/employeregistration.php">Create an account</a> · <a id="denger" href="../view/forgetpassword.php">Forgot password?</a></p>
