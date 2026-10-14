@@ -1,7 +1,7 @@
 # Render Blueprint: one Docker web service. The database is hosted separately (TiDB Cloud, MySQL-compatible).
 services:
   - type: web
-    name: banking-management-system
+    name: bms-wt-aiub
     runtime: docker
     plan: free
     dockerfilePath: ./Dockerfile
