@@ -1,73 +1,31 @@
 <?php
-
-@include('../Model/db.php');
-
-
-session_start();
+// Master-admin sign-in. Single fixed account; the session carries only admin_id (never the password).
+require_once __DIR__ . '/bootstrap.php';
 
 if (isset($_POST['submit']))
 {
-    $uname = $_POST['uname'];
-    $password = $_POST['pass'];
+    csrf_verify();
+    $uname = trim(isset($_POST['uname']) ? $_POST['uname'] : '');
+    $pass = isset($_POST['pass']) ? $_POST['pass'] : '';
+    $now = time();
 
-    if ($uname != "" && $password != "")
-    {
-        $f = 0;
-        $mydb = new db();
-        $conobj = $mydb->openConn();
-        $results = $mydb->loginadmin($conobj, "staticadmin", $_POST["uname"], $_POST["pass"]);
+    if (isset($_SESSION['admin_lock']) && $_SESSION['admin_lock'] > $now) { redirect('/Admin/View/adminlogin.php?login_info=locked'); }
+    if ($uname === '' && $pass === '') { redirect('/Admin/View/adminlogin.php?login=empty'); }
+    if ($uname === '') { redirect('/Admin/View/adminlogin.php?username=empty'); }
+    if ($pass === '') { redirect('/Admin/View/adminlogin.php?password=empty'); }
 
-        if ($results->num_rows > 0)
-        {
-            foreach ($results as $user)
-            {
-                if ($user["uname"] == $_POST["uname"] && $user["pass"] == $_POST["pass"])
-                {
-                    $_SESSION['username'] = $user["uname"];
-                    $_SESSION['password'] = $user["pass"];
-                    if (!empty($_POST["remember"]))
-                    {
-                        setcookie("uname", $_SESSION['username'], time() + 86400);
-                        setcookie("pass", $_SESSION['password'], time() + 86400);
-                       
-                        header("location: ../View/adminhomepage.php");
-                    }
-                    else
-                    {
-                        setcookie("uname", "");
-                        setcookie("pass", "");
-                        echo "";
-                    }
-                    header("location: ../View/adminhomepage.php");
-                }
-            }
-        }
-        else if ($f == 0)
-        {
-            header("location: ../view/adminlogin.php?login_info=incorrect");
-            exit();
-        }
-    }
-    if (empty($uname) && empty($password))
+    $a = adb()->findAdmin($uname);
+    if ($a && verify_secret($pass, $a['pass']))
     {
-        header("location: ../view/adminlogin.php?login=empty");
-        exit();
-    } 
-    else if (empty($uname))
-    {
-        header("location: ../view/adminlogin.php?username=empty");
-        exit();
+        session_regenerate_id(true);
+        $_SESSION['admin_id'] = (int)$a['admin_id'];
+        unset($_SESSION['admin_fails'], $_SESSION['admin_lock']);
+        log_activity('admin', $a['uname'], 'login');
+        redirect('/Admin/View/adminhomepage.php');
     }
-    else if (empty($password))
-    {
-        header("location: ../view/adminlogin.php?password=empty");
-        exit();
-    }
-    else
-    {
-        header("location: ../view/adminlogin.php?login=success");
-        exit();
-    }
+
+    $_SESSION['admin_fails'] = (isset($_SESSION['admin_fails']) ? $_SESSION['admin_fails'] : 0) + 1;
+    if ($_SESSION['admin_fails'] >= 5) { $_SESSION['admin_lock'] = $now + 300; $_SESSION['admin_fails'] = 0; }
+    log_activity('admin', $uname, 'login_failed');
+    redirect('/Admin/View/adminlogin.php?login_info=incorrect');
 }
-
-?>

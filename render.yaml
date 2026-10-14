@@ -1,0 +1,26 @@
+# Render Blueprint: one Docker web service. The database is hosted separately (TiDB Cloud, MySQL-compatible).
+services:
+  - type: web
+    name: banking-management-system
+    runtime: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /
+    autoDeploy: true
+    envVars:
+      - key: APP_ENV
+        value: production
+      - key: APP_DEMO
+        value: "1"          # set to 0 to hide the demo credentials on sign-in pages
+      - key: DB_SSL
+        value: "1"
+      - key: DB_PORT
+        value: "4000"
+      - key: DB_HOST
+        sync: false          # you enter these in the Render dashboard; never commit them
+      - key: DB_USER
+        sync: false
+      - key: DB_PASS
+        sync: false
+      - key: DB_NAME
+        sync: false

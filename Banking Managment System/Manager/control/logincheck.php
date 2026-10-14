@@ -1,84 +1,51 @@
 <?php
-include("../control/managerprocess.php");
+// Manager sign-in: prepared lookup, hashed passwords (plain-text legacy rows are upgraded on first login), CSRF, lockout.
+require_once __DIR__ . '/bootstrap.php';
 
-?>
-<?php
-$temname="";
-$tempass = "";
-$remember = false;
-$accountno = rand(9999999, 1000000);
-$status = 1;
-if(isset($_POST["remember"]))
+$error = '';
+
+if (isset($_POST['submit']))
 {
-    $remember = true;
-}
+    csrf_verify();
+    $username = trim(isset($_POST['username']) ? $_POST['username'] : '');
+    $password = isset($_POST['password']) ? $_POST['password'] : '';
+    $now = time();
 
-session_start();
- $error="";
-// store session data
-if (isset($_POST['submit'])) {
-  
-    if (empty($_POST['username']) || empty($_POST['password'])) {
-        #$error = "Username or Password is invalid";
-        }
-        else
-        {
-        $username=$_POST['username'];
-        $password=$_POST['password'];
-        
-        $connection = new db();
-        $conobj=$connection->openConn();
-        
-        $userQuery=$connection->CheckUser($username,$password,"manager",$conobj);
-        
-        if ($userQuery->num_rows > 0) {
-        $_SESSION["username"] = $username;
-        $_SESSION["password"] = $password;
-        
-           }
-
-
-           $result=$connection->checkassignaccountno($username,"manager",$conobj);
-           if ($result->num_rows>0) {
-            $results=$connection->assignaccountno($username,$accountno,"manager",$conobj);
-           
-              }
-////////////////////////////
-              $statusupdate=$connection->checkactivestatus($username,"manager",$conobj);
-           if ($statusupdate->num_rows>0) {
-            $statusnew=$connection->assignactivestatus($username,$status,"manager",$conobj);
-           
-              }
-
-         else {
-        $error = "Username or Password is invalid";
-        }
-    
-
-    if(!empty($_POST["remember"])){
-        setcookie ("username",$_POST["username"],time()+ 86000);
-        setcookie ("password",$_POST["password"],time()+ 86000);
-        echo "";
+    if (isset($_SESSION['mgr_lock']) && $_SESSION['mgr_lock'] > $now)
+    {
+        $error = 'Too many failed attempts. Try again in a few minutes.';
+    }
+    elseif ($username === '' || $password === '')
+    {
+        $error = 'Enter your username and password.';
     }
     else
     {
-        setcookie("username","");
-        setcookie("password","");
-        echo "";
+        $m = mrepo()->find($username);
+        if ($m && verify_secret($password, $m['pass']))
+        {
+            if (ManagerRepo::isInactive($m['activeStatus']))
+            {
+                log_activity('manager', $username, 'login_blocked', 'inactive account');
+                $error = 'Your account is inactive. Please contact the administrator.';
+            }
+            else
+            {
+                if (!is_hashed($m['pass'])) { mrepo()->setPasswordHash($m['username'], password_hash($password, PASSWORD_DEFAULT)); }
+                mrepo()->ensureAccount($m['username']);
+                session_regenerate_id(true);
+                $_SESSION['username'] = $m['username'];
+                unset($_SESSION['mgr_fails'], $_SESSION['mgr_lock']);
+                log_activity('manager', $m['username'], 'login');
+                redirect('/Manager/view/managerHomePage.php');
+            }
+        }
+        else
+        {
+            $_SESSION['mgr_fails'] = (isset($_SESSION['mgr_fails']) ? $_SESSION['mgr_fails'] : 0) + 1;
+            if ($_SESSION['mgr_fails'] >= 5) { $_SESSION['mgr_lock'] = $now + 300; $_SESSION['mgr_fails'] = 0; }
+            log_activity('manager', $username, 'login_failed');
+            $error = 'Username or password is incorrect.';
+        }
     }
-    header("location: ../view/managerHomePage.php");
-    
-
-/*
-else
-{
-    header("location: view/managerRegistration.php");
 }
-*/
- 
-}
-}
-
-
-
-?>

@@ -1,201 +1,126 @@
-<!DOCTYPE html>
-<html lang="en">
 <?php
+// Public page: anyone can apply. The admin reviews every application.
 session_start();
-if(empty($_SESSION["username"])) 
-{
-header("Location: managerlogin.php"); // Redirecting To Home Page
-}
+if (!empty($_SESSION["username"])) { header("Location: managerHomePage.php"); exit; }
 
+include("../control/apply.process.php");
+$pageTitle = 'Apply as a manager';
+@include("../view/public_top.php");
 ?>
-<?php
+<section class="card auth auth-wide wide">
+    <h1>Apply for a manager account</h1>
+    <p class="muted">Fill in your details below. The administrator reviews every application, and once approved you can sign in.</p>
 
-include("../control/managerprocess.php");
+    <?php if ($applied) { ?>
+        <div class="alert alert-success" role="status">Application submitted. The administrator will review it; you can sign in after it is approved.</div>
+    <?php } ?>
+    <?php foreach ($appErrors as $e) { ?><div class="alert alert-error" role="alert"><?php echo h($e); ?></div><?php } ?>
 
-?>
+    <form action="" method="POST" enctype="multipart/form-data" onsubmit="return formcheck()">
+        <?php echo csrf_field(); ?>
+        <div class="form-grid">
+            <h3 class="group">Personal details</h3>
+            <div>
+                <label>First name <input type="text" name="fname" id="fname" value="<?php echo h($v['fname']); ?>" placeholder="Enter your first name" onkeyup="checkfirstname()"></label>
+                <p id="ferror"></p>
+            </div>
+            <div>
+                <label>Last name <input type="text" name="lname" id="lname" value="<?php echo h($v['lname']); ?>" placeholder="Enter your last name" onkeyup="checklastname()"></label>
+                <p id="lerror"></p>
+            </div>
+            <div>
+                <label>Gender</label>
+                <div class="radio-row">
+                    <?php foreach (['male' => 'Male', 'female' => 'Female', 'others' => 'Other'] as $k => $l) { ?>
+                        <label><input type="radio" name="gender" id="<?php echo $k; ?>" value="<?php echo $k; ?>" onclick="getradiovalue()"<?php echo $v['gender'] === $k ? ' checked' : ''; ?>><?php echo $l; ?></label>
+                    <?php } ?>
+                </div>
+                <p id="radiovalue"></p>
+            </div>
+            <div>
+                <label>Date of birth <input type="date" name="dateofbirth" id="dateofbirth" value="<?php echo h($v['dob']); ?>" onchange="agecheck()"></label>
+                <p id="ageerror"></p>
+            </div>
+            <div>
+                <label>Father's name <input type="text" name="fathername" id="fathername" value="<?php echo h($v['fathername']); ?>" placeholder="Father's name" onkeyup="checkfathername()"></label>
+                <p id="fathererror"></p>
+            </div>
+            <div>
+                <label>Mother's name <input type="text" name="mothername" id="mothername" value="<?php echo h($v['mothername']); ?>" placeholder="Mother's name" onkeyup="checkmothername()"></label>
+                <p id="mothererror"></p>
+            </div>
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/CSS" href="../css/registrationdesign.css">
-    <title>Document</title>
-</head>
-<form action="" method="POST" enctype="multipart/form-data" onsubmit="return formcheck()">
-<body >
+            <h3 class="group">Account</h3>
+            <div class="full">
+                <label>Username <input type="text" name="uname" id="uname" value="<?php echo h($v['uname']); ?>" placeholder="Choose a username" onchange="existuser()" onkeyup="checkusername()" autocomplete="username"></label>
+                <p id="unameerror"></p><p id="ajaxresponse"></p>
+            </div>
+            <div>
+                <label>Password <input type="password" name="pass" id="pass" placeholder="Create a password" onkeyup="passcheck()" autocomplete="new-password"></label>
+                <p id="passvalue"></p>
+            </div>
+            <div>
+                <label>Confirm password <input type="password" name="cpass" id="cpass" placeholder="Enter it again" onkeyup="confirmpasscheck()" autocomplete="new-password"></label>
+                <p id="cpassvalue"></p>
+            </div>
 
-    <center><h1>Hello<?php include('../control/cookie.php');?></h1></center>
-    <center>
-    <div class= "header sticky">
-        <h1>Welcome to XYZ Bank Limited.</h1>
-        <p><strong>To do further work, please register.</strong></p>
-        </div>
-        <br><br><br><br>
-        <form action="" method="POST" enctype="multipart/form-data" onsubmit="return formcheck()">
-            <center>
-                <table class="container">
-                    <tr>
-                        <td>
-                            <label>
-                                Firstname:
-                            </label>
-                        </td>
-                        <td> <input type="text" name="fname" id="fname" placeholder="Enter your firstname" onkeyup= "checkfirstname()"></td><td><p id="ferror"></p></td><td> <?php echo $nameErr; ?></td>
-                    </tr>
-                    <tr>
-                        <td>
-                        <label>Lastname: </label> 
-                        </td>
-                        <td>
-                        <input type="text" name="lname" id="lname"placeholder="Enter your lastname" onkeyup= "checklastname()"> <td><p id="lerror"></p> <?php echo $name2Err; ?></td>
-                        </td>
-                    </tr>
-                    <tr><td><label>Gender: </label></td>
-                        <td>
-                            <input type="radio" name="gender" id="male" value="male" onclick= "getradiovalue()">Male
-                            <input type="radio" name="gender" id="female" value="female" onclick= "getradiovalue()">Female
-                            <input type="radio" name="gender" id="others" value="others"onclick= "getradiovalue()">Others <td><p id="radiovalue"></p><?php echo $genderErr;?> </td>
-                    </td>
-                    </tr>
-                    <tr>
-                        <td><label>Date of Birth:</label></td>
-                        <td><input type="date" name="dateofbirth" id="dateofbirth" onchange= "agecheck()"></td><td><p id="ageerror"></p><?php echo $dobErr;?> </td>
-                    </tr>
-                    <tr>
-                        <td><label>Father's Name: </label></td>
-                        <td><input type="text" name="fathername" id="fathername" placeholder ="Enter your father's name" onkeyup= "checkfathername()"></td><td><p id="fathererror"></p><?php echo $fnameErr; ?></td>
-                    </tr>
-                    <tr>
-                        <td><label>Mother's Name: </label></td>
-                        <td><input type="text" name="mothername" id="mothername" placeholder ="Enter your mother's name" onkeyup= "checkmothername()"></td><td><p id="mothererror"></p><?php echo $mnameErr; ?></td>
-                    </tr>
-                    
-                    <tr>
-                        <td>
-                        <label>Username: </label>
-                        </td>
-                        <td>
-                        <input type="text" name="uname" id="uname" placeholder="Enter your username" onchange= "existuser()" onkeyup= "checkusername()">  <td><p id="unameerror"></p><p id="ajaxresponse"></p><?php echo $unameErr; ?></td>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                        <label>Password: </label> 
-                        </td>
-                        <td>
-                        <input type="text" name="pass" id="pass" placeholder ="Enter New Password" onkeyup="passcheck()">  <td><p id="passvalue"></p> <?php echo $passErr; ?></td> 
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                        <label>Confirm Password: </label> 
-                        </td>
-                        <td>
-                        <input type="text" name="cpass" id="cpass" placeholder ="Enter The Password Again"onkeyup="confirmpasscheck()"> <td><p id="cpassvalue"></p> <?php echo $cpassErr; ?></td> 
-                        </td>
-                    </tr>
-                    <tr>
-                    <td> <label>Present Address: </label></td>
-                    <td><input type="text" name="street" id="street" placeholder="Enter street no: " onkeyup="addresscheck()">
-                 
-                </td>
-                <div class="custom-select" style="width:200px;">
-                <td>
-                    
-                    <div class ="city">
-                    
-                    
+            <h3 class="group">Contact and address</h3>
+            <div>
+                <label>Email <input type="text" name="email" id="email" value="<?php echo h($v['email']); ?>" placeholder="name@example.com" onchange="existemail()" onkeyup="validateemail()"></label>
+                <p id="emailvalue"></p><p id="ajaxemail"></p>
+            </div>
+            <div>
+                <label>Phone <input type="text" name="phone" id="phone" value="<?php echo h($v['phone']); ?>" placeholder="01XXXXXXXXX" onkeyup="phonecheck()"></label>
+                <p id="phoneerr"></p>
+            </div>
+            <div>
+                <label>NID number <input type="text" name="nid" id="nid" value="<?php echo h($v['nid']); ?>" placeholder="Your national ID" onchange="existnid()" onkeyup="nidcheck()"></label>
+                <p id="niderr"></p><p id="ajaxnid"></p>
+            </div>
+            <div>
+                <label>Street / house no. <input type="text" name="street" id="street" value="<?php echo h($v['street']); ?>" placeholder="e.g. House 12, Road 5" onkeyup="addresscheck()"></label>
+                <p id="adderror"></p>
+            </div>
+            <div>
+                <label>City
                     <select name="city">
-                    <option value="DHAKA">DHAKA</option>
-                    <option value="CHATTOGRAM">CHATTOGRAM</option>
-                    <option value="KHULNA">KHULNA</option>
-                    <option value="SYLHET">SYLHET</option>
-                    <option value="RAJSHAHI">RAJSHAHI</option>
-                    <option value="NARAYANGANJ">NARAYANGANJ</option>
+                        <?php foreach ($cities as $c) { ?><option value="<?php echo h($c); ?>"<?php echo $v['city'] === $c ? ' selected' : ''; ?>><?php echo h(ucfirst(strtolower($c))); ?></option><?php } ?>
                     </select>
-                    </div>
-                    </td>
-                    <td>
-                   <div class ="postal">
-                
-                    <select name="postal" id="postal"class="postal">POSTAL FOR
-                    <option value="1211">1211</option>
-                    <option value="7899">7899</option>
-                    <option value="2899">2899</option>
-                    <option value="8002">8002</option>
-                    <option value="1900">1900</option>
-                    <option value="3399">3399</option>
+                </label>
+            </div>
+            <div>
+                <label>Postal code
+                    <select name="postal" id="postal">
+                        <?php foreach ($postals as $p) { ?><option value="<?php echo h($p); ?>"<?php echo $v['postal'] === $p ? ' selected' : ''; ?>><?php echo h($p); ?></option><?php } ?>
                     </select>
-</div><td><p id="adderror"></p><?php echo  $preaddressErr;?></td>
-                    </tr>
-                  
-                   
-                    
-                    <tr>
-                        <td> <label>Email: </label></td>
-                        <td><input type="text" name="email" id ="email" placeholder="Enter your email" onchange="existemail()" onkeyup= "validateemail()"></td><td><p id="emailvalue"></p> <p id="ajaxemail"></p><?php echo $emailErr; ?> </td>
-                    </tr>
-                    <tr>
-                        <td> <label>NID Number: </label></td>
-                        <td><input type="text" name="nid" id="nid" placeholder="Enter your valid nid" onchange="existnid()" onkeyup= "nidcheck()"></td><td> <p id="niderr"></p><p id="ajaxnid"></p><?php echo $nidErr; ?> </td>
-                    </tr>
-                    <tr>
-                        <td><label>Phone: </label></td>
-                        <td><input type="text" name="phone" id="phone" placeholder="01xxx-xxxxxx" onkeyup= "phonecheck()"></td><td><p id="phoneerr"></p> <?php echo $phnErr; ?> </td>
-                    </tr>
-                    <tr>
-                    <td><label>Curriculum Vitae: </label></td>
-                    <td><input type="file"name="cv" id="cv" onchange="fileValidation()"></td> <td> <p id="fileerr"></p><?php echo $fileErr; ?> </td>
+                </label>
+            </div>
 
-                    </tr>
-                    <tr>
-                        <td><label>Image: </label></td>
-                        <td> <input type="file"  name="img" id="img" onchange="imgValidation()"></td>  <td><p id="imgerr"></p> <?php echo $imgErr; ?> </td>
-                    </tr>
-                    <tr>
-                        <td><label>Date of Joining:</label></td>
-                        <td><input type="date" name="doj" id="doj" onchange="joiningcheck()"></td><td><p id="joinerror"></p> <?php echo $dojErr; ?> </td>
-                    </tr>
-                    <tr>
-                        <td><label>Salary:</label></td>
-                        <td><input type="text" name="salary" id="salary" placeholder="Enter Salary" onkeyup ="checksalary()"></td><td><p id="salerror"></p><?php echo $salaryErr; ?> </td>
-                    </tr>
-                    <tr>
-                    <td>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                        </td>
-                        <td>
+            <h3 class="group">Employment and documents</h3>
+            <div>
+                <label>Expected joining date <input type="date" name="doj" id="doj" value="<?php echo h($v['doj']); ?>" onchange="joiningcheck()"></label>
+                <p id="joinerror"></p>
+            </div>
+            <div>
+                <label>Expected salary (৳) <input type="text" name="salary" id="salary" value="<?php echo h($v['salary']); ?>" placeholder="e.g. 30000" onkeyup="checksalary()"></label>
+                <p id="salerror"></p>
+            </div>
+            <div>
+                <label>Curriculum vitae (PDF, up to 5 MB) <input type="file" name="cv" id="cv" accept="application/pdf" onchange="fileValidation()"></label>
+                <p id="fileerr"></p>
+            </div>
+            <div>
+                <label>Photo (JPG, PNG or GIF, up to 2 MB) <input type="file" name="img" id="img" accept="image/jpeg,image/png,image/gif" onchange="imgValidation()"></label>
+                <p id="imgerr"></p>
+            </div>
+        </div>
 
-                        <input type="submit" name="Submit" value="Register" class="button">
-                        <input type="reset" value="Reset" class="button2">
-                        
-                        </td>
-                        
-                        <td>
-                        
-                        </td>
-                        
-                    </tr>
-                    <tr>
-                        
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td>
-                        <?php echo $datasave; ?>
-                        </td>
-                    </tr>
-               
-                    <tr>
-                        <td><a href="../view/managerHomepage.php" class="button3">Back</td>
-                    </tr>
-                    <tr>
-                    <br>
-                        <td><br><br><br><br><br><br><br></td>
-                    </tr>
-                </table>
-            </center>
-        </form>
-    </center>
+        <div class="form-actions">
+            <input type="submit" name="Submit" value="Submit application" class="button">
+            <input type="reset" value="Clear form" class="button2 btn-ghost">
+        </div>
+    </form>
+    <p class="small">Already approved? <a href="../view/managerlogin.php">Sign in</a></p>
     <script src="../js/registration.js"></script>
-</body>
-</html>
+</section>
+<?php @include("../view/footer.php"); ?>

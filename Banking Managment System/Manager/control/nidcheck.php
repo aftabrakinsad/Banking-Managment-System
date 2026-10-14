@@ -1,21 +1,9 @@
 <?php
+// Registration availability check (prepared statements; no output unless a value was sent).
+require_once __DIR__ . '/../../config/applications.php';
 
-include("../model/db.php");
-
-$nid = $_POST["nid"];
-if(!empty($nid))
+$value = trim(isset($_POST['nid']) ? (string)$_POST['nid'] : '');
+if ($value !== '' && strlen($value) <= 100)
 {
-    $mydb = new db();
-$myconn = $mydb -> openConn();
-$results = $mydb ->searchUserbyNid($nid,"manager",$myconn);
-if($results->num_rows >0)
-{
- echo "Nid Number Exsists";
+    echo (new ApplicationRepo())->taken('nid', $value) ? 'That NID is already registered.' : 'NID is available.';
 }
-else
-{
-    echo "Nid Number doesn't Exists";
-}
-}
-
-?>

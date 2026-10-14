@@ -1,162 +1,84 @@
 <?php
-
+// Public page: anyone can apply. The admin reviews every application.
 session_start();
+if (isset($_SESSION['username'])) { header("location: ../view/epage1.php"); exit; }
 
-if (isset($_SESSION['username']))
-{
-    header("location: ../view/employelogin.php");
-}
-
-include('../control/Employeeregistration.php');
-
+include('../control/apply.process.php');
+$pageTitle = 'Apply as an employee';
+@include("../view/public_top.php");
 ?>
+<section class="card auth auth-wide wide">
+    <h1>Apply for an employee account</h1>
+    <p class="muted">Fill in your details below. The administrator reviews every application, and once approved you can sign in.</p>
 
-<!DOCTYPE html>
-<html lang="en">
+    <?php if ($applied) { ?>
+        <div class="alert alert-success" role="status">Application submitted. The administrator will review it; you can sign in after it is approved.</div>
+    <?php } ?>
+    <?php foreach ($appErrors as $e) { ?><div class="alert alert-error" role="alert"><?php echo h($e); ?></div><?php } ?>
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/CSS" href="../css/registration.css">
-    <title> Registration Form</title>
-</head>
+    <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF'], ENT_QUOTES, 'UTF-8'); ?>" method="POST" enctype="multipart/form-data" onsubmit="return formcheck()">
+        <?php echo csrf_field(); ?>
+        <div class="form-grid">
+            <h3 class="group">Personal details</h3>
+            <div>
+                <label>First name <input type="text" name="fname" placeholder="First name" value="<?php echo h($v['fname']); ?>" id="fname" onkeyup="checkfname()"></label>
+                <p id="nameerror"></p>
+            </div>
+            <div>
+                <label>Last name <input type="text" name="lname" placeholder="Last name" value="<?php echo h($v['lname']); ?>" id="lname" onkeyup="checklname()"></label>
+                <p id="lnameerror"></p>
+            </div>
+            <div class="full">
+                <label>Gender</label>
+                <div class="radio-row">
+                    <label><input type="radio" name="gender" value="male"<?php echo $v['gender'] === 'male' ? ' checked' : ''; ?>>Male</label>
+                    <label><input type="radio" name="gender" value="female"<?php echo $v['gender'] === 'female' ? ' checked' : ''; ?>>Female</label>
+                    <label><input type="radio" name="gender" value="others"<?php echo $v['gender'] === 'others' ? ' checked' : ''; ?>>Other</label>
+                </div>
+            </div>
 
-<body>
-<div class= "header sticky"> </div>
+            <h3 class="group">Account</h3>
+            <div>
+                <label>Username <input type="text" name="uname" placeholder="Choose a username" value="<?php echo h($v['uname']); ?>" id="Username" onchange="uname_AJAX()" onkeyup="checkuname()" autocomplete="username"></label>
+                <p id="usernameerr"></p><p id="unameajaxresponse"></p>
+            </div>
+            <div>
+                <label>Email <input type="text" name="email" placeholder="name@example.com" value="<?php echo h($v['email']); ?>" id="Email" onchange="Email_AJAX()" onkeyup="validateemail()"></label>
+                <p id="emailvalue"></p><p id="Emailajaxresponse"></p>
+            </div>
+            <div>
+                <label>Password <input type="password" name="password" placeholder="Create a password" id="Password" onkeyup="checkpassword()" autocomplete="new-password"></label>
+                <p id="passworderr"></p>
+            </div>
+            <div>
+                <label>Confirm password <input type="password" name="cpassword" placeholder="Enter it again" id="CPassword" onkeyup="checkconfirmpassword()" autocomplete="new-password"></label>
+                <p id="Cpassworderr"></p>
+            </div>
 
-    <header>
-    <h2 class="h2" id="h2">Welcome to City Bank Limited</h2>
+            <h3 class="group">Identity and contact</h3>
+            <div>
+                <label>NID number <input type="text" name="nid" placeholder="Your national ID" value="<?php echo h($v['nid']); ?>" id="NID" onchange="NID_Ajex()" onkeyup="checknid()"></label>
+                <p id="NIDerr"></p><p id="NIDajaxresponse"></p>
+            </div>
+            <div>
+                <label>Phone <input type="text" name="Phone" placeholder="+880-1XXXXXXXXX" value="<?php echo h($v['phone']); ?>" id="Phone" onchange="Phone_AJAX()" onkeyup="checkphone()"></label>
+                <p id="phoneerrjs"></p><p id="Phoneajaxresponse"></p>
+            </div>
 
-        <p><strong>Use correct information to apply </strong>
-        </p>
-    </header>
+            <h3 class="group">Documents</h3>
+            <div>
+                <label>Photo (JPG, PNG or GIF) <input type="file" name="picture" accept="image/jpeg,image/png,image/gif"></label>
+            </div>
+            <div>
+                <label>Curriculum vitae (PDF) <input type="file" name="cv" accept="application/pdf"></label>
+            </div>
+        </div>
 
-    <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST" enctype="multipart/form-data" onsubmit="return formcheck()">
-   
-    <h2 class="h3" id="h3">Registration Form</h2>
-        
-        <table>
-
-            <tr>
-                <td>
-                    <input type="text" name="fname" placeholder="Firstname" id="fname"  onkeyup="checkfname()">
-                    <p id="nameerror"></p>
-                </td>
-
-                <td>
-                    <input type="text" name="lname" placeholder="Lastname"  id="lname" onkeyup="checklname()">
-                    <p id="lnameerror"></p>
-                </td>
-            </tr>
-
-            <tr>
-                <td>
-                    <input type="text" name="uname" placeholder="Username" id="Username" onchange="uname_AJAX()" onkeyup="checkuname()">
-                    <p id="usernameerr">
-                    <p id="unameajaxresponse"></p>
-                </td>
-
-                <td>
-                    <input type="text" name="email" placeholder="Email:myname@example.com"" id ="Email" onchange="Email_AJAX()" onkeyup = "validateemail()">
-                    <p id="emailvalue"></p>
-                    <p id="Emailajaxresponse"></p>
-                </td>
-            </tr>
-
-            <tr>
-                <td>
-                    <input type="text" name="nid" placeholder="Valid NID" id="NID" onchange="NID_Ajex()" onkeyup = "checknid()">
-                    <p id="NIDerr"></p>
-                    <p id="NIDajaxresponse"></p>
-                </td>
-
-                <td>
-                    <input type="text" name="Phone" placeholder="+880-1XXXXXXXXX" id="Phone" onchange="Phone_AJAX()" onkeyup="checkphone()">
-                    <p id="phoneerrjs"></p>
-                    <p id="Phoneajaxresponse"></p>
-                </td>
-            </tr>
-
-            <tr>
-                <td>
-                    <input type="password" name="password" placeholder="Password" id="Password" onkeyup="checkpassword()">
-               <p id="passworderr"></p>
-                </td>
-
-                <td>
-                    <input type="password" name="cpassword" placeholder="Confirm Password" id="CPassword" onkeyup="checkconfirmpassword()" >
-                    <p id="Cpassworderr"></p>
-                </td>
-            </tr>
-            <tr><td><label>Gender: </label></td>
-                        <td>
-                            <input type="radio" name="gender" value="male">Male
-                            <input type="radio" name="gender" value="female">Female
-                            <input type="radio" name="gender" value="others">Others
-                    </td>
-                    </tr>
-
-            <tr>
-                <td>
-                    Please upload your picture
-                    <input type="file" name="picture">
-                    </p>
-                </td>
-
-                <td>
-                    Please upload your cv
-                    <input type="file" name="cv">
-                </td>
-            </tr>
-
-        </table>
-
-        <table>
-                <td>
-                    <?php
-
-                    echo $fnameerr;
-                    echo $lnameerr;
-                    echo $UsernameErr;
-                    echo $UsernameErr1;
-                    echo $Emailerr;
-                    echo $NIDErr;
-                    echo $NIDErr1;
-                    echo $Phoneerr;
-                    echo $Passworderr;
-                    echo $Passworderr1;
-                    echo $Passworderr2;
-                    echo $Passworderr3;
-                    // echo $genderErr;
-                    echo $fileerr;
-                    echo $fileerr1;
-                    echo $imageerr;
-                    echo $imageerr1;
-                    echo $signuperr;
-
-                    ?>
-
-                    <br>
-                    <br>
-
-                    <input class="login"type="submit" name="submit" value="Register">
-                </td>
-
-                <td>
-                    <br><br>
-                    <a class="gobacklogin" href="../view/employelogin.php" name="return">Login</a>
-                </td>
-
-                <!-- <td>
-                    <input type="submit" name="Login" value="Login">
-                </td> -->
-            </tr>
-
-        </table>
+        <div class="form-actions">
+            <input class="login" type="submit" name="submit" value="Submit application">
+        </div>
     </form>
-
+    <p class="small">Already approved? <a href="../view/employelogin.php">Sign in</a></p>
     <script src="../JS/ragistration.js"></script>
-</body>
-
-</html>
+</section>
+<?php @include("../view/footer.php"); ?>

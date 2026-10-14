@@ -77,7 +77,7 @@ function uname_AJAX()
             document.getElementById("unameajaxresponse").innerHTML = this.responseText;
         }
     };
-    unamexhttp.open("POST", "http://localhost/Bankin%20Managment%20System/Employee/control/ajax.unamecheck.php", true);
+    unamexhttp.open("POST", "/Employee/control/ajax.unamecheck.php", true);
     unamexhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
     unamexhttp.send("username="+username);
 }

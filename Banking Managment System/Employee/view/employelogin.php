@@ -1,90 +1,32 @@
 <?php
+$pageTitle = 'Employee sign in';
+include('../control/emplogin.php');     #employee login control
 
-include('../control/emplogin.php');     #employ login r control
-
-    if(isset($_SESSION['username']) )
-{
+if (isset($_SESSION['username'])) {
     header("location: ../view/epage1.php");
+    exit;
 }
-
-
+@include("../view/public_top.php");
 ?>
-
-
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/CSS" href="../css/design.css">
-    <title>Employe Login Form </title>
-</head>
-
-    <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST" onsubmit="return validlogin()" enctype="multipart/form-data">
-    <center>
-    <body>
-    <div class= "header sticky">
-    <h1>City Bank Limited</h1>
-    </div>
-        <header>
-
-            <p><strong><font color="black">Login As An Employe</font></strong></p>
-            <br><br><br><br>
-        </header>
-
-        <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="POST" enctype="multipart/form-data">
-
-                <table>
-                    <tr>
-                        <td>
-                            <label>
-                            </label>
-                            <input type="text" id="username" name="username" onchange="uname_AJAX()" onkeyup="usernamecheck()" placeholder="Enter Username">
-                            <p id="usererr"></p>
-                            <p id="unameajaxresponse"></p>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td>
-                            <label>
-                            </label>
-                            <input type="password" id="password" name="password" onkeyup="passwordcheck()" placeholder="Enter Password">
-                            <p id="passworderr"></p>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td>
-                            <input type="checkbox" name="remember" id="remember" clicked>
-                            <label for="remember">
-                                <b>Remember Me</b>
-                            </label>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td>
-                            <input class="login" type="submit" name="submit" value="Login">
-                        </td>
-                        <td>
-                            <a class="regi" href="../view/employeregistration.php">Registration</a>
-                        </td>
-                    </tr>
-                    <tr>
-
-                    <th>
-                    <a id="denger" href="../view/forgetpassword.php">Forget Password?</a><br><br>
-                </th>
-                    </tr>
-                </table>
-        </form>
-    </center>
-    <script src="../JS/loginjs.js"></script>
-</body>
-
-</html
-
- 
+<section class="card auth">
+    <h1>Employee sign in</h1>
+    <p class="muted">Sign in to manage customers and accounts.</p>
+    <?php if ($loginError !== '') { ?><div class="alert alert-error" role="alert"><?php echo htmlspecialchars($loginError, ENT_QUOTES, 'UTF-8'); ?></div><?php } ?>
+    <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF'], ENT_QUOTES, 'UTF-8'); ?>" method="POST" onsubmit="return validlogin()" enctype="multipart/form-data">
+        <?php echo csrf_field(); ?>
+        <label>Username
+            <input type="text" id="username" name="username" onkeyup="usernamecheck()" placeholder="Enter username" autocomplete="username">
+        </label>
+        <p id="usererr"></p>
+        <label>Password
+            <input type="password" id="password" name="password" onkeyup="passwordcheck()" placeholder="Enter password" autocomplete="current-password">
+        </label>
+        <p id="passworderr"></p>
+        <input class="login" type="submit" name="submit" value="Sign in">
+    </form>
+    <p class="small"><a href="../view/employeregistration.php">Apply for an account</a> · Forgot your password? Ask the administrator to reset it.</p>
+    <p class="small"><a href="/">&larr; Home</a></p>
+    <?php if (demo_mode()) { ?><p class="muted small">Demo: <code>employee</code> / <code>Demo@1234</code></p><?php } ?>
+</section>
+<script src="../JS/loginjs.js"></script>
+<?php @include("../view/footer.php"); ?>

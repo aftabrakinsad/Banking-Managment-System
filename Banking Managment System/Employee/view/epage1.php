@@ -1,38 +1,24 @@
 <?php
-session_start();
-if(empty($_SESSION["username"]) && empty($_SESSION["password"]))
-{
-    header("location: ../view/employelogin.php");
-}
-
-@include("../view/header.php");
-@include("../view/emp_navbar.php");
-@include("../view/employeeinsidebar.php");
-
+require_once __DIR__ . '/../control/bootstrap.php';
+$employee = require_employee();
+$pageTitle = 'Home';
+require __DIR__ . '/header.php';
+require_once __DIR__ . '/../../config/feed.php';
+$rc = crepo()->requestCounts();
+$actions = [
+    ['requests.php', 'Customer requests', $rc['open'] . ' open, ' . $rc['in_progress'] . ' in progress.'],
+    ['customers.php', 'Customers', 'Search, view and update customer accounts and photos.'],
+    ['customer_form.php', 'Open an account', 'Register a new customer with an opening deposit.'],
+    ['cashdesk.php', 'Cash desk', 'Record cash deposits and withdrawals.'],
+    ['viewinformation.php', 'My profile', 'Review and update your own details.'],
+];
 ?>
-
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/CSS" href="../css/employeehomepage.css">
-    <link rel="stylesheet" href="../CSS/epage1navbar.css">
-    <title> Employee HomePage</title>
-</head>
-
-<body>
-    <div class="flex-container">
-        <div class="flex-item">
-            <!-- <h1 id="customer">Welcome To The HomePage <?php include('../control/cookie.php'); ?></h1> -->
-            <p id="customer"></p>
-            <!-- <h3 class="gobacklogin"  >Do you want to <a href="../control/employelogout.php">Logout</a></h3> -->
-            <a class="gobacklogin" href="../control/employelogout.php" >Logout</a>
-            <!-- <a href="../view/viewinformation.php">Employee  Update </a> -->
-        </div>
-    </div>
-</body>
-
-</html>
+<h1>Welcome back, <?php echo h($employee['username']); ?></h1>
+<?php render_admin_feed('employee', $employee['username']); ?>
+<h2>Shortcuts</h2>
+<section class="grid portals">
+<?php foreach ($actions as $a) { ?>
+    <a class="card portal" href="../view/<?php echo $a[0]; ?>"><h2><?php echo h($a[1]); ?></h2><p class="muted"><?php echo h($a[2]); ?></p></a>
+<?php } ?>
+</section>
+<?php @include("../view/footer.php"); ?>

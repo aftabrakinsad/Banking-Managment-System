@@ -1,23 +1,9 @@
 <?php
+// Registration availability check (prepared statements; no output unless a value was sent).
+require_once __DIR__ . '/../../config/applications.php';
 
-@include("../model/db.php");
-
-$NId = $_POST["NId"];
-
-
-if(!empty($NId))
+$value = trim(isset($_POST['NID']) ? (string)$_POST['NID'] : '');
+if ($value !== '' && strlen($value) <= 100)
 {
-$mydb = new db();
-$myconn = $mydb -> openConn();
-$results = $mydb -> NIDreg_Ajex($NId,"registrationofemployee", $myconn);
-if($results -> num_rows > 0)
-{
-echo "NID is alreay Exsists";
+    echo (new ApplicationRepo())->taken('nid', $value) ? 'That NID is already registered.' : 'NID is available.';
 }
-else
-{
-echo "User doesn't Exists";
-}
-}
-
-?>

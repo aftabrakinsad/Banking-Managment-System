@@ -1,23 +1,9 @@
 <?php
+// Registration availability check (prepared statements; no output unless a value was sent).
+require_once __DIR__ . '/../../config/applications.php';
 
-@include("../model/db.php");
-
-$Phone = $_POST["Phone"];
-
-#Checking Username via ajax
-if(!empty($Phone))
+$value = trim(isset($_POST['Phone']) ? (string)$_POST['Phone'] : '');
+if ($value !== '' && strlen($value) <= 100)
 {
-$mydb = new db();
-$myconn = $mydb -> openConn();
-$results = $mydb -> Phonereg_Ajex($Phone,"registrationofemployee", $myconn);
-if($results -> num_rows > 0)
-{
-echo "Phone Number Aldeady Exsists";
+    echo (new ApplicationRepo())->taken('phone', $value) ? 'That phone number is already registered.' : 'Phone number is available.';
 }
-else
-{
-echo "Phone Number doesn't Exists";
-}
-}
-
-?>

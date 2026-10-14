@@ -1,3 +1,3 @@
 <?php
-    header("location: ../view/employelogin.php");
+    { header("location: view/employelogin.php"); exit; }
 ?>

@@ -1,71 +1,56 @@
 <?php
-@include("../model/db.php");
+// Employee sign-in. Verifies against employeelogin with a prepared statement and stores only the username in the session.
+require_once __DIR__ . '/../../config/helpers.php';
+require_once __DIR__ . '/../../config/database.php';
+require_once __DIR__ . '/../../config/activity.php';
 
-session_start();   #session suru user information store
+$loginError = '';
 
-if(isset($_POST['submit']))
+if (isset($_POST['submit']))
 {
-   $username = $_POST['username'];
-     $password = $_POST['password'];
+    csrf_verify();
+    $username = trim(isset($_POST['username']) ? $_POST['username'] : '');
+    $password = isset($_POST['password']) ? $_POST['password'] : '';
+    $now = time();
 
-   if($username != "" && $password != "")
+    if (isset($_SESSION['emp_lock']) && $_SESSION['emp_lock'] > $now)
     {
-        if($_SERVER["REQUEST_METHOD"] == "POST") # user input post r modde jabe then server r req korsi
+        $loginError = 'Too many failed attempts. Try again in a few minutes.';
+    }
+    elseif ($username === '' || $password === '')
+    {
+        $loginError = "Username and password can't be empty.";
+    }
+    else
+    {
+        $conn = bank_db_connect();
+        $st = $conn->prepare("SELECT username, password FROM employeelogin WHERE username = ?");
+        $st->bind_param('s', $username);
+        $st->execute();
+        $row = $st->get_result()->fetch_assoc();
+        $st->close();
+
+        if ($row && verify_secret($password, $row['password']))
         {
-        $f = 0;    # 0 variable 
-            $mydb = new db();
-             $myconn = $mydb -> openConn();
-             $result = $mydb-> employee_login($myconn, "employeelogin", $_POST['username'], $_POST['password']);
-
-             if($result -> num_rows > 0)
-             {
-                 foreach($result as $employeuser)
-                 {
-                    if($employeuser["username"] = $_POST["username"] && $employeuser["password"] = $_POST["password"])
-                     {
-
-
-
-                        $_SESSION['username'] = $employeuser["username"];
-                         $_SESSION['password'] = $employeuser["password"];
-
-                         if (!empty($_POST["remember"]))
-                         {
-
-                            // $username = $_POST['username'];
-                            // $password = $_POST['password'];
-
-                            setcookie("username", $_POST['username'], time() + 86000);
-                            setcookie("password", $_POST['password'], time() + 86000);
-                            echo "";
-
-                            // setcookie("username", $_SESSION['username'], time() + 86000);
-                            //  setcookie("password", $_SESSION['password'], time() + 86000);
-                            //  echo "";
-                         }
-                         else
-                         {
-                             setcookie("username", "");
-                             setcookie("password", "");
-                             echo "";
-                         }
-                         header("../view/epage1.php");
-                   }
-                }
+            if (!is_hashed($row['password'])) {
+                $up = $conn->prepare("UPDATE employeelogin SET password = ? WHERE username = ?");
+                $hash = password_hash($password, PASSWORD_DEFAULT);
+                $up->bind_param('ss', $hash, $row['username']); $up->execute(); $up->close();
             }
-            else if ($f == 0) 
-            {
-                 echo  "Username and Password Doesn't Match";
-            }
+            session_regenerate_id(true);
+            $_SESSION['username'] = $row['username'];
+            unset($_SESSION['emp_fails'], $_SESSION['emp_lock']);
+            log_activity('employee', $row['username'], 'login');
+            redirect('/Employee/view/epage1.php');
         }
-     }
-     else
-     {
-         echo " Username and Password Can't be Empty";
-     }
- }
- if(isset($_POST['registration']))
- {
-     header("location: ../view/employeregistration.php");
- } 
- ?>
+
+        $_SESSION['emp_fails'] = (isset($_SESSION['emp_fails']) ? $_SESSION['emp_fails'] : 0) + 1;
+        if ($_SESSION['emp_fails'] >= 5) { $_SESSION['emp_lock'] = $now + 300; $_SESSION['emp_fails'] = 0; }
+        log_activity('employee', $username, 'login_failed');
+        $loginError = 'Username or password is incorrect.';
+    }
+}
+if (isset($_POST['registration']))
+{
+    redirect('/Employee/view/employeregistration.php');
+}

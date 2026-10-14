@@ -1,21 +1,9 @@
 <?php
+// Registration availability check (prepared statements; no output unless a value was sent).
+require_once __DIR__ . '/../../config/applications.php';
 
-include("../model/db.php");
-
-$username = $_POST["username"];
-if(!empty($username))
+$value = trim(isset($_POST['username']) ? (string)$_POST['username'] : '');
+if ($value !== '' && strlen($value) <= 100)
 {
-    $mydb = new db();
-$myconn = $mydb -> openConn();
-$results = $mydb ->searchUserbyUsername($username,"manager",$myconn);
-if($results->num_rows >0)
-{
- echo "User Exsists";
+    echo (new ApplicationRepo())->taken('username', $value) ? 'That username is already taken.' : 'Username is available.';
 }
-else
-{
-    echo "User doesn't Exists";
-}
-}
-
-?>
