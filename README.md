@@ -2,7 +2,7 @@
 
 A role-based web banking application built with **PHP, MySQL and JavaScript**. A single master **admin** governs the system, **managers** and **employees** run it day to day, and **customers** bank online.
 
-> **Live demo:** _add your Render URL here after deploying_ · **Source:** this repository
+> **Live demo:** <https://banking-management-system-6h8e.onrender.com/> · **Source:** this repository
 >
 > Academic course project (AIUB, CSC3215 Web Technologies), later extended and hardened for deployment. It runs on sample data and is **not a real bank**.
 
@@ -79,7 +79,7 @@ The web app runs on **Render** (Docker) and the database on **TiDB Cloud Serverl
    ```
    Add `-e MASTER_ADMIN_PASSWORD='something private'` to replace the public demo admin password. Use `--reset --yes` after the script name to wipe and reload.
 3. **Create the Render service.** On Render choose *New → Blueprint*, select this repository (`render.yaml` configures everything), and enter `DB_HOST`, `DB_USER`, `DB_PASS` and `DB_NAME` when asked.
-4. Open the Render URL, sign in as each role, and put the URL at the top of this README.
+4. Open the Render URL and sign in as each role.
 
 ### Configuration
 
