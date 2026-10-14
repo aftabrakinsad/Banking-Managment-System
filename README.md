@@ -2,7 +2,7 @@
 
 A role-based web banking application built with **PHP, MySQL and JavaScript**. A single master **admin** governs the system, **managers** and **employees** run it day to day, and **customers** bank online.
 
-> **Live demo:** <https://banking-management-system-6h8e.onrender.com/> · **Source:** this repository
+> **Live demo:** <https://bms-wt-aiub.onrender.com/> · **Source:** this repository
 >
 > Academic course project (AIUB, CSC3215 Web Technologies), later extended and hardened for deployment. It runs on sample data and is **not a real bank**.
 
