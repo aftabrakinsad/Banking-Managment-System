@@ -24,7 +24,7 @@ if (isset($_SESSION['username'])) {
         <input class="login" type="submit" name="submit" value="Sign in">
         <?php if (!empty($error)) { ?><div class="alert alert-error" role="alert"><?php echo htmlspecialchars($error, ENT_QUOTES, 'UTF-8'); ?></div><?php } ?>
     </form>
-    <p class="small"><a href="../view/managerRegistration.php">Apply for a manager account</a> · <a href="/Admin/View/Home.php">&larr; Home</a></p>
+    <p class="small"><a href="../view/managerRegistration.php">Apply for a manager account</a> · <a href="/">&larr; Home</a></p>
     <p class="muted small">Demo: <code>manager</code> / <code>Demo@1234</code></p>
 </section>
 <script src="../js/managerlogin.js"></script>

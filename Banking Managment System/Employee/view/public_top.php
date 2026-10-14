@@ -9,7 +9,7 @@
 </head>
 <body>
 <header class="topbar">
-    <a class="brand" href="/Admin/View/Home.php"><img src="/Admin/Image/banklogo.png" alt="">Banking Management System</a>
-    <nav><a href="/Admin/View/Home.php">Home</a></nav>
+    <a class="brand" href="/"><img src="/Admin/Image/banklogo.png" alt="">Banking Management System</a>
+    <nav><a href="/">Home</a></nav>
 </header>
 <main class="page">

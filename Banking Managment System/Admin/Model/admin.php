@@ -71,10 +71,19 @@ class AdminDb
 
     function activityRoles() { return $this->rows("SELECT DISTINCT actor_role FROM activity_log ORDER BY actor_role"); }
 
-    function transactions($limit = 200)
+    // $q matches an account number (partial) or a customer name; '' returns everything.
+    function transactions($limit = 200, $q = '')
     {
-        return $this->rows("SELECT p.*, u.fname, u.lname FROM passbook p LEFT JOIN `user` u ON u.accountno = p.accountno
-                            ORDER BY p.trans_id DESC LIMIT ?", 'i', [$limit]);
+        $sql = "SELECT p.*, u.fname, u.lname FROM passbook p LEFT JOIN `user` u ON u.accountno = p.accountno";
+        $types = ''; $params = [];
+        if ($q !== '') {
+            $sql .= " WHERE CAST(p.accountno AS CHAR) LIKE ? OR CONCAT(u.fname, ' ', u.lname) LIKE ?";
+            $like = '%' . addcslashes($q, '%_\\') . '%';
+            $types = 'ss'; $params = [$like, $like];
+        }
+        $sql .= " ORDER BY p.trans_id DESC LIMIT ?";
+        $types .= 'i'; $params[] = $limit;
+        return $this->rows($sql, $types, $params);
     }
 
     // ---------- applications ----------
@@ -88,6 +97,18 @@ class AdminDb
     {
         return $this->rows("SELECT id, fname, lname, Username AS username, Email AS email, NID AS nid, Phone AS phone, gender, picture, cv, status, review_note, reviewed_at, applied_at
                             FROM registrationofemployee WHERE status = ? ORDER BY id DESC", 's', [$status]);
+    }
+
+    function managerApplication($id)
+    {
+        return $this->one("SELECT id, firstname, lastname, gender, age, fathersname, mothersname, username, email, presentaddress, nid, phone, doj, salary, cvpath, imgpath, status, review_note, reviewed_at, applied_at
+                           FROM applicationofmanager WHERE id = ?", 'i', [$id]);
+    }
+
+    function employeeApplication($id)
+    {
+        return $this->one("SELECT id, fname, lname, Username AS username, Email AS email, NID AS nid, Phone AS phone, gender, picture, cv, status, review_note, reviewed_at, applied_at
+                           FROM registrationofemployee WHERE id = ?", 'i', [$id]);
     }
 
     // Returns [ok, message]

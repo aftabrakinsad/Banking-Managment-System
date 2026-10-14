@@ -25,8 +25,7 @@ function navlink($file, $label, $page, $badge = 0) {
     <label for="nav-toggle" class="hamburger" aria-label="Menu">&#9776;</label>
     <nav>
         <?php
-        echo '<a href="/Admin/View/Home.php">Home</a>';
-        echo navlink('dashboard.php', 'Dashboard', $page);
+        echo navlink('dashboard.php', 'Home', $page);
         echo navlink('transfer.php', 'Transfer', $page);
         echo navlink('statement.php', 'Statement', $page);
         echo navlink('beneficiaries.php', 'Payees', $page);

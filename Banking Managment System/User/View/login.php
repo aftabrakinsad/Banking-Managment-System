@@ -18,6 +18,6 @@ require __DIR__ . '/layout_top.php';
         <button class="btn" type="submit">Sign in</button>
     </form>
     <p class="muted small">Demo: <code>casey</code> / <code>Demo@1234</code></p>
-    <p class="small"><a href="/Admin/View/Home.php">&larr; Back to home</a></p>
+    <p class="small"><a href="/">&larr; Back to home</a></p>
 </section>
 <?php require __DIR__ . '/layout_bottom.php'; ?>

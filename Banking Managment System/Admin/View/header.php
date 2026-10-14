@@ -25,9 +25,8 @@ $flash = take_flash();
     <input type="checkbox" id="nav-toggle" class="nav-toggle">
     <label for="nav-toggle" class="hamburger" aria-label="Menu">&#9776;</label>
     <nav>
-        <a href="/Admin/View/Home.php">Home</a>
         <?php
-        echo admin_link('adminhomepage.php', 'Dashboard', $cur);
+        echo admin_link('adminhomepage.php', 'Home', $cur);
         echo admin_link('applications.php', 'Applications', $cur, $pending);
         echo admin_link('staff.php', 'Staff', $cur);
         echo admin_link('customers.php', 'Customers', $cur);

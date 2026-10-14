@@ -24,7 +24,7 @@ if (isset($_SESSION['username'])) {
         <input class="login" type="submit" name="submit" value="Sign in">
     </form>
     <p class="small"><a href="../view/employeregistration.php">Create an account</a> · <a id="denger" href="../view/forgetpassword.php">Forgot password?</a></p>
-    <p class="small"><a href="/Admin/View/Home.php">&larr; Home</a></p>
+    <p class="small"><a href="/">&larr; Home</a></p>
     <p class="muted small">Demo: <code>employee</code> / <code>Demo@1234</code></p>
 </section>
 <script src="../JS/loginjs.js"></script>

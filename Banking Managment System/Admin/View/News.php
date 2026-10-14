@@ -16,5 +16,5 @@ $items = $res ? $res->fetch_all(MYSQLI_ASSOC) : [];
     <span class="muted small"><?php echo h($n['created']); ?></span>
 </section>
 <?php } ?>
-<a class="btn btn-ghost" href="/Admin/View/Home.php">Back to home</a>
+<a class="btn btn-ghost" href="/">Back to home</a>
 <?php @include("../View/footer.php"); ?>
