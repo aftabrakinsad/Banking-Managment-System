@@ -28,3 +28,9 @@ INSERT INTO passbook (trans_date,remarks,debit,credit,balance,accountno) VALUES
  (NOW() - INTERVAL 5 DAY,'Received from: Casey Customer, AC/No: 3000001',0,3000,23000,3000002);
 INSERT INTO beneficiaries (user_id,nickname,accountno) VALUES (1,'Riley',3000002);
 INSERT INTO notifications (user_id,message) VALUES (2,'You received 3000 from Casey Customer (AC/No: 3000001)');
+
+INSERT INTO customer_requests (user_id,type,subject,message,status) VALUES
+  (1,'statement','Statement for last quarter','Please prepare a printed statement for the last three months. I need it for a visa application.','open'),
+  (2,'profile_update','Phone number changed','My new phone number is +8801711111111. Please update it on my account.','open');
+INSERT INTO customer_requests (user_id,type,subject,message,status,response,handled_by,updated_at) VALUES
+  (1,'pin_help','Forgot my PIN','I cannot remember my transfer PIN.','resolved','Your PIN was reset in branch. Please change it from Security after signing in.','employee',NOW());

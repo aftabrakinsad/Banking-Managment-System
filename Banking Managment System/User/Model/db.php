@@ -142,6 +142,23 @@ class UserDb
         return $this->run("UPDATE notifications SET is_read = 1 WHERE user_id = ?", 'i', [$uid]);
     }
 
+    // ---- requests to the bank ----
+    function createRequest($uid, $type, $subject, $message)
+    {
+        return $this->run("INSERT INTO customer_requests (user_id, type, subject, message) VALUES (?, ?, ?, ?)", 'isss', [$uid, $type, $subject, $message]);
+    }
+
+    function myRequests($uid)
+    {
+        return $this->rows("SELECT * FROM customer_requests WHERE user_id = ? ORDER BY id DESC LIMIT 100", 'i', [$uid]);
+    }
+
+    function openRequestCount($uid)
+    {
+        $r = $this->rows("SELECT COUNT(*) AS c FROM customer_requests WHERE user_id = ? AND status IN ('open','in_progress')", 'i', [$uid]);
+        return (int)$r[0]['c'];
+    }
+
     function news($limit = 20)
     {
         return $this->rows("SELECT * FROM news WHERE audience IN ('all','customer') ORDER BY news_id DESC LIMIT ?", 'i', [$limit]);

@@ -24,6 +24,7 @@ include("../control/homepageProcess.php");
         <a href="../view/Viewemployee.php"<?php echo $cur === 'viewemployee.php' ? ' class="active"' : ''; ?>>My team</a>
         <details class="more"><summary>More &#9662;</summary><div class="menu">
             <a href="../view/postnews.php">Post news</a>
+            <a href="../view/employeeapplicants.php">Employee applicants</a>
             <a href="../view/ViewInformation.php">My details</a>
             <a href="../view/profile.php">Edit profile</a>
         </div></details>

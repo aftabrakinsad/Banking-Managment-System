@@ -35,8 +35,5 @@ INSERT INTO tasks (title,details,assignee_role,assignee_username,due_date)
   VALUES ('Review weekly transfer report','Check unusual transfers over 100,000.','manager','manager',CURDATE() + INTERVAL 5 DAY),
          ('Update customer contact details','Call back customers with outdated phone numbers.','employee','employee',CURDATE() + INTERVAL 3 DAY);
 
-INSERT INTO prebookfunds (trans_date,remarks,debit,credit,balance,accountno)
-  VALUES (NOW(),'Opening balance',0,100000,100000,3000001);
-
 INSERT INTO activity_log (actor_role,actor,action,detail,ip) VALUES
   ('system','seed','database_initialised','Demo data loaded','');

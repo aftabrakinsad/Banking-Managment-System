@@ -29,6 +29,7 @@ function navlink($file, $label, $page, $badge = 0) {
         echo navlink('transfer.php', 'Transfer', $page);
         echo navlink('statement.php', 'Statement', $page);
         echo navlink('beneficiaries.php', 'Payees', $page);
+        echo navlink('requests.php', 'Requests', $page);
         echo navlink('notifications.php', 'Alerts', $page, $unread);
         echo navlink('news.php', 'News', $page);
         echo navlink('profile.php', 'Profile', $page);

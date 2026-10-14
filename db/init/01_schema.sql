@@ -54,7 +54,6 @@ CREATE TABLE passbook (
   accountno INT NOT NULL,
   INDEX (accountno)
 );
-CREATE TABLE prebookfunds LIKE passbook;
 
 -- ---------- Manager module ----------
 CREATE TABLE manager (
@@ -124,12 +123,6 @@ CREATE TABLE employee (
   manager VARCHAR(100) NULL
 );
 
-CREATE TABLE query_user (
-  query_id INT AUTO_INCREMENT PRIMARY KEY,
-  query_title VARCHAR(100) NOT NULL,
-  query_body VARCHAR(500) NOT NULL,
-  created DATETIME NOT NULL
-);
 
 -- ---------- Admin: oversight ----------
 CREATE TABLE activity_log (
@@ -154,4 +147,19 @@ CREATE TABLE tasks (
   created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   completed_at DATETIME NULL,
   INDEX (assignee_role, assignee_username, status)
+);
+
+-- ---------- Customer requests (customers ask, employees handle) ----------
+CREATE TABLE customer_requests (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  user_id INT NOT NULL,
+  type ENUM('profile_update','statement','loan','pin_help','other') NOT NULL DEFAULT 'other',
+  subject VARCHAR(120) NOT NULL,
+  message TEXT NOT NULL,
+  status ENUM('open','in_progress','resolved','rejected') NOT NULL DEFAULT 'open',
+  response TEXT NULL,
+  handled_by VARCHAR(100) NULL,
+  created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updated_at DATETIME NULL,
+  INDEX (status), INDEX (user_id)
 );

@@ -57,6 +57,7 @@ class AdminDb
             'tx_today' => $c("SELECT COUNT(*) FROM passbook WHERE DATE(trans_date) = CURDATE() AND debit > 0"),
             'tx_total' => $c("SELECT COUNT(*) FROM passbook WHERE debit > 0"),
             'open_tasks' => $c("SELECT COUNT(*) FROM tasks WHERE status = 'open'"),
+            'open_requests' => $c("SELECT COUNT(*) FROM customer_requests WHERE status IN ('open','in_progress')"),
             'holdings' => $bal ? (int)$bal['t'] : 0,
         ];
     }
