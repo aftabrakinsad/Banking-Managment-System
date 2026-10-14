@@ -1,19 +1,21 @@
 FROM php:8.3-apache
 
-# mysqli for the database, rewrite for clean URLs
+# mysqli for the database; headers/rewrite for Apache
 RUN docker-php-ext-install mysqli \
     && a2enmod rewrite headers
 
 COPY docker/php.ini /usr/local/etc/php/conf.d/app.ini
 COPY docker/sessions.conf /etc/apache2/conf-available/sessions.conf
-RUN a2enconf sessions
 COPY docker/security.conf /etc/apache2/conf-available/security-app.conf
-RUN a2enconf security-app
+RUN a2enconf sessions security-app
 
-# The app's web root is the project folder
+# The app's web root is the project folder; schema + loader live outside it
 COPY ["Banking Managment System/", "/var/www/html/"]
+COPY db/init /opt/db/init
+COPY scripts /opt/scripts
+COPY docker/entrypoint.sh /usr/local/bin/entrypoint.sh
 
-RUN chown -R www-data:www-data /var/www/html
+RUN chmod +x /usr/local/bin/entrypoint.sh \
+    && chown -R www-data:www-data /var/www/html
 
-# Render sets $PORT; default to 80 locally
-CMD ["bash", "-c", "sed -i \"s/Listen 80/Listen ${PORT:-80}/\" /etc/apache2/ports.conf && sed -i \"s/:80>/:${PORT:-80}>/\" /etc/apache2/sites-enabled/000-default.conf && exec apache2-foreground"]
+CMD ["/usr/local/bin/entrypoint.sh"]

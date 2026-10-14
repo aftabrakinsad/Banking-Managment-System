@@ -362,6 +362,9 @@ class AdminDb
     {
         $u = $this->customer($id);
         if (!$u) { return null; }
+        $this->run("DELETE FROM beneficiaries WHERE user_id = ?", 'i', [$id]);
+        $this->run("DELETE FROM notifications WHERE user_id = ?", 'i', [$id]);
+        $this->run("DELETE FROM customer_requests WHERE user_id = ?", 'i', [$id]);
         $this->run("DELETE FROM `user` WHERE user_id = ?", 'i', [$id]);
         return $u['uname'];
     }

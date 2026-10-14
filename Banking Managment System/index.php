@@ -100,6 +100,7 @@ $stack = ['PHP 8', 'MySQL', 'Apache', 'JavaScript + AJAX', 'Docker', 'Layered ar
     <h2 class="section-title">Built with</h2>
     <p class="chips"><?php foreach ($stack as $s) { echo '<span class="chip">' . htmlspecialchars($s) . '</span>'; } ?></p>
 
+    <?php if (getenv('APP_DEMO') !== '0') { ?>
     <h2 id="demo" class="section-title">Try the demo</h2>
     <section class="card">
         <p class="muted">This site runs on sample data. Every demo account uses the password <code>Demo@1234</code>.</p>
@@ -113,6 +114,7 @@ $stack = ['PHP 8', 'MySQL', 'Apache', 'JavaScript + AJAX', 'Docker', 'Layered ar
             </tbody>
         </table></div>
     </section>
+    <?php } ?>
 </main>
 <footer class="footer">Academic course project · Banking Management System · AIUB, CSC3215 Web Technologies</footer>
 </body>

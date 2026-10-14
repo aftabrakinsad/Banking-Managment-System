@@ -26,7 +26,7 @@ if (isset($_SESSION['username'])) {
     </form>
     <p class="small"><a href="../view/employeregistration.php">Apply for an account</a> · Forgot your password? Ask the administrator to reset it.</p>
     <p class="small"><a href="/">&larr; Home</a></p>
-    <p class="muted small">Demo: <code>employee</code> / <code>Demo@1234</code></p>
+    <?php if (demo_mode()) { ?><p class="muted small">Demo: <code>employee</code> / <code>Demo@1234</code></p><?php } ?>
 </section>
 <script src="../JS/loginjs.js"></script>
 <?php @include("../view/footer.php"); ?>

@@ -5,8 +5,7 @@ CREATE TABLE beneficiaries (
   nickname VARCHAR(60) NOT NULL,
   accountno INT NOT NULL,
   created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  UNIQUE (user_id, accountno),
-  FOREIGN KEY (user_id) REFERENCES `user`(user_id) ON DELETE CASCADE
+  UNIQUE (user_id, accountno)
 );
 
 CREATE TABLE notifications (
@@ -15,8 +14,7 @@ CREATE TABLE notifications (
   message VARCHAR(255) NOT NULL,
   is_read TINYINT(1) NOT NULL DEFAULT 0,
   created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  INDEX (user_id, is_read),
-  FOREIGN KEY (user_id) REFERENCES `user`(user_id) ON DELETE CASCADE
+  INDEX (user_id, is_read)
 );
 
 -- Opening balances + a little history for the demo customers

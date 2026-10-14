@@ -17,15 +17,6 @@ CREATE TABLE staticadmin (
 
 
 
-CREATE TABLE new_user (
-  user_id INT AUTO_INCREMENT PRIMARY KEY,
-  fname VARCHAR(100) NOT NULL, lname VARCHAR(100) NOT NULL,
-  uname VARCHAR(100) NOT NULL, email VARCHAR(100) NOT NULL,
-  nid BIGINT NOT NULL, phone VARCHAR(30) NOT NULL,
-  accountno INT NOT NULL, pin VARCHAR(255) NOT NULL,
-  password VARCHAR(255) NOT NULL, cpassword VARCHAR(255) NOT NULL DEFAULT ''
-);
-
 CREATE TABLE `user` (
   user_id INT AUTO_INCREMENT PRIMARY KEY,
   fname VARCHAR(100) NOT NULL, lname VARCHAR(100) NOT NULL,
@@ -69,26 +60,29 @@ CREATE TABLE manager (
   activeStatus VARCHAR(20) NULL,
   fund DECIMAL(14,2) NOT NULL DEFAULT 0
 );
-CREATE TABLE applicationofmanager LIKE manager;
-ALTER TABLE applicationofmanager
-  ADD COLUMN status ENUM('pending','approved','rejected') NOT NULL DEFAULT 'pending',
-  ADD COLUMN review_note VARCHAR(255) NULL,
-  ADD COLUMN reviewed_at DATETIME NULL,
-  ADD COLUMN applied_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP;
+CREATE TABLE applicationofmanager (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  firstname VARCHAR(100), lastname VARCHAR(100), gender VARCHAR(20), age INT,
+  fathersname VARCHAR(100), mothersname VARCHAR(100),
+  username VARCHAR(100) NOT NULL, pass VARCHAR(255) NOT NULL,
+  email VARCHAR(100), presentaddress TEXT,
+  nid BIGINT, phone VARCHAR(30),
+  cvpath VARCHAR(255), imgpath VARCHAR(255),
+  doj DATE, salary INT,
+  accountno INT NULL,
+  activeStatus VARCHAR(20) NULL,
+  fund DECIMAL(14,2) NOT NULL DEFAULT 0,
+  status ENUM('pending','approved','rejected') NOT NULL DEFAULT 'pending',
+  review_note VARCHAR(255) NULL,
+  reviewed_at DATETIME NULL,
+  applied_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
 
 CREATE TABLE `transaction` (
   id INT AUTO_INCREMENT PRIMARY KEY,
   senderaccount INT NOT NULL, receveraccount INT NOT NULL,
   balancetransfered DECIMAL(14,2) NOT NULL,
   `Date` DATETIME NOT NULL
-);
-
-CREATE TABLE managernews (
-  news_id INT AUTO_INCREMENT PRIMARY KEY,
-  tittle VARCHAR(100) NOT NULL,
-  news_body VARCHAR(500) NOT NULL,
-  created DATETIME NOT NULL,
-  sender VARCHAR(100)
 );
 
 -- ---------- Employee module ----------

@@ -17,7 +17,7 @@ require __DIR__ . '/layout_top.php';
         </label>
         <button class="btn" type="submit">Sign in</button>
     </form>
-    <p class="muted small">Demo: <code>casey</code> / <code>Demo@1234</code></p>
+    <?php if (demo_mode()) { ?><p class="muted small">Demo: <code>casey</code> / <code>Demo@1234</code></p><?php } ?>
     <p class="small"><a href="/">&larr; Back to home</a></p>
 </section>
 <?php require __DIR__ . '/layout_bottom.php'; ?>

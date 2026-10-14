@@ -2,6 +2,9 @@
 // Helpers shared by the Admin and User portals: escaping, CSRF, flash messages, secrets.
 if (session_status() === PHP_SESSION_NONE) { session_start(); }
 
+// Demo credentials are shown on sign-in pages unless APP_DEMO=0.
+function demo_mode() { return getenv('APP_DEMO') !== '0'; }
+
 function h($s) { return htmlspecialchars((string)$s, ENT_QUOTES, 'UTF-8'); }
 function money($n) { return number_format((float)$n, 2); }
 function redirect($to) { header('Location: ' . $to); exit; }

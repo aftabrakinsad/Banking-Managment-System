@@ -33,7 +33,7 @@ elseif (strpos($q, "login_info=locked") !== false) { $msg = 'Too many failed att
         <input class="inputbutton" type="submit" name="submit" value="Sign in">
     </form>
     <p class="muted small">There is a single, fixed master administrator account.</p>
-    <p class="muted small">Demo: <code>admin</code> / <code>Demo@1234</code></p>
+    <?php if (demo_mode()) { ?><p class="muted small">Demo: <code>admin</code> / <code>Demo@1234</code></p><?php } ?>
 </section>
 <script src="../JS/adminlogin.js"></script>
 <?php @include("../View/footer.php"); ?>

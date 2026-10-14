@@ -22,7 +22,7 @@ if (!empty($_SESSION['username'])) { header("location: ../view/managerHomePage.p
         <input class="login" type="submit" name="submit" value="Sign in">
     </form>
     <p class="small"><a href="../view/managerRegistration.php">Apply for a manager account</a> · <a href="/">&larr; Home</a></p>
-    <p class="muted small">Demo: <code>manager</code> / <code>Demo@1234</code></p>
+    <?php if (demo_mode()) { ?><p class="muted small">Demo: <code>manager</code> / <code>Demo@1234</code></p><?php } ?>
 </section>
 <script src="../js/managerlogin.js"></script>
 <?php @include("../view/footer.php"); ?>

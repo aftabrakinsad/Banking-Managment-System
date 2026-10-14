@@ -10,12 +10,15 @@ function bank_db_connect()
 
     mysqli_report(MYSQLI_REPORT_OFF);
     $conn = mysqli_init();
-    // Hosted MySQL (e.g. TiDB Cloud) requires TLS.
+
+    $flags = 0;
+    // Hosted MySQL (TiDB Cloud, etc.) requires TLS. The server certificate is verified against the system CA
+    // bundle; set DB_SSL_VERIFY=0 only if a provider's certificate chain cannot be verified.
     if (getenv('DB_SSL') === '1') {
-        mysqli_options($conn, MYSQLI_OPT_SSL_VERIFY_SERVER_CERT, false);
+        $ca = getenv('DB_SSL_CA') ?: '/etc/ssl/certs/ca-certificates.crt';
+        if (is_readable($ca)) { $conn->ssl_set(null, null, $ca, null, null); }
+        mysqli_options($conn, MYSQLI_OPT_SSL_VERIFY_SERVER_CERT, getenv('DB_SSL_VERIFY') !== '0');
         $flags = MYSQLI_CLIENT_SSL;
-    } else {
-        $flags = 0;
     }
     if (!@$conn->real_connect($host, $user, $pass, $name, $port, null, $flags)) {
         error_log('DB connection failed: ' . mysqli_connect_error());
